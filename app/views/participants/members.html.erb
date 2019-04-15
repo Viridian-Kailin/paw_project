@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1>Participants</h1>
+
+<%= form_tag do %>
+  Badge: <%= number_field_tag(:badge)%><br>
+  Name: <%= text_field_tag(:name)%><br>
+  Phone: <%= number_field_tag(:phone)%><br>
+  Email: <%= text_field_tag(:email)%><br>
+  Preference: <%= select_tag(:pref, options_for_select(["Call","Text","Email"], "Text"))%><br>
+  Proxy: Yes <%= radio_button_tag(:proxy, "proxy_pref", "Yes") %>
+  No <%= radio_button_tag(:proxy, "proxy_pref", "No") %><br>
+
+  <%= submit_tag ("Add participant") %>
+<% end %>
+</body>
+</html>
+
+

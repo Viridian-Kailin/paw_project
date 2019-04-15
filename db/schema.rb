@@ -10,9 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_04_15_202120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string "event_code"
+    t.string "event_year"
+    t.string "event_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "game_logs", force: :cascade do |t|
+    t.string "title"
+    t.datetime "timestamp"
+    t.integer "badge"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "title"
+    t.string "company"
+    t.integer "quantity_total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "libraries", force: :cascade do |t|
+    t.string "title"
+    t.integer "event"
+    t.integer "badge"
+    t.datetime "checked_out"
+    t.datetime "checked_in"
+    t.integer "quantity_left"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.integer "badge"
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "pref"
+    t.boolean "proxy"
+    t.integer "p_badge"
+    t.string "p_name"
+    t.string "p_phone"
+    t.string "p_email"
+    t.string "p_pref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "event"
+    t.integer "title_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.string "assigned"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

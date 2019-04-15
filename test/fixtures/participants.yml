@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  badge: 1
+  name: MyString
+  phone: MyString
+  email: MyString
+  pref: MyString
+  proxy: false
+  p_badge: 1
+  p_name: MyString
+  p_phone: MyString
+  p_email: MyString
+  p_pref: MyString
+
+two:
+  id: 
+  badge: 1
+  name: MyString
+  phone: MyString
+  email: MyString
+  pref: MyString
+  proxy: false
+  p_badge: 1
+  p_name: MyString
+  p_phone: MyString
+  p_email: MyString
+  p_pref: MyString

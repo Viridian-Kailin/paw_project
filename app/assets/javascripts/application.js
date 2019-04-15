@@ -11,6 +11,14 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(document).on("change", ".radio", function(){
+  $(':radio').change(function (event) {
+    var id = $(this).data('id');
+    $('#' + id).addClass('proxy_info').siblings().removeClass('proxy_info');
+  });
+});
