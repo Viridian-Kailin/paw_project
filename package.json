@@ -1,7 +1,9 @@
 {
   "name": "myapp",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.4.0"
+  },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
   "main": "index.js",

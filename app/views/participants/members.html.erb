@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+<script>
+  $(document).ready(function(){
+    $("input[type=radio]").change(function (e) {
+      $("#yes, #no").removeClass("selected");
+      $("#" + $(e.currentTarget).val()).addClass("selected");
+    });
+  });
+</script>
 </head>
 <body>
 <h1>Participants</h1>
@@ -12,11 +19,24 @@
   Phone: <%= number_field_tag(:phone)%><br>
   Email: <%= text_field_tag(:email)%><br>
   Preference: <%= select_tag(:pref, options_for_select(["Call","Text","Email"], "Text"))%><br>
-  Proxy: Yes <%= radio_button_tag(:proxy, "proxy_pref", "Yes") %>
-  No <%= radio_button_tag(:proxy, "proxy_pref", "No") %><br>
+  Proxy: Yes <%= radio_button_tag(:proxy, "yes", "proxy") %>
+  No <%= radio_button_tag(:proxy, "no", "proxy") %><br>
 
-  <%= submit_tag ("Add participant") %>
 <% end %>
+<div id="no"></div>
+<div id="yes">
+<%= form_tag do %>
+  Enter Proxy's information:<br><br>
+
+  Badge: <%= number_field_tag(:p_badge)%><br>
+  Name: <%= text_field_tag(:p_name)%><br>
+  Phone: <%= number_field_tag(:p_phone)%><br>
+  Email: <%= text_field_tag(:p_email)%><br>
+  Preference: <%= select_tag(:p_pref, options_for_select(["Call","Text","Email"], "Text"))%><br>
+
+<% end %>
+
+<%= submit_tag ("Add participant") %>
 </body>
 </html>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_202120) do
+ActiveRecord::Schema.define(version: 2019_04_16_210529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 2019_04_15_202120) do
     t.string "event_code"
     t.string "event_year"
     t.string "event_location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.index ["event_code"], name: "index_events_on_event_code", unique: true
   end
 
   create_table "game_logs", force: :cascade do |t|
@@ -28,16 +29,17 @@ ActiveRecord::Schema.define(version: 2019_04_15_202120) do
     t.datetime "timestamp"
     t.integer "badge"
     t.integer "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
   end
 
   create_table "inventories", force: :cascade do |t|
     t.string "title"
     t.string "company"
-    t.integer "quantity_total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "quantity_total", default: 0
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.index ["title"], name: "index_inventories_on_title", unique: true
   end
 
   create_table "libraries", force: :cascade do |t|
@@ -47,8 +49,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_202120) do
     t.datetime "checked_out"
     t.datetime "checked_in"
     t.integer "quantity_left"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
   end
 
   create_table "participants", force: :cascade do |t|
@@ -63,19 +65,20 @@ ActiveRecord::Schema.define(version: 2019_04_15_202120) do
     t.string "p_phone"
     t.string "p_email"
     t.string "p_pref"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.index ["badge"], name: "index_participants_on_badge", unique: true
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.integer "event"
-    t.integer "title_id"
+    t.string "event"
+    t.string "title"
     t.datetime "start"
     t.datetime "end"
     t.string "assigned"
     t.string "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
   end
 
 end

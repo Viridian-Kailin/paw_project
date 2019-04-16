@@ -1,0 +1,242 @@
+---
+# Notes:
+# * 'title' is required and must be unique
+# * 'company' is required
+# * 'quantity_total' is optional
+- title: "Swordcrafters"
+  company: "Adam's Apple Games"
+  quantity_total: 1
+- title: "Truck Off"
+  company: "Adam's Apple Games"
+  quantity_total: 1
+- title: "Istanbul Dice"
+  company: "AEG"
+  quantity_total: 1
+- title: "Smash Up (Base Game)"
+  company: "AEG"
+  quantity_total: 1
+- title: "Front Line: No Komrades"
+  company: "Anvil 8 Games"
+  quantity_total: 1
+- title: "Replicants!"
+  company: "Attention Span Games"
+  quantity_total: 1
+- title: "Replicants! U.S.C. Expansion"
+  company: "Attention Span Games"
+  quantity_total: 1
+- title: "Little Drop of Poison"
+  company: "Baksha Games"
+  quantity_total: 1
+- title: "Werewords"
+  company: "Bezier Games"
+  quantity_total: 1
+- title: "Orc-lympics"
+  company: "Brain Games"
+  quantity_total: 1
+- title: "Pikoko"
+  company: "Brain Games"
+  quantity_total: 1
+- title: "Solo Una Noche (One Night Only)"
+  company: "Cabin 21 Games"
+  quantity_total: 1
+- title: "Dicey Peaks"
+  company: "Calliope"
+  quantity_total: 1
+- title: "Mansky Caper, The"
+  company: "Calliope"
+  quantity_total: 1
+- title: "Wordoku"
+  company: "Calliope"
+  quantity_total: 1
+- title: "Soul of the Empire"
+  company: "Chara Games"
+  quantity_total: 1
+- title: "Unauthorized"
+  company: "Chara Games"
+  quantity_total: 1
+- title: "Hoard"
+  company: "Cheeky Parrot Games"
+  quantity_total: 1
+- title: "Kitten Klash"
+  company: "Daily Magic Games"
+  quantity_total: 1
+- title: "Gretchinz!"
+  company: "Devir Games"
+  quantity_total: 1
+- title: "Papua"
+  company: "Devir Games"
+  quantity_total: 1
+- title: "Deadwood 1876"
+  company: "Facade Games"
+  quantity_total: 1
+- title: "Salem 1692"
+  company: "Facade Games"
+  quantity_total: 1
+- title: "Tortuga 1667"
+  company: "Facade Games"
+  quantity_total: 1
+- title: "Final War Starter Kit"
+  company: "Final War Pty Ltd"
+  quantity_total: 1
+- title: "Grackles"
+  company: "Fireside Games"
+  quantity_total: 1
+- title: "Remnants"
+  company: "Fireside Games"
+  quantity_total: 1
+- title: "Dome Crushers"
+  company: "Floodgate Games"
+  quantity_total: 1
+- title: "News@11"
+  company: "Floodgate Games"
+  quantity_total: 1
+- title: "Networks, The"
+  company: "Formal Ferret Games"
+  quantity_total: 1
+- title: "Palaces"
+  company: "Gorilla Games"
+  quantity_total: 1
+- title: "Bears and the Bees, The"
+  company: "Grandpa Beck's Games"
+  quantity_total: 1
+- title: "Cover Your A$$ets"
+  company: "Grandpa Beck's Games"
+  quantity_total: 1
+- title: "Lazer Ryderz"
+  company: "Greater Than Games"
+  quantity_total: 1
+- title: "Sentinels of the Multiverse"
+  company: "Greater Than Games"
+  quantity_total: 1
+- title: "Conex"
+  company: "HABA USA"
+  quantity_total: 1
+- title: "Karuba: The Card Game"
+  company: "HABA USA"
+  quantity_total: 1
+- title: "King of the Dice"
+  company: "HABA USA"
+  quantity_total: 1
+- title: "Exodus: Paris Nouveau"
+  company: "Indie Boards & Cards"
+  quantity_total: 1
+- title: "Pirate 21"
+  company: "Indie Boards & Cards"
+  quantity_total: 1
+- title: "Resistance, The"
+  company: "Indie Boards & Cards"
+  quantity_total: 1
+- title: "Shogunate"
+  company: "Indie Boards & Cards"
+  quantity_total: 1
+- title: "Lady and the Tiger, The"
+  company: "Jellybean Games"
+  quantity_total: 1
+- title: "Show & Tile"
+  company: "Jellybean Games"
+  quantity_total: 1
+- title: "Chronicles of Crime"
+  company: "Lucky Duck Games"
+  quantity_total: 1
+- title: "Vikings Gone Wild"
+  company: "Lucky Duck Games"
+  quantity_total: 1
+- title: "Bad Doctor"
+  company: "Mayday Games"
+  quantity_total: 1
+- title: "Cahoots"
+  company: "Mayday Games"
+  quantity_total: 1
+- title: "Poetry Slam"
+  company: "Mayday Games"
+  quantity_total: 1
+- title: "Viceroy"
+  company: "Mayday Games"
+  quantity_total: 1
+- title: "Ambyria: Shroud of the Shadow Demon"
+  company: "Paw-Warrior Games"
+  quantity_total: 1
+- title: "Ogre Cheerleaders"
+  company: "Paw-Warrior Games"
+  quantity_total: 1
+- title: "Alien Artifacts"
+  company: "Portal Games"
+  quantity_total: 1
+- title: "Cave Paintings"
+  company: "R&R Games"
+  quantity_total: 1
+- title: "Costa Ruana"
+  company: "R&R Games"
+  quantity_total: 1
+- title: "Carpe Diem"
+  company: "Ravensburger/ Wonder Forge"
+  quantity_total: 1
+- title: "Disney Villainous"
+  company: "Ravensburger/ Wonder Forge"
+  quantity_total: 1
+- title: "Push (card game)"
+  company: "Ravensburger/ Wonder Forge"
+  quantity_total: 1
+- title: "Eight-Minute Empire"
+  company: "Red Raven Games"
+  quantity_total: 1
+- title: "Haven"
+  company: "Red Raven Games"
+  quantity_total: 1
+- title: "Dice Throne Season 1"
+  company: "Roxley Games"
+  quantity_total: 1
+- title: "Evil Overlord"
+  company: "Shades of Vengeance"
+  quantity_total: 1
+- title: "Nevermore"
+  company: "Smirk & Dagger Games"
+  quantity_total: 1
+- title: "Nut So Fast"
+  company: "Smirk & Dagger Games"
+  quantity_total: 1
+- title: "Roll For Your Life, Candyman!"
+  company: "Smirk & Dagger Games"
+  quantity_total: 1
+- title: "Bottle Imp, The"
+  company: "Stronghold Games"
+  quantity_total: 1
+- title: "Gold Fever"
+  company: "Stronghold Games"
+  quantity_total: 1
+- title: "Paper Tales"
+  company: "Stronghold Games"
+  quantity_total: 1
+- title: "Embark"
+  company: "Tasty Minstrel Games"
+  quantity_total: 1
+- title: "Jungli-La"
+  company: "Tasty Minstrel Games"
+  quantity_total: 1
+- title: "Dimension"
+  company: "Thames & Kosmos"
+  quantity_total: 1
+- title: "Drop It"
+  company: "Thames & Kosmos"
+  quantity_total: 1
+- title: "Lost Cities: Rivals"
+  company: "Thames & Kosmos"
+  quantity_total: 1
+- title: "Word Slam"
+  company: "Thames & Kosmos"
+  quantity_total: 1
+- title: "Action Cats"
+  company: "Twogether Studios"
+  quantity_total: 1
+- title: "Illimat"
+  company: "Twogether Studios"
+  quantity_total: 1
+- title: "Echidna Shuffle"
+  company: "Wattsalpoag Games"
+  quantity_total: 1
+- title: "Hero Realms Base Game"
+  company: "White Wizard Games"
+  quantity_total: 1
+- title: "Star Realms: Frontiers"
+  company: "White Wizard Games"
+  quantity_total: 1

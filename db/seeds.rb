@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+import_games = YAML.load(File.read('db/2019_seeds/inventories.yml'))
+import_games.each {|x| Inventory.where(x).first_or_create(x)}
+
+import_gms = YAML.load(File.read('db/2019_seeds/gm_list.yml'))
+import_gms.each {|x| Participant.where(x).first_or_create(x)}
+
+import_events = YAML.load(File.read('db/2019_seeds/event.yml'))
+import_events.each {|x| Event.where(x).first_or_create(x)}
+
+import_schedule = YAML.load(File.read('db/2019_seeds/schedule.yml'))
+import_schedule.each {|x| Schedule.where(x).first_or_create(x)}

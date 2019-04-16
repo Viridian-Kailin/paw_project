@@ -1,6 +1,10 @@
-
-<script type="text/javascript">
-
+<script>
+  $(document).ready(function(){
+$("input[type=radio]").change(function (e) {
+    $("#yes, #no").removeClass("selected");
+    $("#" + $(e.currentTarget).val()).addClass("selected");
+});
+});
 </script>
 
 <%= image_tag ("PAW-Logo.jpg")%>
@@ -20,8 +24,8 @@
   No <%= radio_button_tag(:proxy, "no", "proxy") %><br>
 
 <% end %>
-
-<div id="proxy_info">
+<div id="no"></div>
+<div id="yes">
 <%= form_tag do %>
   Enter Proxy's information:<br><br>
 
