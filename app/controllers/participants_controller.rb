@@ -1,10 +1,25 @@
 class ParticipantsController < ApplicationController
   #Grabs data entered into form fields and creates a new record.
 
-  #Creates an entry with no proxy info
-  #def create_participant
-    #attr_writer :badge, :name, :phone, :email, :pref, :proxy
-  #end
+  #Creates an entry with no proxy info / [:name][:phone][:email][:pref][:proxy]
+  def new
+    @members = Participant.new
+  end
+
+  def create
+    @members = Participant.new(member_params)
+
+    if @members.save
+      redirect_to "/participants"
+    else
+      render :show
+    end
+  end
+
+  private
+  def member_params
+    params.require(:member).permit(:badge,:name,:email,:phone,:pref,:proxy)
+  end
 
   #If participant provided proxy info, this now gets added
   #def addproxy
