@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+  $(document).ready(function(){
+    $("input[type=radio]").change(function (e) {
+      $("#yes, #no").removeClass("selected");
+      $("#" + $(e.currentTarget).val()).addClass("selected");
+      /*
+      if(("#" + $(e.currentTarget).val()) == '#yes') {
+        $('#noproxy').css("display", "none");
+        //console.log("Yes selected.");
+       }
+      else {
+        $('#noproxy').css("display","block");
+        //console.log("Yes not selected.")
+        //console.log("#" + $(e.currentTarget).val());
+      }*/
+    });
+  });
+</script>
+</head>
+<body>
+<h1>Participants</h1>
+
+<%= form_tag do %>
+  Badge: <%= number_field_tag(:badge)%><br><br>
+  Name: <%= text_field_tag(:name)%><br><br>
+  Phone: <%= number_field_tag(:phone)%><br><br>
+  Email: <%= text_field_tag(:email)%><br><br>
+  Preference: <%= select_tag(:pref, options_for_select(["Call","Text","Email"], "Text"))%><br><br>
+  Proxy: Yes <%= radio_button_tag(:proxy, "yes") %>
+  No <%= radio_button_tag(:proxy, "no") %><br><br>
+
+  <!--<%= submit_tag ("Add participant"), :id => "noproxy" %>-->
+
+<% end %>
+<div id="no"></div>
+<div id="yes">
+<%= form_tag do %>
+  Enter Proxy's information:<br><br>
+
+  Badge: <%= number_field_tag(:p_badge)%><br><br>
+  Name: <%= text_field_tag(:p_name)%><br><br>
+  Phone: <%= number_field_tag(:p_phone)%><br><br>
+  Email: <%= text_field_tag(:p_email)%><br><br>
+  Preference: <%= select_tag(:p_pref, options_for_select(["Call","Text","Email"], "Text"))%><br><br>
+
+<% end %>
+</div>
+<div id="submit_member">
+<%= submit_tag ("Add participant") %>
+</div>
+
+<!-- Add an internally scrolling log of participants? -->
+</body>
+</html>
+
+

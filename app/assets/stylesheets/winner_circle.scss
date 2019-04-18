@@ -1,3 +1,16 @@
 // Place all the styles related to the WinnerCircle controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  border-style: solid;
+}
+
+td {
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.game_title {
+  padding-left: 20px;
+}

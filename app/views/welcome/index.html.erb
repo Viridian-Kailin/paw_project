@@ -7,35 +7,30 @@ $("input[type=radio]").change(function (e) {
 });
 </script>
 
-<%= image_tag ("PAW-Logo.jpg")%>
+<div class="home">
 
-<%= button_tag ("Add Paricipant")%>
-<%= button_tag ("Library")%>
-<%= button_tag ("Add Game Log")%>
-<%= button_tag ("Winner's Circle")%>
-
-<%= form_tag do %>
-  Badge: <%= number_field_tag(:badge)%><br>
-  Name: <%= text_field_tag(:name)%><br>
-  Phone: <%= number_field_tag(:phone)%><br>
-  Email: <%= text_field_tag(:email)%><br>
-  Preference: <%= select_tag(:pref, options_for_select(["Call","Text","Email"], "Text"))%><br>
-  Proxy: Yes <%= radio_button_tag(:proxy, "yes", "proxy") %>
-  No <%= radio_button_tag(:proxy, "no", "proxy") %><br>
-
+<div class="left" id="members">
+<%= link_to participants_path do %>
+  <button class="welcome_button">Add Participant</button><br>
 <% end %>
-<div id="no"></div>
-<div id="yes">
-<%= form_tag do %>
-  Enter Proxy's information:<br><br>
-
-  Badge: <%= number_field_tag(:p_badge)%><br>
-  Name: <%= text_field_tag(:p_name)%><br>
-  Phone: <%= number_field_tag(:p_phone)%><br>
-  Email: <%= text_field_tag(:p_email)%><br>
-  Preference: <%= select_tag(:p_pref, options_for_select(["Call","Text","Email"], "Text"))%><br>
-
+<br>
+<%= link_to game_logs_path do %>
+  <button class="welcome_button" id="logs">Add Game Log</button>
 <% end %>
-
-<%= submit_tag ("Add participant") %>
 </div>
+
+<%= image_tag ("PAW-Logo.jpg")%><br>
+
+<div class="right" id="library">
+<%= link_to game_library_index_path do %>
+  <button class="welcome_button">Library</button><br>
+<% end %>
+<br>
+<%= link_to winner_circle_index_path do %>
+  <button class="welcome_button" id="winners">Winner Circle</button>
+<% end %>
+</div>
+
+</div>
+<br>
+

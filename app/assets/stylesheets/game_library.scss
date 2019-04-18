@@ -1,3 +1,32 @@
 // Place all the styles related to the GameLibrary controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border-style: solid;
+  border-width: thin;
+}
+
+th, td {
+  width: 400px;
+}
+
+.table {
+  padding-left: 50px;
+}
+
+button {
+  font-size: 15px;
+}
+
+.button {
+  padding-left: 50px;
+}
+
+h3 {
+  padding-left: 20px;
+}

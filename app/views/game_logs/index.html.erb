@@ -1,0 +1,30 @@
+<h1>Game Logs</h1>
+
+<%= form_tag do %>
+  Game Title:<%= select_tag ("Pick me") %><br>
+  Time logged:<%= select_datetime (Time.now)%><br>
+<% end %>
+<br>
+<table class="log_entry">
+  <%= form_tag do%>
+  <tr>
+  <td></td>
+  <td id="badge_header">Badge ID</td>
+  <td id="rating_header">Rating</td>
+  </tr>
+    <!-- 12 Entry fields -->
+    <% for i in 1..12 do %>
+      <tr>
+      <td class="column_row">Entry <%= "#{i}" %>:</td>
+      <td class="column_badge"><%= number_field_tag(:badge)%></td>
+      <td class="column_rating">
+        <%= radio_button_tag("entry_#{i}_rating", "1") %> 1
+        <%= radio_button_tag("entry_#{i}_rating", "2") %> 2
+        <%= radio_button_tag("entry_#{i}_rating", "3") %> 3
+        <%= radio_button_tag("entry_#{i}_rating", "4") %> 4
+        <%= radio_button_tag("entry_#{i}_rating", "5") %> 5
+      </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

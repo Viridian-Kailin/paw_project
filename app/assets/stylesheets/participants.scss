@@ -6,6 +6,40 @@
   display:none;
 }
 
-#yes.selected, #no.selected {
+#yes.selected {
   display:block;
+}
+
+#no.selected {
+  display:block;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  padding-top: 50px;
+  padding-left: 100px;
+  font-size: 20px;
+}
+
+select {
+  font-size: 18px;
+}
+
+input {
+  width: 200px;
+}
+
+input[type=radio] {
+  width: 15px;
+}
+
+input[type=submit] {
+  font-size: 18px;
+}
+
+#submit_member {
+  padding-left: 100px;
 }
