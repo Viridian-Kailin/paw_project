@@ -2,3 +2,62 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+}
+
+.grid-item-1 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+.grid-item-5 {
+  grid-column-start: 5;
+  grid-column-end: 5;
+}
+
+.grid-item-2 {
+  border: 5px solid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#admin_buttons {
+  text-align: center;
+  border: none;
+}
+
+#admin_buttons tr td{
+  border: none;
+}
+
+.grid-item-3 {
+  border: 5px solid;
+  grid-column-start: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#info_buttons {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.grid-item-4 {
+  border: 5px solid;
+  grid-column-start: 4;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+
+.grid-item-6 {
+
+}

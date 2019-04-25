@@ -23,7 +23,9 @@
         <button>Add Game Log</button>
       <% end %>
     </div>
-    <%= image_tag "PAW-Logo.jpg", id: "menu_img"%>
+    <%= link_to welcome_index_path do %>
+      <%= image_tag "PAW-Logo.jpg", id: "menu_img" %>
+    <% end %>
     <div class="header_button" id="right_header">
       <%= link_to game_library_index_path do %>
         <button>Library</button>

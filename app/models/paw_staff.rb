@@ -1,0 +1,2 @@
+class PawStaff < ApplicationRecord
+end

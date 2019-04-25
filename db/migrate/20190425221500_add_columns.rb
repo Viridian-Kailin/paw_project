@@ -1,0 +1,20 @@
+class AddColumns < ActiveRecord::Migration[5.2]
+  def change
+    change_table :con_staffs do |t|
+      t.integer :badge
+      t.string :name
+      t.string :title
+      t.string :location
+    end
+
+    change_table :paw_staffs do |t|
+      t.integer :badge
+      t.string :name
+      t.string :title
+      t.string :phone
+      t.string :email
+      t.string :role
+    end
+
+  end
+end

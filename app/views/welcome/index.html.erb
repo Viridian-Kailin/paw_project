@@ -10,7 +10,9 @@
         <button>Add Game Log</button>
       <% end %>
     </div>
-    <%= image_tag "PAW-Logo.jpg", id: "menu_img"%>
+    <%= link_to welcome_index_path do %>
+      <%= image_tag "PAW-Logo.jpg", id: "menu_img" %>
+    <% end %>
     <div class="header_button" id="right_header">
       <%= link_to game_library_index_path do %>
         <button>Library</button>
@@ -21,3 +23,50 @@
     </div>
   </div>
 </header>
+
+<div class="grid-container">
+  <div class="grid-item-1"></div>
+  <div class="grid-item-5"></div>
+
+  <div class="grid-item-2">
+    <section>
+      <h1>Administrative Tasks</h1>
+      <br><br>
+      <div id="admin_buttons">
+        <button>Log In</button>
+        <button>Add Staff</button>
+        <br>
+        <button>Check Members</button>
+        <button>Check Inventory</button>
+        <br>
+        <button>Check Logs</button>
+        <button>Set Event</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid-item-3">
+    <article>
+      <h1>PAW Information</h1>
+      <br><br>
+      <div id="info_buttons">
+        <button>Game Schedule</button>
+        <button>PAW Staff List</button>
+        <br>
+        <button>PAW Rules & Guidelines</button>
+        <button>Event Staff</button>
+      </div>
+    </article>
+  </div>
+
+  <div class="grid-item-4">
+    <aside>
+      <h1>USER IS A NERD</h1>
+      <br><br>
+      <h1>USER IS A NERD</h1>
+      <br><br>
+      <h1>USER IS A NERD</h1>
+      <br><br>
+      <h1>USER IS A NERD</h1>
+    </aside>
+</div>

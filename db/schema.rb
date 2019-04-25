@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_174634) do
+ActiveRecord::Schema.define(version: 2019_04_25_221500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "con_staffs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "badge"
+    t.string "name"
+    t.string "title"
+    t.string "location"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "event_code"
@@ -22,11 +31,6 @@ ActiveRecord::Schema.define(version: 2019_04_18_174634) do
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
     t.index ["event_code"], name: "index_events_on_event_code", unique: true
-  end
-
-  create_table "examples", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "game_logs", force: :cascade do |t|
@@ -73,6 +77,17 @@ ActiveRecord::Schema.define(version: 2019_04_18_174634) do
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
     t.index ["badge"], name: "index_participants_on_badge", unique: true
+  end
+
+  create_table "paw_staffs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "badge"
+    t.string "name"
+    t.string "title"
+    t.string "phone"
+    t.string "email"
+    t.string "role"
   end
 
   create_table "schedules", force: :cascade do |t|
