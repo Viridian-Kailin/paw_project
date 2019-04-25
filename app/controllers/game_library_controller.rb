@@ -1,23 +1,33 @@
 class GameLibraryController < ApplicationController
-  def checkout
-    attr_writer :title, :event, :badge_log, :checked_out
+
+  def new
+
+    @checkstatus = Library.new
+
   end
 
-  def checkin
-    attr_writer :title, :event, :badge_log, :checked_in
+  def create
+
+    @checkstatus = Library.new(library_params)
+
+    if @checkstatus.save
+
+      redirect_to "/participants"
+
+    else
+
+      render :show
+
+    end
+
   end
 
-  def viewlogs
-    attr_reader :title, :badge_log, :checked_out, :checked_in, :quantity_left
+  private
+
+  def library_params
+
+    params.require(:library).permit(:title, :badge)
+
   end
 
-  def memberinfo
-    #Load from participants table
-    attr_reader
-  end
-
-  def gameschedule
-    #Load from schedule table
-    attr_reader
-  end
 end

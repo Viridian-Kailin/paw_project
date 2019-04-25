@@ -1,5 +1,7 @@
 <h1>Game Logs</h1>
 
+<h2>FAILURE</h2>
+
 <header>
   <div class="header_container">
     <div class="header_button" id="left_header">
@@ -36,13 +38,13 @@
       <% for i in 1..12 do %>
         <tr>
         <td class="column_row">Entry <%= "#{i}" %>:</td>
-        <td class="column_badge"><%= number_field_tag("entry[badge_#{i}]")%></td>
+        <td class="column_badge"><%= number_field_tag(:badge)%></td>
         <td class="column_rating">
-          <%= radio_button_tag("entry[rating_#{i}]", "1") %> 1
-          <%= radio_button_tag("entry[rating_#{i}]", "2") %> 2
-          <%= radio_button_tag("entry[rating_#{i}]", "3") %> 3
-          <%= radio_button_tag("entry[rating_#{i}]", "4") %> 4
-          <%= radio_button_tag("entry[rating_#{i}]", "5") %> 5
+          <%= radio_button_tag("entry_#{i}_rating", "1") %> 1
+          <%= radio_button_tag("entry_#{i}_rating", "2") %> 2
+          <%= radio_button_tag("entry_#{i}_rating", "3") %> 3
+          <%= radio_button_tag("entry_#{i}_rating", "4") %> 4
+          <%= radio_button_tag("entry_#{i}_rating", "5") %> 5
         </td>
         </tr>
       <% end %>

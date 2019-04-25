@@ -1,36 +1,23 @@
-<script>
-  $(document).ready(function(){
-$("input[type=radio]").change(function (e) {
-    $("#yes, #no").removeClass("selected");
-    $("#" + $(e.currentTarget).val()).addClass("selected");
-});
-});
-</script>
+<h1>Welcome</h1>
 
-<div class="home">
-
-<div class="left" id="members">
-<%= link_to participants_path do %>
-  <button class="welcome_button">Add Participant</button><br>
-<% end %>
-<br>
-<%= link_to game_logs_path do %>
-  <button class="welcome_button" id="logs">Add Game Log</button>
-<% end %>
-</div>
-
-<%= image_tag ("PAW-Logo.jpg")%><br>
-
-<div class="right" id="library">
-<%= link_to game_library_index_path do %>
-  <button class="welcome_button">Library</button><br>
-<% end %>
-<br>
-<%= link_to winner_circle_index_path do %>
-  <button class="welcome_button" id="winners">Winner Circle</button>
-<% end %>
-</div>
-
-</div>
-<br>
-
+<header>
+  <div class="header_container">
+    <div class="header_button" id="left_header">
+      <%= link_to participants_path do %>
+        <button>Add Participant</button>
+      <% end %>
+      <%= link_to game_logs_path do %>
+        <button>Add Game Log</button>
+      <% end %>
+    </div>
+    <%= image_tag "PAW-Logo.jpg", id: "menu_img"%>
+    <div class="header_button" id="right_header">
+      <%= link_to game_library_index_path do %>
+        <button>Library</button>
+      <% end %>
+      <%= link_to winner_circle_index_path do %>
+        <button>Winner Circle</button>
+      <% end %>
+    </div>
+  </div>
+</header>

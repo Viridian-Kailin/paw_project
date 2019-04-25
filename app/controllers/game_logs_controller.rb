@@ -1,14 +1,21 @@
 class GameLogsController < ApplicationController
   def new
-    attr_writer :title, :timestamp, :badge_log, :rating
+    @logs = GameLog.new()
   end
 
-  def view
-    attr_reader :id, :title, :timestamp, :badge_log, :rating
+  def create
+    binding.pry
+    @logs = GameLog.new(log_params)
+
+    if @logs.save
+      redirect_to "/game_logs"
+    else
+      render :show
+    end
   end
 
-  def update
-    attr_reader :id, :badge_log
-    attr_accessor :rating
+  def log_params
+    # Place all key::values into a single, mass array
   end
+
 end

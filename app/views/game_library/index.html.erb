@@ -1,9 +1,38 @@
 <h1>Game Library</h1>
 
-<h3>Game:</h3><br>
-<div class="button"><button>Check-out</button>
-<button>Check-in</button></div>
-<br>
+<header>
+  <div class="header_container">
+    <div class="header_button" id="left_header">
+      <%= link_to participants_path do %>
+        <button>Add Participant</button>
+      <% end %>
+      <%= link_to game_logs_path do %>
+        <button>Add Game Log</button>
+      <% end %>
+    </div>
+    <%= image_tag "PAW-Logo.jpg", id: "menu_img"%>
+    <div class="header_button" id="right_header">
+      <%= link_to game_library_index_path do %>
+        <button>Library</button>
+      <% end %>
+      <%= link_to winner_circle_index_path do %>
+        <button>Winner Circle</button>
+      <% end %>
+    </div>
+  </div>
+</header>
+
+<%= form_tag do %>
+  Game:
+  <%= collection_select :library, :title, Inventory.all, :title, :game_selection, prompt: "Select a game title" %>
+  <br><br>
+  <div id="badge_entry">
+  <%= number_field_tag "library[badge]" %></div>
+  <div class="button"><button>Check-out</button>
+  <button>Check-in</button></div>
+  <br>
+<%end%>
+
 <h3>Game Information:</h3>
 <div class="table"><table>
   <tr>
