@@ -14,6 +14,4 @@ class GameLog < ApplicationRecord
     end
   end
 
-
-
 end
