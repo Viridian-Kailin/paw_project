@@ -2,67 +2,47 @@
 <html>
 <head>
 <script>
+
   $(document).ready(function(){
     $("input[type=radio]").change(function (e) {
       $("#yes, #no").removeClass("selected");
       $("#" + $(e.currentTarget).val()).addClass("selected");
     });
   });
+
 </script>
 </head>
 <body>
+
 <h1>Participants</h1>
 
-<header>
-  <div class="header_container">
-    <div class="header_button" id="left_header">
-      <%= link_to participants_path do %>
-        <button>Add Participant</button>
-      <% end %>
-      <%= link_to game_logs_path do %>
-        <button>Add Game Log</button>
-      <% end %>
-    </div>
-    <%= link_to welcome_index_path do %>
-      <%= image_tag "PAW-Logo.jpg", id: "menu_img" %>
-    <% end %>
-    <div class="header_button" id="right_header">
-      <%= link_to game_library_index_path do %>
-        <button>Library</button>
-      <% end %>
-      <%= link_to winner_circle_index_path do %>
-        <button>Winner Circle</button>
-      <% end %>
-    </div>
+<%= render "shared/header" %>
+<div id="error"></div>
+
+<div id="notice"><%= notice %></div>
+
+<%= form_with model: @participant, class: "grid-container", id: "member_submit" do |form| %>
+  <div class="member_info">Badge: <%= form.number_field "member[badge]", required: true %></div><br>
+  <div class="member_info">Name: <%= form.text_field "member[name]", required: true %></div><br>
+  <div class="member_info">Phone: <%= form.number_field "member[phone]" %></div><br>
+  <div class="member_info">Email: <%= form.text_field "member[email]" %></div><br>
+  <div class="member_info">Preference: <%= form.select "member[pref]", ["Text", "Call", "Email"] %></div><br>
+  <div class="member_info">Yes<%= form.radio_button "member[proxy]", :yes %>
+  No<%= form.radio_button "member[proxy]", :no %></div>
+
+  <div id="no"></div>
+  <div id="yes" class="member_info">
+    Enter Proxy's Information<br>
+    Badge: <%= form.number_field "member[p_badge]" %><br><br>
+    Name: <%= form.text_field "member[p_name]" %><br><br>
+    Phone: <%= form.number_field "member[p_phone]" %><br><br>
+    Email: <%= form.text_field "member[:p_email]" %><br><br>
+    Preference: <%= form.select "member[p_pref]", ["Call","Text","Email"] %><br><br>
   </div>
-</header>
 
-<%= form_tag '', method: :post do %>
-  Badge: <%= number_field_tag("member[badge]")%><br><br>
-  Name: <%= text_field_tag("member[name]")%><br><br>
-  Phone: <%= number_field_tag("member[phone]")%><br><br>
-  Email: <%= text_field_tag("member[email]")%><br><br>
-  Preference: <%= select_tag("member[pref]", options_for_select(["Call","Text","Email"], "Text"))%><br><br>
-  Proxy: Yes <%= radio_button_tag("member[proxy]", "yes") %>
-  No <%= radio_button_tag("member[proxy]", "no") %><br><br>
-
-<div id="no"></div>
-<div id="yes">
-
-  Enter Proxy's information:<br><br>
-
-  Badge: <%= number_field_tag(:p_badge)%><br><br>
-  Name: <%= text_field_tag(:p_name)%><br><br>
-  Phone: <%= number_field_tag(:p_phone)%><br><br>
-  Email: <%= text_field_tag(:p_email)%><br><br>
-  Preference: <%= select_tag(:p_pref, options_for_select(["Call","Text","Email"], "Text"))%><br><br>
-</div>
-
-<%= submit_tag ("Add participant") %>
+  <div class="member_info"><%= submit_tag ("Add participant") %></div>
 
 <% end %>
-
-
 
 <!-- Add an internally scrolling log of participants? -->
 </body>

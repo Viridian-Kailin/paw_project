@@ -2,7 +2,9 @@
   "name": "myapp",
   "private": true,
   "dependencies": {
-    "jquery": "^3.4.0"
+    "@rails/webpacker": "^4.0.2",
+    "jquery": "^3.4.0",
+    "stimulus": "^1.1.1"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -14,6 +16,4 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
 }

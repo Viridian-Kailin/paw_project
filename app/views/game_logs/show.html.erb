@@ -2,29 +2,7 @@
 
 <h2>FAILURE</h2>
 
-<header>
-  <div class="header_container">
-    <div class="header_button" id="left_header">
-      <%= link_to participants_path do %>
-        <button>Add Participant</button>
-      <% end %>
-      <%= link_to game_logs_path do %>
-        <button>Add Game Log</button>
-      <% end %>
-    </div>
-    <%= link_to welcome_index_path do %>
-      <%= image_tag "PAW-Logo.jpg", id: "menu_img" %>
-    <% end %>
-    <div class="header_button" id="right_header">
-      <%= link_to game_library_index_path do %>
-        <button>Library</button>
-      <% end %>
-      <%= link_to winner_circle_index_path do %>
-        <button>Winner Circle</button>
-      <% end %>
-    </div>
-  </div>
-</header>
+<%= render "shared/header" %>
 
 <%= form_tag do %>
   Game Title:<%= collection_select :inventory, :title, Inventory.all, :title, :game_selection, prompt: "Select a game title" %><br>
