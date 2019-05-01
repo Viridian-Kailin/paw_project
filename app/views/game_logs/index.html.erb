@@ -8,6 +8,8 @@
 
 <%= render "shared/header" %>
 
+<div id="log_notice"><%= notice %></div>
+
 <%= form_tag "", :id => "log_submit", data: { type: :json } do %>
   Game Title:<%= collection_select :entry, :title, Inventory.all, :title, :game_selection, prompt: "Select a game title" %><br>
   Time logged:<%= datetime_select "entry", "timestamp", :default => Time.now, ampm: true %><br>
