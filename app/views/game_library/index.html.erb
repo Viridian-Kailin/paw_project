@@ -6,19 +6,21 @@
   $(document).ready(function(){
     $('#library_title').change(function() {
       gametitle = $('#library_title').val()
-    });
-  });
+      console.log("Test");
 
-  $("#library_title").on("change", function() {
-    $.ajax ({
-      url: 'get_gameinfo',
-      dataType: 'JSON',
-      data:
-        $(this).val(),
-      success: function(data){
-        console.log(data);
-      }
+      $.ajax ({
+        url: "list_game/" + gametitle,
+        dataType: 'JSON',
+        data:
+          $(this).val(),
+        success: function(data){
+          $('.display_title').html(data[0].title);
+          $('.display_company').html(data[0].company);
+          $('.display_quantity').html(data[0].quantity_total);
+        }
+      });
     });
+
   });
 
 </script>
@@ -48,13 +50,11 @@
     <th>Company</th>
     <th>Total Quantity</th>
   </tr>
-  <% @gameinfo.where(title: params[:title]).each do |info| %>
   <tr>
-    <td class="display_title"><%= @gameinfo.title %></td>
-    <td class="display_company"><%= @gameinfo.company %></td>
-    <td class="display_quantity"><%= @gameinfo.quantity_total %></td>
+    <td class="display_title"></td>
+    <td class="display_company"></td>
+    <td class="display_quantity"></td>
   </tr>
-  <% end %>
 </table></div><br>
 
 <h3>Game Schedule:</h3>

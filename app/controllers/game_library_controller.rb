@@ -19,14 +19,16 @@ class GameLibraryController < ApplicationController
     end
   end
 
+  def get_gameinfo
+    @gameinfo = Inventory.all.where(title: params[:title])
+    render json: @gameinfo
+
+  end
+
   private
 
   def library_params
     params.require(:library).permit(:title, :badge)
-  end
-
-  def get_gameinfo
-    @gameinfo = Inventory.all.where(title: params[:title])
   end
 
 end
