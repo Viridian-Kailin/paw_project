@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_221500) do
+ActiveRecord::Schema.define(version: 2019_05_03_204811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,13 @@ ActiveRecord::Schema.define(version: 2019_04_25_221500) do
   end
 
   create_table "game_logs", force: :cascade do |t|
-    t.string "title"
     t.datetime "timestamp"
-    t.integer "badge"
     t.integer "rating"
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.integer "inventory_id"
+    t.integer "participant_id"
+    t.integer "event_id"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -52,14 +53,15 @@ ActiveRecord::Schema.define(version: 2019_04_25_221500) do
   end
 
   create_table "libraries", force: :cascade do |t|
-    t.string "title"
-    t.integer "event"
-    t.integer "badge"
     t.datetime "checked_out"
     t.datetime "checked_in"
     t.integer "quantity_left"
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.integer "inventory_id"
+    t.integer "paw_staff_id"
+    t.integer "participant_id"
+    t.integer "event_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -91,14 +93,24 @@ ActiveRecord::Schema.define(version: 2019_04_25_221500) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.string "event"
-    t.string "title"
     t.datetime "start"
     t.datetime "end"
-    t.string "assigned"
     t.string "location"
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.integer "inventory_id"
+    t.integer "paw_staff_id"
+    t.integer "event_id"
   end
 
+  add_foreign_key "game_logs", "events"
+  add_foreign_key "game_logs", "inventories"
+  add_foreign_key "game_logs", "participants"
+  add_foreign_key "libraries", "events"
+  add_foreign_key "libraries", "inventories"
+  add_foreign_key "libraries", "participants"
+  add_foreign_key "libraries", "paw_staffs"
+  add_foreign_key "schedules", "events"
+  add_foreign_key "schedules", "inventories"
+  add_foreign_key "schedules", "paw_staffs"
 end
