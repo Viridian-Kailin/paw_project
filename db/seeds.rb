@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 import_games = YAML.load(File.read('db/2019_seeds/inventories.yml'))
 import_games.each {|x| Inventory.where(x).first_or_create(x)}
 

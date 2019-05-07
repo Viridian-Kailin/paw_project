@@ -10,9 +10,9 @@ class GameLogsController < ApplicationController
       i = i + 1
       if params[:entry]["badge_#{i}".to_sym].blank? == false
         @log = GameLog.create(
-          title: params[:entry][:title],
+          inventory_id: params[:entry][:inventory_id],
           timestamp: @logs_timestamp,
-          badge: params[:entry]["badge_#{i}".to_sym].to_i,
+          participant_id: params[:entry]["badge_#{i}".to_sym].to_i,
           rating: params[:entry]["rating_#{i}".to_sym].to_i
           )
       end
@@ -20,7 +20,7 @@ class GameLogsController < ApplicationController
 
     if @log.save
       redirect_to "/game_logs"
-      flash[:notice] = "An entry for #{params[:entry][:title]} at #{@logs_timestamp} has been added."
+      flash[:notice] = "An entry for #{params[:entry][:inventory_id]} at #{@logs_timestamp} has been added."
     else
       render :show
     end
@@ -29,7 +29,7 @@ class GameLogsController < ApplicationController
   def initial_params
 
     # Place all key::values into a single, mass array
-    params.require(:entry).permit(:title).merge(timestamp: @logs_timestamp)
+    params.require(:entry).permit(:inventory_id).merge(timestamp: @logs_timestamp)
 
   end
 
