@@ -4,19 +4,40 @@
   //Make a GET request to the collector to pull Title/Company/Quantity for the selected game title
 
   $(document).ready(function(){
-    $('#library_title').change(function() {
-      gametitle = $('#library_title').val()
-      console.log("Test");
+    console.log("Test");
+
+    $('#library_inventory_id').change(function() {
+      gametitle = $('#library_inventory_id').val()
+      console.log("Change");
 
       $.ajax ({
         url: "list_game/" + gametitle,
         dataType: 'JSON',
-        data:
-          $(this).val(),
         success: function(data){
-          $('.display_title').html(data[0].title);
-          $('.display_company').html(data[0].company);
-          $('.display_quantity').html(data[0].quantity_total);
+          if ($('.display_game > tbody')[0].childElementCount > 1) {
+            $('.display_game > tbody > tr:last').empty()
+          };
+
+          $('.display_game > tbody:last').append('<tr><td>' + data.inventory[0].title + '</td><td>' + data.inventory[0].company + '</td><td>' + data.inventory[0].quantity_total + '</td></tr>');
+
+          if ($('.display_schedule > tbody')[0].childElementCount > 1) {
+            $('.display_schedule > tbody > tr:last').empty()
+          };
+
+          $.each ( $(data.schedule), function (i) {
+            //console.log(data.schedule[i]);
+            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + data.schedule[i].start + '</td><td>' + data.schedule[i].location + '</td></tr>' );
+          });
+
+          if ($('.display_logs > tbody')[0].childElementCount > 1) {
+            $('.display_logs > tbody > tr:last').empty()
+          };
+
+          $.each ( $(data.logs), function (i) {
+            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td>' + data.logs[i].participant_id + '</td><td>' + data.logs[i].quantity_left);
+          });
+
+          console.log(data);
         }
       });
     });
@@ -33,56 +54,42 @@
 
 <%= form_tag do %>
   Game:
-  <%= collection_select :library, :title, Inventory.all, :title, :game_selection, options = {include_blank: "Select a game title"} %>
+  <%= collection_select :library, :inventory_id, @gameinfo, :id, :game_selection, options = {include_blank: "Select a game title" } %>
   <br><br>
   <div id="badge_entry">
-    <%= collection_select :library, :badge, Participant.all, :badge, :badge_selection, prompt: "Enter badge" %>
+    <%= collection_select :library, :participant_id, Participant.all, :id, :badge_selection, prompt: "Enter badge" %>
   </div>
-  <div class="button"><button>Check-out</button>
-  <button>Check-in</button></div>
+  <div class="logout_time"><%= datetime_select :library, :checked_out, :default => Time.now, ampm: true %></div>
+  <div class="login_time"><%= datetime_select :library, :checked_in, :default => Time.now, ampm: true %></div>
+  <div class="button"><%= submit_tag 'Check-out' %>
+  <%= submit_tag 'Check-in', name: 'checkin_game' %></div>
   <br>
 <%end%>
 
 <h3>Game Information:</h3>
-<div class="table"><table>
+<div class="table"><table class="display_game">
   <tr>
     <th>Title</th>
     <th>Company</th>
     <th>Total Quantity</th>
   </tr>
-  <tr>
-    <td class="display_title"></td>
-    <td class="display_company"></td>
-    <td class="display_quantity"></td>
-  </tr>
 </table></div><br>
 
 <h3>Game Schedule:</h3>
-<div class="table"><table>
+<div class="table"><table class="display_schedule">
   <tr>
     <th>Start Time</th>
     <th>Location</th>
     <th>GM</th>
   </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
 </table></div><br>
 
 <h3>Checkout/in History:</h3>
-<div class="table"><table>
+<div class="table"><table class="display_logs">
   <tr>
     <th>Check-out Time</th>
     <th>Check-in Time</th>
     <th>Badge Info</th>
     <th>Quantity</th>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
   </tr>
 </table><div class="table">

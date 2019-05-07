@@ -13,8 +13,14 @@ import_games.each {|x| Inventory.where(x).first_or_create(x)}
 import_gms = YAML.load(File.read('db/2019_seeds/gm_list.yml'))
 import_gms.each {|x| Participant.where(x).first_or_create(x)}
 
+import_staff = YAML.load(File.read('db/2019_seeds/gm_list.yml'))
+import_gms.each {|x| PawStaff.where(x).first_or_create(x)}
+
 import_events = YAML.load(File.read('db/2019_seeds/event.yml'))
 import_events.each {|x| Event.where(x).first_or_create(x)}
 
 import_schedule = YAML.load(File.read('db/2019_seeds/schedule.yml'))
 import_schedule.each {|x| Schedule.where(x).first_or_create(x)}
+
+import_library = YAML.load(File.read('db/2019_seeds/library_log.yml'))
+import_library.each {|x| Library.where(x).first_or_create(x)}
