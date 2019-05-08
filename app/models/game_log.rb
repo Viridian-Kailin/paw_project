@@ -1,4 +1,4 @@
 class GameLog < ApplicationRecord
-  validates :title, presence: true
+  validates :inventory_id, presence: true
   serialize :entry, JSON
 end

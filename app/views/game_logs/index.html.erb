@@ -1,3 +1,25 @@
+<script>
+  $(document).ready(function() {
+    $('.column_badge > input').change(function () {
+        //where this.id == entry_badge_i
+        //grab badge no. and compare to participate.badge
+        //if badge no && participant.badge == true
+        //do nothing
+        //else force registration
+      $.ajax ({
+        url: "check_entry/" + $(this)[0].value,
+        dataType: 'JSON',
+        error: function(data) {
+          var check_badge = confirm("Badge " + data.responseJSON.badge_info + " must be added before proceeding");
+          if (check_badge == true) {
+            window.location.href = "/participants";
+          }
+        }
+      });
+    });
+  });
+</script>
+
 <h1>Game Logs</h1>
 
 <%= render "shared/header" %>

@@ -4,11 +4,9 @@
   //Make a GET request to the collector to pull Title/Company/Quantity for the selected game title
 
   $(document).ready(function(){
-    console.log("Test");
 
     $('#library_inventory_id').change(function() {
       gametitle = $('#library_inventory_id').val()
-      console.log("Change");
 
       $.ajax ({
         url: "list_game/" + gametitle,
@@ -37,7 +35,6 @@
             $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td>' + data.logs[i].participant_id + '</td><td>' + data.logs[i].quantity_left);
           });
 
-          console.log(data);
         }
       });
     });

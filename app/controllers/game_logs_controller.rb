@@ -26,6 +26,18 @@ class GameLogsController < ApplicationController
     end
   end
 
+  def need_reg
+    @members = Participant.all
+    @example = params[:participants]
+
+    if @members.where(badge: @example) == []
+      render json: { :badge_info => @example }, status: 406
+    else
+      render json: { :members => @members.where(badge: @example) }, status: 304
+    end
+
+  end
+
   def initial_params
 
     # Place all key::values into a single, mass array
