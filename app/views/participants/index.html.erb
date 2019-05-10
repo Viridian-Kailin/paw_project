@@ -1,51 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script>
-
-  $(document).ready(function(){
-    $("input[type=radio]").change(function (e) {
-      $("#yes, #no").removeClass("selected");
-      $("#" + $(e.currentTarget).val()).addClass("selected");
-    });
-  });
-
-</script>
-</head>
-<body>
-
 <h1>Participants</h1>
 
 <%= render "shared/header" %>
+
 <div id="error"></div>
 
 <div id="notice"><%= notice %></div>
 
-<%= form_with model: @participant, class: "grid-container", id: "member_submit" do |form| %>
-  <div class="member_info">Badge: <%= form.number_field "member[badge]", required: true %></div><br>
-  <div class="member_info">Name: <%= form.text_field "member[name]", required: true %></div><br>
-  <div class="member_info">Phone: <%= form.number_field "member[phone]" %></div><br>
-  <div class="member_info">Email: <%= form.text_field "member[email]" %></div><br>
-  <div class="member_info">Preference: <%= form.select "member[pref]", ["Text", "Call", "Email"] %></div><br>
-  <div class="member_info">Yes<%= form.radio_button "member[proxy]", :yes %>
-  No<%= form.radio_button "member[proxy]", :no %></div>
-
-  <div id="no"></div>
-  <div id="yes" class="member_info">
-    Enter Proxy's Information<br>
-    Badge: <%= form.number_field "member[p_badge]" %><br><br>
-    Name: <%= form.text_field "member[p_name]" %><br><br>
-    Phone: <%= form.number_field "member[p_phone]" %><br><br>
-    Email: <%= form.text_field "member[:p_email]" %><br><br>
-    Preference: <%= form.select "member[p_pref]", ["Call","Text","Email"] %><br><br>
-  </div>
-
-  <div class="member_info"><%= submit_tag ("Add participant") %></div>
-
-<% end %>
+<%= render "shared/addmember" %>
 
 <!-- Add an internally scrolling log of participants? -->
-</body>
-</html>
+
 
 

@@ -11,7 +11,7 @@ class ParticipantsController < ApplicationController
 
       if @members.save
         flash[:notice] = "#{@members.badge} has been added."
-        render 'index'
+        redirect_back fallback_location: "/"
       else
         flash[:notice] = "#{@members.badge} already exists."
         render 'index'

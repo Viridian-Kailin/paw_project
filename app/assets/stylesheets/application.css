@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
+ *= require jquery-ui/dialog
  */
 
 .grid-item-1 {

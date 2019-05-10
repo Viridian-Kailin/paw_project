@@ -1,19 +1,24 @@
 <script>
   $(document).ready(function() {
+    $('#dialog_addmember').dialog({
+      autoOpen: false,
+      modal: true,
+    });
+
     $('.column_badge > input').change(function () {
-        //where this.id == entry_badge_i
-        //grab badge no. and compare to participate.badge
-        //if badge no && participant.badge == true
-        //do nothing
-        //else force registration
+      //Modal box
+
       $.ajax ({
         url: "check_entry/" + $(this)[0].value,
         dataType: 'JSON',
         error: function(data) {
+          /* Manual redirect to Participants view
           var check_badge = confirm("Badge " + data.responseJSON.badge_info + " must be added before proceeding");
           if (check_badge == true) {
             window.location.href = "/participants";
-          }
+          }*/
+
+          $('#dialog_addmember').dialog( "open" );
         }
       });
     });
@@ -53,3 +58,7 @@
   </table>
   <%= submit_tag ("Add game log") %>
 <% end %>
+
+<div id="dialog_addmember" title="Add non-registered Participant">
+  <%= render "shared/addmember" %>
+</div>
