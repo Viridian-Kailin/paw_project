@@ -11,20 +11,35 @@ class GameLibraryController < ApplicationController
   def create
     @checkstatus = Library.new(library_params)
 
-    if @checkstatus.save
-      redirect_to "/game_library"
-      flash[:notice] = "#{@checkstatus[:title]} has been checked out by #{@checkstatus[:badge]}."
+    if params.has_key?(:checkin_game)
+      if @checkstatus.save
+        redirect_to "/game_library"
+        flash[:notice] = "#{@checkstatus[:title]} has been checked in by #{@checkstatus[:badge]}."
+      else
+        render :show
+      end
     else
-      render :show
+      if @checkstatus.save
+        redirect_to "/game_library"
+        flash[:notice] = "#{@checkstatus[:title]} has been checked out by #{@checkstatus[:badge]}."
+      else
+        render :show
+      end
     end
   end
 
   def check_in
-    @checkstatus = Library.new(checkin_params)
+    @check_quantity = Library.where(inventory_id: params[:library][:inventory_id]).pluck(:quantity_left).last
 
-    if @checkstatus.save
-      redirect_to "/game_library"
-      flash[:notice] = "#{@checkstatus[:title]} has been checked out by #{@checkstatus[:badge]}."
+    if @check_quantity != null
+      @checkstatus = Library.new(checkin_params)
+
+      if @checkstatus.save
+        redirect_to "/game_library"
+        flash[:notice] = "#{@checkstatus[:title]} has been checked in by #{@checkstatus[:badge]}."
+      else
+        render :show
+      end
     else
       render :show
     end
@@ -41,12 +56,16 @@ class GameLibraryController < ApplicationController
   private
 
   def library_params
-    @logs_timestamp = DateTime.new(params[:library]["checked_out(1i)"].to_i,params[:library]["checked_out(2i)"].to_i,params[:library]["checked_out(3i)"].to_i,params[:library]["checked_out(4i)"].to_i,params[:library]["checked_out(5i)"].to_i)
-
     if params[:checkin_game]
-       params.require(:library).permit(:inventory_id, :participant_id).merge(checked_in: @logs_timestamp)
+      @quantity = params[:library][:quantity_left]
+      @quantity = @quantity.to_i + 1
+
+      params.require(:library).permit(:inventory_id, :participant_id, :checked_in).merge(quantity_left: @quantity)
     else
-      params.require(:library).permit(:inventory_id, :participant_id).merge(checked_out: @logs_timestamp)
+      @quantity = params[:library][:quantity_left]
+      @quantity = @quantity.to_i - 1
+
+      params.require(:library).permit(:inventory_id, :participant_id, :checked_out).merge(quantity_left: @quantity)
     end
   end
 

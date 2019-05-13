@@ -1,0 +1,13 @@
+<%= form_tag do %>
+  Game:
+  <%= collection_select :library, :inventory_id, @gameinfo, :id, :game_selection, options = {include_blank: "Select a game title" } %>
+  <br><br>
+  <div id="badge_entry">
+    <%= collection_select :library, :participant_id, Participant.all, :id, :badge_selection, prompt: "Enter badge" %>
+  </div>
+  <div class="logout_time"><%= datetime_select :library, :checked_out, :default => Time.now, ampm: true %></div>
+  <div class="login_time"><%= datetime_select :library, :checked_in, :default => Time.now, ampm: true %></div>
+  <div class="button"><%= submit_tag 'Check-out' %>
+  <%= submit_tag 'Check-in', name: 'checkin_game' %></div>
+  <br>
+<%end%>

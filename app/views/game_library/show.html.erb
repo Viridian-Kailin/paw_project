@@ -16,8 +16,6 @@
             $('.display_game > tbody > tr:last').empty()
           };
 
-          $('#library_quantity_left').val(data.logs.reverse()[0].quantity_left);
-
           $('.display_game > tbody:last').append('<tr><td>' + data.inventory[0].title + '</td><td>' + data.inventory[0].company + '</td><td>' + data.inventory[0].quantity_total + '</td></tr>');
 
           if ($('.display_schedule > tbody')[0].childElementCount > 1) {
@@ -50,22 +48,9 @@
 <%= render "shared/header" %>
 
 <div id="library_notice"><%= notice %></div>
+<h2>FAILURE</h2>
 
-<%= form_for :library do |f| %>
-  Game:
-  <%= f.collection_select :inventory_id, @gameinfo, :id, :game_selection, options = {include_blank: "Select a game title" } %>
-  <br><br>
-  <div id="badge_entry">
-    <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, prompt: "Enter badge" %>
-  </div>
-  <%= f.hidden_field :checked_out, :value => Time.now %>
-  <%= f.hidden_field :checked_in, :value => Time.now %>
-  <%= f.hidden_field :quantity_left %>
-  <br>
-  <div class="button"><%= f.submit 'Check-out' %>
-  <%= f.submit 'Check-in', name: 'checkin_game', method: 'check_in' %></div>
-  <br>
-<%end%>
+<%= render "librarysystem" %>
 
 <h3>Game Information:</h3>
 <div class="table"><table class="display_game">
