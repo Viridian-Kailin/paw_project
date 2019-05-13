@@ -3,6 +3,20 @@
     $('#dialog_addmember').dialog({
       autoOpen: false,
       modal: true,
+      buttons: [
+        {
+          text: "Add non-registered Participant",
+          click: function() {
+            if ($("form#member_submit")[0].checkValidity()) {
+              $(this).submit();
+              alert($("form#member_submit > div > input")[0].value + " has been added.");
+              $(this).dialog("close");
+            } else {
+              alert("Please ensure both badge and name are provided.");
+            }
+          }
+        }
+      ]
     });
 
     $('.column_badge > input').change(function () {

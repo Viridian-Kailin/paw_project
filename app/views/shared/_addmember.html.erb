@@ -5,6 +5,14 @@
       $("#yes, #no").removeClass("selected");
       $("#" + $(e.currentTarget).val()).addClass("selected");
     });
+
+    $("#main_submit").click(function() {
+      if ($("form#member_submit")[0].checkValidity()) {
+        $(this).submit();
+        alert($("form#member_submit > div > input")[0].value + " has been added.");
+        location.reload();
+      }
+    });
   });
 
 </script>
@@ -53,6 +61,5 @@ input[type=submit] { font-size: 18px; }
     Preference: <%= form.select "member[p_pref]", ["Call","Text","Email"] %><br><br>
   </div>
 
-  <div class="member_info"><%= submit_tag ("Add participant") %></div>
 
 <% end %>
