@@ -37,7 +37,7 @@
           };
 
           $.each ( $(data.logs), function (i) {
-            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td>' + data.logs[i].participant_id + '</td><td>' + data.logs[i].quantity_left);
+            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td>' + data.memberinfo[i][0] + '</td><td>' + data.logs[i].quantity_left);
           });
 
         }
@@ -93,7 +93,7 @@
   <tr>
     <th>Check-out Time</th>
     <th>Check-in Time</th>
-    <th>Badge Info</th>
+    <th>Participant Name</th>
     <th>Quantity</th>
   </tr>
 </table><div class="table">

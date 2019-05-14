@@ -11,7 +11,7 @@ class GameLibraryController < ApplicationController
   def create
     @checkstatus = Library.new(library_params)
 
-    binding.pry
+    #binding.pry
 
     if library_params[:quantity_left] != nil && library_params[:quantity_left] != 99
       if params.has_key?(:checkin_game)
@@ -41,14 +41,24 @@ class GameLibraryController < ApplicationController
   end
 
   def get_gameinfo
+    # Pull up game info
     @gameinfo = Inventory.all.where(id: params[:id])
+    # Pull up game schedule
     @gameschedule = Schedule.all.where(inventory_id: @gameinfo[0].id)
+    # Pull up all staff listed in schedule
     @staff = Hash.new
     @gameschedule.length.times do |i|
       @staff[i] = PawStaff.where(id: @gameschedule[i].paw_staff_id).pluck(:name)
     end
+    # Pull up library history
     @librarylogs = Library.all.where(inventory_id: @gameinfo[0].id)
-    render json: { :inventory => @gameinfo, :schedule => @gameschedule, :staff => @staff, :logs => @librarylogs }
+    # Pull up participant info for library history
+    @memberinfo = Hash.new
+    @librarylogs.length.times do |i|
+      @memberinfo[i] = Participant.where(id: @librarylogs[i].participant_id).pluck(:badge)
+    end
+    # Send all to view
+    render json: { :inventory => @gameinfo, :schedule => @gameschedule, :staff => @staff, :logs => @librarylogs, :memberinfo => @memberinfo }
   end
 
   private
