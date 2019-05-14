@@ -17,7 +17,7 @@ class GameLibraryController < ApplicationController
       if params.has_key?(:checkin_game)
         if @checkstatus.save
           redirect_to "/game_library"
-          flash[:notice] = "#{@checkstatus[:title]} has been checked in by #{@checkstatus[:badge]}."
+          flash[:notice] = "#{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} has been checked in by #{Participant.where(id: library_params[:participant_id]).pluck(:name)[0]}, badge #{Participant.where(id: library_params[:participant_id]).pluck(:badge)[0]}."
         else
           redirect_to "/game_library"
           flash[:notice] = @checkstatus.errors.full_messages
@@ -25,7 +25,7 @@ class GameLibraryController < ApplicationController
       else
         if @checkstatus.save
           redirect_to "/game_library"
-          flash[:notice] = "#{@checkstatus[:title]} has been checked out by #{@checkstatus[:badge]}."
+          flash[:notice] = "#{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} has been checked out by #{Participant.where(id: library_params[:participant_id]).pluck(:name)[0]}, badge #{Participant.where(id: library_params[:participant_id]).pluck(:badge)[0]}."
         else
           redirect_to "/game_library"
           flash[:notice] = @checkstatus.errors.full_messages
@@ -33,10 +33,10 @@ class GameLibraryController < ApplicationController
       end
     elsif library_params[:quantity_left] == 99
       redirect_to "/game_library"
-      flash[:notice] = "Max number of copies already checked in. Please ensure this is a PAW copy."
+      flash[:notice] = "Max number of copies for #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} already checked in. Please ensure this is a PAW copy."
     else
       redirect_to "/game_library"
-      flash[:notice] = "No copies of #{@checkstatus[:title]} available."
+      flash[:notice] = "No copies of #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} available."
     end
   end
 

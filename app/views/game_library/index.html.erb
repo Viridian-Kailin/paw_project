@@ -40,23 +40,18 @@
             $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td><a href="javascript:void(0)" id="find_member">' + data.memberinfo[i][0].badge + '</a></td><td>' + data.logs[i].quantity_left);
           });
 
-          $("a#find_member").click(function(info){
-            console.log($(this)[0].innerHTML);
-
+          $("a#find_member").click(function(){
             var badge_id = $(this)[0].innerHTML;
 
             $.ajax ({
               url: "list_member/" + badge_id,
               dataType: 'JSON',
               success: function(data){
-                console.log(data.member[0]);
-
                 if ($('.contact_info > tbody')[0].childElementCount > 1) {
                   $('.contact_info').find("tr:gt(0)").empty()
                 };
 
                 $('.contact_info > tbody:last').append('<tr><td>' + data.member[0].name + '</td><td>' + data.member[0].phone + '</td><td>' + data.member[0].email + '</td><td>' + data.member[0].pref + '</td></tr>');
-
               }
             });
           });
