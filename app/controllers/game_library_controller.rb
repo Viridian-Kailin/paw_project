@@ -11,37 +11,32 @@ class GameLibraryController < ApplicationController
   def create
     @checkstatus = Library.new(library_params)
 
-    if params.has_key?(:checkin_game)
-      if @checkstatus.save
-        redirect_to "/game_library"
-        flash[:notice] = "#{@checkstatus[:title]} has been checked in by #{@checkstatus[:badge]}."
+    binding.pry
+
+    if library_params[:quantity_left] != nil && library_params[:quantity_left] != 99
+      if params.has_key?(:checkin_game)
+        if @checkstatus.save
+          redirect_to "/game_library"
+          flash[:notice] = "#{@checkstatus[:title]} has been checked in by #{@checkstatus[:badge]}."
+        else
+          redirect_to "/game_library"
+          flash[:notice] = @checkstatus.errors.full_messages
+        end
       else
-        render :show
+        if @checkstatus.save
+          redirect_to "/game_library"
+          flash[:notice] = "#{@checkstatus[:title]} has been checked out by #{@checkstatus[:badge]}."
+        else
+          redirect_to "/game_library"
+          flash[:notice] = @checkstatus.errors.full_messages
+        end
       end
+    elsif library_params[:quantity_left] == 99
+      redirect_to "/game_library"
+      flash[:notice] = "Max number of copies already checked in. Please ensure this is a PAW copy."
     else
-      if @checkstatus.save
-        redirect_to "/game_library"
-        flash[:notice] = "#{@checkstatus[:title]} has been checked out by #{@checkstatus[:badge]}."
-      else
-        render :show
-      end
-    end
-  end
-
-  def check_in
-    @check_quantity = Library.where(inventory_id: params[:library][:inventory_id]).pluck(:quantity_left).last
-
-    if @check_quantity != null
-      @checkstatus = Library.new(checkin_params)
-
-      if @checkstatus.save
-        redirect_to "/game_library"
-        flash[:notice] = "#{@checkstatus[:title]} has been checked in by #{@checkstatus[:badge]}."
-      else
-        render :show
-      end
-    else
-      render :show
+      redirect_to "/game_library"
+      flash[:notice] = "No copies of #{@checkstatus[:title]} available."
     end
   end
 
@@ -55,17 +50,42 @@ class GameLibraryController < ApplicationController
 
   private
 
-  def library_params
-    if params[:checkin_game]
-      @quantity = params[:library][:quantity_left]
-      @quantity = @quantity.to_i + 1
+  def read_attribute_for_validation(attr)
+    send(attr)
+  end
 
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_in).merge(quantity_left: @quantity)
-    else
+  def self.human_attribute_name(attr, options = {})
+    attr
+  end
+
+  def self.lookup_ancestors
+    [self]
+  end
+
+  def library_params
+    if params.has_key?(:checkin_game) == true
+      if params[:library][:quantity_left].to_i < Library.where(inventory_id: params[:library][:inventory_id]).pluck(:quantity_left)[0].to_i
+
+        @quantity = params[:library][:quantity_left]
+        @quantity = @quantity.to_i + 1
+
+        params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :quantity_left).merge(quantity_left: @quantity)
+      else
+        @quantity = 99
+
+        params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :quantity_left).merge(quantity_left: @quantity)
+      end
+    elsif params.has_key?(:checkin_game) == false && params[:library][:quantity_left].to_i >= Library.where(inventory_id: params[:library][:inventory_id]).pluck(:quantity_left)[0].to_i
+
       @quantity = params[:library][:quantity_left]
       @quantity = @quantity.to_i - 1
 
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_out).merge(quantity_left: @quantity)
+      params.require(:library).permit(:inventory_id, :participant_id, :checked_out, :quantity_left).merge(quantity_left: @quantity)
+
+    else
+      @quantity = nil
+
+      params.require(:library).permit(:inventory_id, :participant_id, :checked_out,:quantity_left).merge(quantity_left: @quantity)
     end
   end
 
