@@ -43,7 +43,10 @@ class GameLibraryController < ApplicationController
   def get_gameinfo
     @gameinfo = Inventory.all.where(id: params[:id])
     @gameschedule = Schedule.all.where(inventory_id: @gameinfo[0].id)
-    @staff = PawStaff.all
+    @staff = Hash.new
+    @gameschedule.length.times do |i|
+      @staff[i] = PawStaff.where(id: @gameschedule[i].paw_staff_id).pluck(:name)
+    end
     @librarylogs = Library.all.where(inventory_id: @gameinfo[0].id)
     render json: { :inventory => @gameinfo, :schedule => @gameschedule, :staff => @staff, :logs => @librarylogs }
   end

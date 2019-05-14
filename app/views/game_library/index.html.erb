@@ -12,6 +12,8 @@
         url: "list_game/" + gametitle,
         dataType: 'JSON',
         success: function(data){
+          console.log(data);
+          //Basic game info
           if ($('.display_game > tbody')[0].childElementCount > 1) {
             $('.display_game > tbody > tr:last').empty()
           };
@@ -20,15 +22,16 @@
 
           $('.display_game > tbody:last').append('<tr><td>' + data.inventory[0].title + '</td><td>' + data.inventory[0].company + '</td><td>' + data.inventory[0].quantity_total + '</td></tr>');
 
+          //Game schedule
           if ($('.display_schedule > tbody')[0].childElementCount > 1) {
-            $('.display_schedule > tbody > tr:last').empty()
+            $('.display_schedule').find("tr:gt(0)").empty()
           };
 
           $.each ( $(data.schedule), function (i) {
-            //console.log(data.schedule[i]);
-            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + data.schedule[i].start + '</td><td>' + data.schedule[i].location + '</td></tr>' );
+            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + data.schedule[i].start + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i][0] + '</td></tr>' );
           });
 
+          //Game logs
           if ($('.display_logs > tbody')[0].childElementCount > 1) {
             $('.display_logs > tbody > tr:last').empty()
           };
