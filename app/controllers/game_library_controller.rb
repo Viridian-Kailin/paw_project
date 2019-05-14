@@ -55,10 +55,16 @@ class GameLibraryController < ApplicationController
     # Pull up participant info for library history
     @memberinfo = Hash.new
     @librarylogs.length.times do |i|
-      @memberinfo[i] = Participant.where(id: @librarylogs[i].participant_id).pluck(:badge)
+      @memberinfo[i] = Participant.where(id: @librarylogs[i].participant_id)
     end
     # Send all to view
     render json: { :inventory => @gameinfo, :schedule => @gameschedule, :staff => @staff, :logs => @librarylogs, :memberinfo => @memberinfo }
+  end
+
+  def get_memberinfo
+    @memberinfo = Participant.where(badge: params[:badge])
+
+    render json: { :member => @memberinfo }
   end
 
   private

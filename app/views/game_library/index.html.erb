@@ -1,7 +1,7 @@
 <script>
-  var gametitle
-
   //Make a GET request to the collector to pull Title/Company/Quantity for the selected game title
+
+  var gametitle
 
   $(document).ready(function(){
 
@@ -37,13 +37,32 @@
           };
 
           $.each ( $(data.logs), function (i) {
-            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td>' + data.memberinfo[i][0] + '</td><td>' + data.logs[i].quantity_left);
+            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td><a href="javascript:void(0)" id="find_member">' + data.memberinfo[i][0].badge + '</a></td><td>' + data.logs[i].quantity_left);
           });
 
+          $("a#find_member").click(function(info){
+            console.log($(this)[0].innerHTML);
+
+            var badge_id = $(this)[0].innerHTML;
+
+            $.ajax ({
+              url: "list_member/" + badge_id,
+              dataType: 'JSON',
+              success: function(data){
+                console.log(data.member[0]);
+
+                if ($('.contact_info > tbody')[0].childElementCount > 1) {
+                  $('.contact_info').find("tr:gt(0)").empty()
+                };
+
+                $('.contact_info > tbody:last').append('<tr><td>' + data.member[0].name + '</td><td>' + data.member[0].phone + '</td><td>' + data.member[0].email + '</td><td>' + data.member[0].pref + '</td></tr>');
+
+              }
+            });
+          });
         }
       });
     });
-
   });
 
 </script>
@@ -96,4 +115,14 @@
     <th>Participant Name</th>
     <th>Quantity</th>
   </tr>
-</table><div class="table">
+</table></div><br>
+
+<h3>Contact Information: </h3>
+<div class="table"><table class="contact_info">
+  <tr>
+    <th>Participant Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Preference</th>
+  </tr>
+</table></div>
