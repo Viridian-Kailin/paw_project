@@ -12,7 +12,7 @@
             console.log(data.winners[i]);
 
             if (data.winners[i] != "No entry") {
-              $('[id$="_' + i + '"] > #winner_list').append('<li>Badge: ' + data.winners[i][0].badge + '</li><li>Name: ' + data.winners[i][0].name + '</li><li>Phone: ' + data.winners[i][0].phone + '</li><li>Email: ' + data.winners[i][0].email + '</li><li>Preference: ' + data.winners[i][0].pref + '</li>');
+              $('[id$="_' + i + '"] > #winner_list').append('<li>Badge: ' + data.winners[i][0].badge + '</li><li>Name: ' + data.winners[i][0].name + '</li><li>Phone: ' + data.winners[i][0].phone + '</li><li>Email: ' + data.winners[i][0].email + '</li><li>Preference: ' + data.winners[i][0].pref + '</li><li>Rating: ' + data.winners[i][1][1] + '</li>');
             } else {
               $('[id$="_' + i + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
             };
