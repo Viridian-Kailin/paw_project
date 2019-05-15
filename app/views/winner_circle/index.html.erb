@@ -7,17 +7,36 @@
         success: function(data){
           console.log(data);
 
-          for (i = 1; i < (data.winners.length + 1); i++) {
+          for (i = 0; i < (data.winners.length); i++) {
             //console.log($('[id$="_' + i + '"]'));
-            console.log(data.winners[i]);
+
+            console.log("Entry " + i + ": " + data.winners[i][0]);
 
             if (data.winners[i] != "No entry") {
-              $('[id$="_' + i + '"] > #winner_list').append('<li>Badge: ' + data.winners[i][0].badge + '</li><li>Name: ' + data.winners[i][0].name + '</li><li>Phone: ' + data.winners[i][0].phone + '</li><li>Email: ' + data.winners[i][0].email + '</li><li>Preference: ' + data.winners[i][0].pref + '</li><li>Rating: ' + data.winners[i][1][1] + '</li>');
+              $('[id$="_' + (i + 1) + '"] > #winner_list').append('<li>Badge: ' + data.winners[i][0].badge + '</li><li>Name: ' + data.winners[i][0].name + '</li><li>Phone: ' + data.winners[i][0].phone + '</li><li>Email: ' + data.winners[i][0].email + '</li><li>Preference: ' + data.winners[i][0].pref + '</li><li>Rating: ' + data.winners[i][1][1] + '</li>');
+              if (data.winners[i][0].proxy == true) {
+                $('[id$="_' + i + '"] > #proxy_list').append('<li>Badge: ' + data.winners[i][0].p_badge + '</li><li>Name: ' + data.winners[i][0].p_name + '</li><li>Phone: ' + data.winners[i][0].p_phone + '</li><li>Email: ' + data.winners[i][0].p_email + '</li><li>Preference: ' + data.winners[i][0].p_pref + '</li>');
+              }
             } else {
               $('[id$="_' + i + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
             };
           }
         }
+      });
+    });
+
+    $('.redraw').click(function(){
+      var parent_td = this.closest('td').id.split('_')[1];
+
+      $.ajax ({
+        url: "redraw/" + this.id.slice(7),
+        dataType: 'JSON',
+        success: function(data){
+          if (Object.keys(data) == "error"){
+            $('.redraw_error')[parent_td - 1].innerHTML = data.error;
+          } else
+            console.log(data);
+          }
       });
     });
   });
@@ -34,6 +53,7 @@
     <tr>
       <% rows.each do |cells| %>
         <td id='<%= "#{cells.title}" %>_<%= "#{cells.id}" %>'>
+          <div class="redraw_error"></div>
           <h4>Game Title:</h4>
           <div class="game_title"><%= "#{cells.title}" %></div>
           <h4>Winner:</h4>
@@ -41,14 +61,8 @@
           </ul>
           <h4>Proxy info:</h4>
           <ul id='proxy_list'>
-            <!--
-            <li>Badge: </li>
-            <li>Name: </li>
-            <li>Contact: </li>
-            <li>Preference: </li>
-          -->
           </ul>
-          <button>Redraw</button>
+          <button class="redraw" id='submit_<%= "#{cells.id}" %>'>Redraw</button>
         </td>
       <% end %>
     </tr>
