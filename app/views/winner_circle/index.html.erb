@@ -1,444 +1,56 @@
+<script>
+  $(document).ready(function(){
+    $('#pick_winners').click(function(){
+      $.ajax ({
+        url: "show_winners/",
+        dataType: 'JSON',
+        success: function(data){
+          console.log(data);
+
+          for (i = 1; i < (data.winners.length + 1); i++) {
+            //console.log($('[id$="_' + i + '"]'));
+            console.log(data.winners[i]);
+
+            if (data.winners[i] != "No entry") {
+              $('[id$="_' + i + '"] > #winner_list').append('<li>Badge: ' + data.winners[i][0].badge + '</li><li>Name: ' + data.winners[i][0].name + '</li><li>Phone: ' + data.winners[i][0].phone + '</li><li>Email: ' + data.winners[i][0].email + '</li><li>Preference: ' + data.winners[i][0].pref + '</li>');
+            } else {
+              $('[id$="_' + i + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
+            };
+          }
+        }
+      });
+    });
+  });
+</script>
+
 <h1>Winner Circle</h1>
 
 <%= render "shared/header" %>
 
+<button id="pick_winners">Pick the Winners!</button>
+
 <table>
-  <tr>
-    <td>
-      <h4>Game Title:</h4>
-      <div class="game_title">Sample Title</div>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge: 12345</li>
-          <li>Name: Greg George</li>
-          <li>Contact: 555.555.5555</li>
-          <li>Preference: Text</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge: 54321</li>
-          <li>Name: George Greg</li>
-          <li>Contact: 555.555.5551</li>
-          <li>Preference: Call</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-    <td>
-      <h4>Game Title:</h4>
-      <h4>Winner:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-        <h4>Proxy info:</h4>
-        <ul>
-          <li>Badge:</li>
-          <li>Name:</li>
-          <li>Contact:</li>
-          <li>Preference:</li>
-        </ul>
-      <button>Redraw</button>
-    </td>
-  </tr>
+  <% Inventory.all.each_slice(4) do |rows| %>
+    <tr>
+      <% rows.each do |cells| %>
+        <td id='<%= "#{cells.title}" %>_<%= "#{cells.id}" %>'>
+          <h4>Game Title:</h4>
+          <div class="game_title"><%= "#{cells.title}" %></div>
+          <h4>Winner:</h4>
+          <ul id='winner_list'>
+          </ul>
+          <h4>Proxy info:</h4>
+          <ul id='proxy_list'>
+            <!--
+            <li>Badge: </li>
+            <li>Name: </li>
+            <li>Contact: </li>
+            <li>Preference: </li>
+          -->
+          </ul>
+          <button>Redraw</button>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>

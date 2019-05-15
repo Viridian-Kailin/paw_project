@@ -5,8 +5,6 @@ class GameLogsController < ApplicationController
 
   def create
 
-    binding.pry
-
     @logs_timestamp = DateTime.new(params[:entry]["timestamp(1i)"].to_i,params[:entry]["timestamp(2i)"].to_i,params[:entry]["timestamp(3i)"].to_i,params[:entry]["timestamp(4i)"].to_i,params[:entry]["timestamp(5i)"].to_i)
 
     12.times do |i|
