@@ -18,7 +18,7 @@
                 $('[id$="_' + i + '"] > #proxy_list').append('<li>Badge: ' + data.winners[i][0].p_badge + '</li><li>Name: ' + data.winners[i][0].p_name + '</li><li>Phone: ' + data.winners[i][0].p_phone + '</li><li>Email: ' + data.winners[i][0].p_email + '</li><li>Preference: ' + data.winners[i][0].p_pref + '</li>');
               }
             } else {
-              $('[id$="_' + i + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
+              $('[id$="_' + (i + 1) + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
             };
           }
         }
