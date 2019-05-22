@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_204811) do
+ActiveRecord::Schema.define(version: 2019_05_21_172320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_204811) do
     t.integer "inventory_id"
     t.integer "participant_id"
     t.integer "event_id"
+    t.boolean "winner"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -60,6 +61,24 @@ ActiveRecord::Schema.define(version: 2019_05_03_204811) do
     t.integer "paw_staff_id"
     t.integer "participant_id"
     t.integer "event_id"
+  end
+
+  create_table "participant_logs", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "chosen_rating"
+    t.string "winner_name"
+    t.integer "winner_badge"
+    t.string "winner_phone"
+    t.string "winner_email"
+    t.string "winner_pref"
+    t.boolean "winner_proxy"
+    t.string "proxy_name"
+    t.integer "proxy_badge"
+    t.string "proxy_phone"
+    t.string "proxy_email"
+    t.string "proxy_pref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "participants", force: :cascade do |t|

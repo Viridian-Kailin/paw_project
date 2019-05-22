@@ -1,0 +1,2 @@
+class ParticipantLog < ApplicationRecord
+end

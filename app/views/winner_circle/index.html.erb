@@ -1,38 +1,46 @@
 <script>
   $(document).ready(function(){
     $('#pick_winners').click(function(){
+      for (i = 0; i < $('.redraw_error').length; i++) {
+        if ($('.redraw_error')[i].innerHTML != "") {
+          $('.redraw_error')[i].innerHTML = "";
+        }
+      }
+
       $.ajax ({
         url: "show_winners/",
         dataType: 'JSON',
         success: function(data){
           console.log(data);
 
-          for (i = 0; i < (data.winners.length); i++) {
-            //console.log($('[id$="_' + i + '"]'));
-
-            console.log("Entry " + i + ": " + data.winners[i][0]);
-
+          for (i = 1; i <= (Object.entries(data.winners).length); i++) {
             if (data.winners[i] != "No entry") {
-              $('[id$="_' + (i + 1) + '"] > #winner_list').append('<li>Badge: ' + data.winners[i][0].badge + '</li><li>Name: ' + data.winners[i][0].name + '</li><li>Phone: ' + data.winners[i][0].phone + '</li><li>Email: ' + data.winners[i][0].email + '</li><li>Preference: ' + data.winners[i][0].pref + '</li><li>Rating: ' + data.winners[i][1][1] + '</li>');
-              if (data.winners[i][0].proxy == true) {
-                $('[id$="_' + i + '"] > #proxy_list').append('<li>Badge: ' + data.winners[i][0].p_badge + '</li><li>Name: ' + data.winners[i][0].p_name + '</li><li>Phone: ' + data.winners[i][0].p_phone + '</li><li>Email: ' + data.winners[i][0].p_email + '</li><li>Preference: ' + data.winners[i][0].p_pref + '</li>');
+              $('[id$="_' + (i) + '"] > #winner_list').append('<li>Badge: ' + data.winners[i]["badge"] + '</li><li>Name: ' + data.winners[i]["name"] + '</li><li>Phone: ' + data.winners[i]["phone"] + '</li><li>Email: ' + data.winners[i]["email"] + '</li><li>Preference: ' + data.winners[i]["pref"] + '</li><li>Rating: ' + data.winners[i]["rating"] + '</li>');
+              if (data.winners[i]["proxy"] == true) {
+                $('[id$="_' + i + '"] > #proxy_list').append('<li>Badge: ' + data.winners[i]["p_badge"] + '</li><li>Name: ' + data.winners[i]["p_name"] + '</li><li>Phone: ' + data.winners[i]["p_phone"] + '</li><li>Email: ' + data.winners[i]["p_email"] + '</li><li>Preference: ' + data.winners[i]["p_pref"] + '</li>');
               }
             } else {
-              $('[id$="_' + (i + 1) + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
+              $('[id$="_' + (i) + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
             };
+
+            $('#submit_' + i).attr('id', 'badge_' + data.winners[i]["badge"]);
           }
         }
       });
     });
 
     $('.redraw').click(function(){
-      var parent_td = this.closest('td').id.split('_')[1];
+      var title_id = this.closest('button').name.split('_')[1];
+      var badge_id = this.closest('button').id.split('_')[1];
+      console.log(title_id + " " + badge_id);
 
       $.ajax ({
-        url: "redraw/" + this.id.slice(7),
+        url: "redraw/",
+        data: { badge_id: badge_id, title_id: title_id },
         dataType: 'JSON',
         success: function(data){
           if (Object.keys(data) == "error"){
+            console.log(data);
             $('.redraw_error')[parent_td - 1].innerHTML = data.error;
           } else
             console.log(data);
@@ -62,7 +70,7 @@
           <h4>Proxy info:</h4>
           <ul id='proxy_list'>
           </ul>
-          <button class="redraw" id='submit_<%= "#{cells.id}" %>'>Redraw</button>
+          <button class="redraw" id='submit_<%= "#{cells.id}" %>' name='inventory_<%= "#{cells.id}" %>'>Redraw</button><br><br>
         </td>
       <% end %>
     </tr>
