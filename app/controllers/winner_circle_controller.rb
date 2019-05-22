@@ -63,27 +63,26 @@ class WinnerCircleController < ApplicationController
     @game = params[:title_id]
     @won = params[:badge_id]
 
-    byebug
-
     grab_logs
     define_logs
 
-    @checklog[@game.to_i - 1].length.times { |i|
-      if @checklog[@game.to_i - 1].as_json[i]["badge"] == @won.to_i
-          @checklog[@game.to_i - 1].delete_at(i)
-      end
-    }
+    if @won != "undefined"
+      if @checklog[@game.to_i - 1].length > 1
+        @checklog[@game.to_i - 1].length.times { |game_entry|
+          if @checklog[@game.to_i - 1].as_json[game_entry]["badge"] == @won.to_i
+            @checklog[@game.to_i - 1][game_entry].delete(game_entry)
+          end
+        }
 
-    @winner = Hash.new
-    @checklog[@game.to_i].each_key { |key|
-      if @checklog[key] != "No entry"
-        @winner[key + 1] = @checklog[key].as_json[Random.rand(@checklog[key].length)]
+        @winner = @checklog[@game.to_i - 1].as_json[Random.rand(@checklog[@game.to_i - 1].length)]
+
+        render json: { new_winner: @winner}
       else
-        @winner[key + 1] = @checklog[key]
+        render json: { error: "No other winners." }
       end
-    }
-
-    render json: { test_1: @won, test_2: @game, test_3: @winner[@game.to_i]}
+    else
+      render json: { error: "No entries logged for this title."}
+    end
   end
 
 end

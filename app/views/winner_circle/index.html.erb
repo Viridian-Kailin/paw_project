@@ -31,8 +31,11 @@
 
     $('.redraw').click(function(){
       var title_id = this.closest('button').name.split('_')[1];
+      if ((this.closest('button').id.split('_')[0]) == "submit"){
+        $('.redraw_error')[title_id - 1].innerHTML = "Please press the 'Pick the Winners' button first.";
+      }
+      else {
       var badge_id = this.closest('button').id.split('_')[1];
-      console.log(title_id + " " + badge_id);
 
       $.ajax ({
         url: "redraw/",
@@ -41,11 +44,12 @@
         success: function(data){
           if (Object.keys(data) == "error"){
             console.log(data);
-            $('.redraw_error')[parent_td - 1].innerHTML = data.error;
+            $('.redraw_error')[title_id - 1].innerHTML = data.error;
           } else
             console.log(data);
           }
       });
+      }
     });
   });
 </script>
