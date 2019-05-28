@@ -43,6 +43,10 @@ class WinnerCircleController < ApplicationController
   def select_winners
     @checklog.each_key { |key|
       if @checklog[key] != "No entry"
+        @checklog[key].each_index { |entry|
+          ActiveLog.create(@checklog[key][entry])
+        }
+
         @winner[key + 1] = @checklog[key].as_json[Random.rand(@checklog[key].length)]
       else
         @winner[key + 1] = @checklog[key]
@@ -56,33 +60,29 @@ class WinnerCircleController < ApplicationController
     @winner = Hash.new
     select_winners
 
-    render json: {winners: @winner}
+    render json: {winners: @winner, test_1: @checklog}
   end
 
   def redraw_winner
-    @game = params[:title_id]
+    @game = params[:title_id].to_i
     @won = params[:badge_id]
 
-    grab_logs
-    define_logs
-
     if @won != "undefined"
-      if @checklog[@game.to_i - 1].length > 1
-        @checklog[@game.to_i - 1].length.times { |game_entry|
-          if @checklog[@game.to_i - 1].as_json[game_entry]["badge"] == @won.to_i
-            @checklog[@game.to_i - 1][game_entry].delete(game_entry)
-          end
-        }
+      #binding.pry
+      if ActiveLog.where(inventory_id: @game).length > 1
+        ActiveLog.where(inventory_id: @game, badge: @won.to_i).delete_all
+        @new_winner = ActiveLog.where(inventory_id: @game).as_json[Random.rand(ActiveLog.where(inventory_id: @game).length)]
 
-        @winner = @checklog[@game.to_i - 1].as_json[Random.rand(@checklog[@game.to_i - 1].length)]
-
-        render json: { new_winner: @winner}
+        render json: {new_winner: @new_winner}
       else
         render json: { error: "No other winners." }
       end
     else
       render json: { error: "No entries logged for this title."}
     end
+
   end
+
+  private
 
 end

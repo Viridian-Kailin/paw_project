@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ParticipantLogTest < ActiveSupport::TestCase
+class ActiveLogTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

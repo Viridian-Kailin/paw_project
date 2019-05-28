@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_172320) do
+ActiveRecord::Schema.define(version: 2019_05_28_161404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_logs", force: :cascade do |t|
+    t.integer "rating"
+    t.integer "inventory_id"
+    t.integer "badge"
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "pref"
+    t.boolean "proxy"
+    t.integer "p_badge"
+    t.string "p_name"
+    t.string "p_phone"
+    t.string "p_email"
+    t.string "p_pref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "activelogs", force: :cascade do |t|
+    t.integer "rating"
+    t.integer "inventory_id"
+    t.integer "badge"
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "pref"
+    t.boolean "proxy"
+    t.integer "p_badge"
+    t.string "p_name"
+    t.string "p_phone"
+    t.string "p_email"
+    t.string "p_pref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "con_staffs", force: :cascade do |t|
     t.datetime "created_at", null: false
