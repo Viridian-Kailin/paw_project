@@ -1,4 +1,6 @@
 class GameLogsController < ApplicationController
+  skip_before_action :admin, only: [:update, :delete, :index]
+
   def new
     @logs = GameLog.new()
   end

@@ -9,11 +9,11 @@
 import_games = YAML.load(File.read('db/2019_seeds/inventories.yml'))
 import_games.each {|x| Inventory.where(x).first_or_create(x)}
 
-import_gms = YAML.load(File.read('db/2019_seeds/gm_list.yml'))
-import_gms.each {|x| Participant.where(x).first_or_create(x)}
+import_members = YAML.load(File.read('db/2019_seeds/participants.yml'))
+import_members.each {|x| Participant.where(x).first_or_create(x)}
 
 import_staff = YAML.load(File.read('db/2019_seeds/gm_list.yml'))
-import_gms.each {|x| PawStaff.where(x).first_or_create(x)}
+import_staff.each {|x| PawStaff.where(x).first_or_create(x)}
 
 import_events = YAML.load(File.read('db/2019_seeds/event.yml'))
 import_events.each {|x| Event.where(x).first_or_create(x)}

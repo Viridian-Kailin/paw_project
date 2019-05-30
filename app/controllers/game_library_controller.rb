@@ -1,4 +1,5 @@
 class GameLibraryController < ApplicationController
+  skip_before_action :admin
 
   def index
     @gameinfo = Inventory.all

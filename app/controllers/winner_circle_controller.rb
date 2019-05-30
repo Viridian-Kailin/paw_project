@@ -1,4 +1,6 @@
 class WinnerCircleController < ApplicationController
+  skip_before_action :admin
+
   attr_reader :badge
   attr_reader :name
   attr_reader :phone

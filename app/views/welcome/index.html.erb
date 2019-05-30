@@ -2,6 +2,10 @@
 
 <%= render "shared/header" %>
 
+<% if session[:user_id] != nil %>
+Currently logged in as <%= session[:user_name] %>
+<% end %>
+
 <div class="grid-container">
   <div class="grid-item-1"></div>
   <div class="grid-item-5"></div>
@@ -11,14 +15,14 @@
       <h1>Administrative Tasks</h1>
       <br><br>
       <div id="admin_buttons">
-        <button>Log In</button>
-        <button>Add Staff</button>
+        <%= button_to "Login", login_path, method: :get %>
+        <%= button_to "Add Staff", staff_path, method: :get %>
         <br>
-        <button>Check Members</button>
-        <button>Check Inventory</button>
+        <%= button_to "Check Members", participants_total_url, method: :get %>
+        <%= button_to "Check Inventory", inventory_index_url, method: :get %>
         <br>
-        <button>Check Logs</button>
-        <button>Set Event</button>
+        <%= button_to "Check Logs", game_logs_total_url, method: :get %>
+        <%= button_to "Set Event", events_url, method: :get %>
       </div>
     </section>
   </div>
@@ -28,11 +32,11 @@
       <h1>PAW Information</h1>
       <br><br>
       <div id="info_buttons">
-        <button>Game Schedule</button>
-        <button>PAW Staff List</button>
+        <%= button_to "Game Schedule", schedule_index_url, method: :get %>
+        <%= button_to "PAW Staff List", paw_staff_total_url, method: :get %>
         <br>
-        <button>PAW Rules & Guidelines</button>
-        <button>Event Staff</button>
+        <%= button_to "PAW Rules & Guidelines", rules_url, method: :get %>
+        <%= button_to "Event Staff", con_staff_index_url, method: :get %>
       </div>
     </article>
   </div>

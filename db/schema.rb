@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_161404) do
+ActiveRecord::Schema.define(version: 2019_05_30_181133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,33 +31,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_161404) do
     t.string "p_pref"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "activelogs", force: :cascade do |t|
-    t.integer "rating"
-    t.integer "inventory_id"
-    t.integer "badge"
-    t.string "name"
-    t.string "phone"
-    t.string "email"
-    t.string "pref"
-    t.boolean "proxy"
-    t.integer "p_badge"
-    t.string "p_name"
-    t.string "p_phone"
-    t.string "p_email"
-    t.string "p_pref"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "con_staffs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "badge"
-    t.string "name"
-    t.string "title"
-    t.string "location"
   end
 
   create_table "events", force: :cascade do |t|
@@ -99,24 +72,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_161404) do
     t.integer "event_id"
   end
 
-  create_table "participant_logs", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "chosen_rating"
-    t.string "winner_name"
-    t.integer "winner_badge"
-    t.string "winner_phone"
-    t.string "winner_email"
-    t.string "winner_pref"
-    t.boolean "winner_proxy"
-    t.string "proxy_name"
-    t.integer "proxy_badge"
-    t.string "proxy_phone"
-    t.string "proxy_email"
-    t.string "proxy_pref"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "participants", force: :cascade do |t|
     t.integer "badge"
     t.string "name"
@@ -153,6 +108,13 @@ ActiveRecord::Schema.define(version: 2019_05_28_161404) do
     t.integer "inventory_id"
     t.integer "paw_staff_id"
     t.integer "event_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "game_logs", "events"
