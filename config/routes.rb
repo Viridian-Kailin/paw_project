@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get 'participants/total', to: 'participants#show'
+  get 'staff/total', to: 'paw_staffs#show'
   get 'game_logs/total', to: 'game_logs#show'
   get 'check_entry/:participants', to: 'game_logs#need_reg'
   get 'list_game/:id', to: 'game_library#get_gameinfo'

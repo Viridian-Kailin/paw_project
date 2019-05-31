@@ -2,10 +2,11 @@ class PawStaffsController < ApplicationController
   skip_before_action :admin, only: [:show]
 
   def index
-    @staff = PawStaff.all
+    @staff = PawStaff.all.order(:badge)
   end
 
   def show
+    @staff = PawStaff.all.order(:badge)
   end
 
   def new
@@ -42,7 +43,7 @@ class PawStaffsController < ApplicationController
 
   def destroy
     PawStaff.find(params[:id]).destroy
-    flash[:notice] = "Staff member has been deleted."
+    flash[:notice] = "Staf f member has been deleted."
     redirect_to paw_staffs_path
   end
 

@@ -1,4 +1,4 @@
-<%= form_for(@staff) do |f| %>
+<%= form_with(model: @staff) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, required: true %>
   <%= f.label :badge %>

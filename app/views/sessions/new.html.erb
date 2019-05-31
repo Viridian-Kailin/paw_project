@@ -1,10 +1,6 @@
 <h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<%= render 'shared/header' %>
 <section class="depot_form">
-  <% if flash[:alert] %>
-    <aside class="notice"><%= flash[:alert] %></aside>
-  <% end %>
-
   <%= form_tag action: 'create' do %>
     <h2>Please Log In</h2>
 
