@@ -26,6 +26,9 @@
 <% if flash[:alert] %>
   <%= flash[:alert] %>
 <% end %>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
 <% if session[:user_id] != nil %>
   <div>Currently logged in as <%= session[:user_name] %></div>
 <% else %>

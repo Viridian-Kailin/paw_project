@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :schedule
   resources :rules
   resources :con_staff
-  resources :paw_staff, path: 'staff'
+  resources :paw_staffs, path: 'staff'
   resources :users
 
   controller :sessions do

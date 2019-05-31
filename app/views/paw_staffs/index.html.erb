@@ -21,11 +21,12 @@
       <td><%= s[:role] ||= "NA" %></td>
       <td>
         <%= link_to 'Edit', edit_paw_staff_path(s), method: :get %>
-        <%= link_to 'Delete' %>
+        <%= link_to 'Delete', s, method: :delete,
+                                data: { confirm: "Are you sure?" } %>
       </td>
     </tr>
   <% end %>
 </table>
 <br>
 
-<button>Add staff</button>
+<%= button_to "Add staff", new_paw_staff_path, method: :get %>

@@ -1,4 +1,4 @@
-class PawStaffController < ApplicationController
+class PawStaffsController < ApplicationController
   skip_before_action :admin, only: [:show]
 
   def index
@@ -9,9 +9,19 @@ class PawStaffController < ApplicationController
   end
 
   def new
+    @staff = PawStaff.new()
   end
 
   def create
+    @staff = PawStaff.new(staff_params)
+
+    if @staff.save
+      flash[:notice] = "#{@staff[:name]} has been added."
+      redirect_to paw_staffs_path
+    else
+      flash[:alert] = "Unable to add #{@staff[:name]}."
+      render 'new'
+    end
   end
 
   def update
@@ -19,7 +29,7 @@ class PawStaffController < ApplicationController
 
     if @staff.update_attributes(staff_params)
       flash[:notice] = "Staff member updated."
-      redirect_to paw_staff_index_path
+      redirect_to paw_staffs_path
     else
       flash[:alert] = "Unable to save edit."
       render 'edit'
@@ -31,6 +41,9 @@ class PawStaffController < ApplicationController
   end
 
   def destroy
+    PawStaff.find(params[:id]).destroy
+    flash[:notice] = "Staff member has been deleted."
+    redirect_to paw_staffs_path
   end
 
   private

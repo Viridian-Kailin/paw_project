@@ -1,0 +1,21 @@
+Placeholder - Edit
+<br><br>
+<table>
+  <tr>
+    <% @staff.as_json.each do |k,v| %>
+    <th>
+      <%= k %>
+    </th>
+    <% end %>
+  </tr>
+  <tr>
+    <% @staff.as_json.each do |k,v| %>
+    <td>
+      <%= v %>
+    </td>
+    <%end%>
+  </tr>
+</table>
+<br><br>
+
+<%= render 'staff_form' %>
