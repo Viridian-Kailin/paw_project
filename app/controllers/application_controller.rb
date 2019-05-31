@@ -11,7 +11,7 @@ protected
   end
 
   def admin
-    unless User.find_by(username: session[:user_name]) == "admin"
+    unless session[:user_name] == "admin"
       redirect_to request.referrer, alert: "You need to be an admin."
     end
   end

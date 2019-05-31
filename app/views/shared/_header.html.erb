@@ -21,3 +21,14 @@
     </div>
   </div>
 </header>
+
+<div>
+<% if flash[:alert] %>
+  <%= flash[:alert] %>
+<% end %>
+<% if session[:user_id] != nil %>
+  <div>Currently logged in as <%= session[:user_name] %></div>
+<% else %>
+  <div>You are not currently logged in.</div>
+<% end %>
+</div>

@@ -2,6 +2,7 @@ class PawStaffController < ApplicationController
   skip_before_action :admin, only: [:show]
 
   def index
+    @staff = PawStaff.all
   end
 
   def show
@@ -16,7 +17,18 @@ class PawStaffController < ApplicationController
   def update
   end
 
+  def edit
+    @staff = PawStaff.find(params[:id])
+    @test = params[:id] ||= "empty"
+  end
+
   def destroy
+  end
+
+  private
+
+  def staff_params
+    require.params[:id]
   end
 
 end

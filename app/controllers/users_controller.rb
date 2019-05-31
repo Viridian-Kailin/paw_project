@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :admin, only: [:show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
