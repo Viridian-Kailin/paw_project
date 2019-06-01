@@ -1,0 +1,10 @@
+<%= form_with(model: @game) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :company %>
+    <%= f.text_field :company %>
+    <%= f.label "Quantity" %>
+    <%= f.number_field :quantity_total %>
+    <br><br>
+    <%= f.submit %>
+<% end %>

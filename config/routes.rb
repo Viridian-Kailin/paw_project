@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :game_library
   resources :game_logs
   resources :winner_circle
-  resources :inventory
+  resources :inventories
   resources :events
   resources :schedule
   resources :rules
