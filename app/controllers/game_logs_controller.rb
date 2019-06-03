@@ -1,5 +1,5 @@
 class GameLogsController < ApplicationController
-  skip_before_action :admin, only: [:update, :delete, :index]
+  skip_before_action :admin, only: [:index, :show, :create, :need_reg]
 
   def new
     @logs = GameLog.new()
@@ -31,15 +31,13 @@ class GameLogsController < ApplicationController
   end
 
   def need_reg
-    @members = Participant.all
-    @example = params[:participants]
+    @member = Participant.find_by(badge: params[:badge_id])
 
-    if @members.where(badge: @example) == []
-      render json: { :badge_info => @example }, status: 406
+    if @member == nil
+      head 406
     else
-      render json: { :members => @members.where(badge: @example) }, status: 304
+      head 304
     end
-
   end
 
   def initial_params
