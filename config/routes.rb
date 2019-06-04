@@ -25,11 +25,11 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'participants/total', to: 'participants#show'
   get 'staff/total', to: 'paw_staffs#show'
-  get 'game_logs/total', to: 'game_logs#show'
   get 'check_entry/:badge_id', to: 'game_logs#need_reg'
   get 'list_game/:id', to: 'game_library#get_gameinfo'
   get 'list_member/:badge', to: 'game_library#get_memberinfo'
   get 'show_winners', to: 'winner_circle#show_winners'
   get 'redraw', to: 'winner_circle#redraw_winner'
+  get 'game_logs/total', to: 'game_logs#show'
 
 end

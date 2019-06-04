@@ -5,6 +5,47 @@ class GameLogsController < ApplicationController
     @logs = GameLog.new()
   end
 
+  def show
+    @logs = GameLog.all.order(:inventory_id)
+    @log_info = Array.new
+
+    @logs.length.times { |i|
+      @log_info[i] = { id: @logs[i][:id], inventory_id: @logs[i][:inventory_id], title: Inventory.where(id: @logs[i][:inventory_id])[0][:title], timestamp: @logs[i][:timestamp], participant_id: @logs[i][:participant_id], member: Participant.where(id: @logs[i][:participant_id])[0][:name], rating: @logs[i][:rating] }
+    }
+  end
+
+  def edit
+    @log = GameLog.find(params[:id])
+    @log_info = {
+      id: @log[:id],
+      inventory_id: @log[:inventory_id],
+      title: Inventory.where(id: @log[:inventory_id])[0][:title],
+      timestamp: @log[:timestamp],
+      participant_id: @log[:participant_id],
+      member: Participant.where(id: @log[:participant_id])[0][:name],
+      rating: @log[:rating]
+    }
+    render 'game_logs/edit', layout: false
+  end
+
+  def update
+    @log = GameLog.find(params[:id])
+    #binding.pry
+    if @log.update_attributes(update_params)
+      flash[:notice] = "GameLog updated."
+      redirect_to game_logs_total_url
+    else
+      flash[:alert] = "Unable to save edit."
+      render 'edit'
+    end
+  end
+
+  def destroy
+    GameLog.find(params[:id]).destroy
+    flash[:notice] = "Single game log entry has been deleted."
+    redirect_to game_logs_total_url
+  end
+
   def create
 
     @logs_timestamp = DateTime.new(params[:entry]["timestamp(1i)"].to_i,params[:entry]["timestamp(2i)"].to_i,params[:entry]["timestamp(3i)"].to_i,params[:entry]["timestamp(4i)"].to_i,params[:entry]["timestamp(5i)"].to_i)
@@ -40,11 +81,14 @@ class GameLogsController < ApplicationController
     end
   end
 
+  private
+
   def initial_params
+    params.require(:entry).permit(:inventory_id)
+  end
 
-    # Place all key::values into a single, mass array
-    params.require(:entry).permit(:inventory_id).merge(timestamp: @logs_timestamp)
-
+  def update_params
+    params.require(:game_log).permit(:rating)
   end
 
 end

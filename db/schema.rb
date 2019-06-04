@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_30_181133) do
+ActiveRecord::Schema.define(version: 2019_06_03_171719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_181133) do
     t.integer "inventory_id"
     t.integer "participant_id"
     t.integer "event_id"
-    t.boolean "winner"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -78,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_05_30_181133) do
     t.string "phone"
     t.string "email"
     t.string "pref"
-    t.boolean "proxy"
+    t.boolean "proxy", default: false
     t.integer "p_badge"
     t.string "p_name"
     t.string "p_phone"

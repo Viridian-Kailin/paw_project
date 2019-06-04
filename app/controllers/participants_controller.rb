@@ -31,6 +31,7 @@ class ParticipantsController < ApplicationController
   end
 
   def edit
+    @test = params
     @member = Participant.find(params[:id])
   end
 

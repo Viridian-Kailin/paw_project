@@ -13,6 +13,8 @@ class WinnerCircleController < ApplicationController
   attr_reader :p_phone
   attr_reader :p_pref
 
+  #Only keep the highest rated log for duplicate entries.
+
   def grab_logs()
     @checklog = Hash.new
     Inventory.all.length.times { |i|
