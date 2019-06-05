@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :winner_circle
   resources :inventories
   resources :events
-  resources :schedule
+  resources :schedules
   resources :rules
   resources :con_staff
   resources :paw_staffs, path: 'staff'

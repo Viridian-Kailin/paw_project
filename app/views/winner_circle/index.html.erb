@@ -73,12 +73,8 @@
   });
 </script>
 
-<h1>Winner Circle</h1>
-
-<%= render "shared/header" %>
-
 <button id="pick_winners">Pick the Winners!</button>
-
+<br><br>
 <table>
   <% Inventory.all.each_slice(4) do |rows| %>
     <tr>

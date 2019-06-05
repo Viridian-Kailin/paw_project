@@ -1,7 +1,3 @@
-<h1>Welcome</h1>
-
-<%= render "shared/header" %>
-
 <div class="grid-container">
   <div class="grid-item-1"></div>
   <div class="grid-item-5"></div>
@@ -28,7 +24,7 @@
       <h1>PAW Information</h1>
       <br><br>
       <div id="info_buttons">
-        <%= button_to "Game Schedule", schedule_index_url, method: :get %>
+        <%= button_to "Game Schedule", schedules_path, method: :get %>
         <%= button_to "PAW Staff List", staff_total_path, method: :get %>
         <br>
         <%= button_to "PAW Rules & Guidelines", rules_url, method: :get %>
