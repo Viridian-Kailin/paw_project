@@ -1,4 +1,5 @@
 class ConStaffsController < ApplicationController
+  skip_before_action :admin, only: [:index]
   before_action :set_con_staff, only: [:show, :edit, :update, :destroy]
 
   # GET /con_staffs
