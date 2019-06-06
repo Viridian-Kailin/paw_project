@@ -1,51 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script>
-  $(document).ready(function(){
-    $("input[type=radio]").change(function (e) {
-      $("#yes, #no").removeClass("selected");
-      $("#" + $(e.currentTarget).val()).addClass("selected");
-    });
-  });
-</script>
-</head>
-<body>
-<h1>Participants</h1>
-
-<h2>FAILURE</h2>
-
-<%= render "shared/header" %>
-
-<%= form_tag '', method: :post do %>
-  Badge: <%= number_field_tag("member[badge]")%><br><br>
-  Name: <%= text_field_tag("member[name]")%><br><br>
-  Phone: <%= number_field_tag("member[phone]")%><br><br>
-  Email: <%= text_field_tag("member[email]")%><br><br>
-  Preference: <%= select_tag("member[pref]", options_for_select(["Call","Text","Email"], "Text"))%><br><br>
-  Proxy: Yes <%= radio_button_tag("member[proxy]", "yes") %>
-  No <%= radio_button_tag("member[proxy]", "no") %><br><br>
-
-<div id="no"></div>
-<div id="yes">
-
-  Enter Proxy's information:<br><br>
-
-  Badge: <%= number_field_tag(:p_badge)%><br><br>
-  Name: <%= text_field_tag(:p_name)%><br><br>
-  Phone: <%= number_field_tag(:p_phone)%><br><br>
-  Email: <%= text_field_tag(:p_email)%><br><br>
-  Preference: <%= select_tag(:p_pref, options_for_select(["Call","Text","Email"], "Text"))%><br><br>
-</div>
-
-<%= submit_tag ("Add participant") %>
-
-<% end %>
-
-
-
-<!-- Add an internally scrolling log of participants? -->
-</body>
-</html>
-
-
+<table class="show_table">
+  <tr>
+    <th>Badge</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Preference</th>
+    <th>Proxy</th>
+    <th>Proxy Badge</th>
+    <th>Proxy Name</th>
+    <th>Proxy Phone</th>
+    <th>Proxy Email</th>
+    <th>Proxy Preference</th>
+    <% if session[:user_name] == "admin" %>
+    <th>Admin Controls</th>
+    <% end %>
+  </tr>
+  <% @members.each do |m| %>
+    <tr>
+      <td><%= m[:badge] %></td>
+      <td><%= m[:name] %></td>
+      <td><%= m[:phone] %></td>
+      <td><%= m[:email] %></td>
+      <td><%= m[:pref] %></td>
+      <td><%= m[:proxy] %></td>
+      <% if m[:proxy] != "false" %>
+        <td><%= m[:p_badge] %></td>
+        <td><%= m[:p_name] %></td>
+        <td><%= m[:p_phone] %></td>
+        <td><%= m[:p_email] %></td>
+        <td><%= m[:p_pref] %></td>
+      <% end %>
+      <% if session[:user_name] == "admin" %>
+        <td>
+          <%= link_to "Edit", edit_participant_path(m), method: :get %>
+          <%= link_to 'Delete', m, method: :delete,
+                                   data: { confirm: "Are you sure?" } %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<br><br>
+<%= button_to "New Participant", participants_path, method: :get %>

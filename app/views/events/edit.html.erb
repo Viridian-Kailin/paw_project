@@ -1,0 +1,23 @@
+<h1>Editing Event</h1>
+
+<table>
+  <tr>
+    <% @event.as_json.each do |k,v| %>
+    <th>
+      <%= k %>
+    </th>
+    <% end %>
+  </tr>
+  <tr>
+    <% @event.as_json.each do |k,v| %>
+    <td>
+      <%= v %>
+    </td>
+    <%end%>
+  </tr>
+</table>
+<br><br>
+
+<%= render 'form', event: @event %>
+
+<%= link_to 'Back', events_path %>

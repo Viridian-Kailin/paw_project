@@ -1,9 +1,38 @@
 class ParticipantsController < ApplicationController
+  skip_before_action :admin, only: [:new, :create, :index, :show]
   #Grabs data entered into form fields and creates a new record.
 
   #Creates an entry with no proxy info / [:name][:phone][:email][:pref][:proxy]
   def new
     @members = Participant.new
+  end
+
+  def show
+    @members = Participant.all.order(:badge)
+    @members.length.times { |m|
+      @members[m].as_json.each { |k,v|
+        if v == "" || v == nil
+          @members[m][k] = "NA"
+        end
+      }
+    }
+  end
+
+  def update
+    @member = Participant.find(params[:id])
+
+    if @member.update_attributes(update_member)
+      flash[:notice] = "Participant updated."
+      redirect_to participants_total_url
+    else
+      flash[:alert] = "Unable to save edit."
+      render 'edit'
+    end
+  end
+
+  def edit
+    @test = params
+    @member = Participant.find(params[:id])
   end
 
   def create
@@ -17,19 +46,18 @@ class ParticipantsController < ApplicationController
       end
   end
 
+  def destroy
+    Participant.find(params[:id]).destroy
+    flash[:notice] = "Participant has been deleted."
+    redirect_to participants_total_url
+  end
+
   private
   def member_params
     params.require(:member).permit(:badge,:name,:email,:phone,:pref,:proxy,:p_badge,:p_name,:p_phone,:p_email,:p_pref)
   end
-=begin
-  #If participant provided proxy info, this now gets added
-  #def addproxy
-    #attr_writer :badge, :proxy, :p_badge, :p_name, :p_phone, :p_email, :p_pref
-  #end
 
-    if @members.save
-      flash[:notice] = "#{@members.name} was successfully added!"
-      redirect_to "/participants"
-    end
-=end
+  def update_member
+    params.require(:participant).permit(:badge,:name,:email,:phone,:pref,:proxy,:p_badge,:p_name,:p_phone,:p_email,:p_pref)
+  end
 end

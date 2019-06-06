@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Badge</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Title</th>
+    <th>Role</th>
+    <th></th>
+  </tr>
+  <% @staff.each do |s| %>
+    <tr>
+      <td><%= s[:name] %> </td>
+      <td><%= s[:badge] %></td>
+      <td><%= s[:phone] ||= "NA" %></td>
+      <td><%= s[:email] ||= "NA" %></td>
+      <td><%= s[:title] ||= "NA" %></td>
+      <td><%= s[:role] ||= "NA" %></td>
+      <td>
+        <%= link_to 'Edit', edit_paw_staff_path(s), method: :get %>
+        <%= link_to 'Delete', s, method: :delete,
+                                data: { confirm: "Are you sure?" } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<br>
+
+<%= button_to "Add staff", new_paw_staff_path, method: :get %>

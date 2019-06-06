@@ -62,12 +62,6 @@
 
 </script>
 
-<h1>Game Library</h1>
-
-<%= render "shared/header" %>
-
-<div id="library_notice"><%= notice %></div>
-
 <%= form_for :library do |f| %>
   Game:
   <%= f.collection_select :inventory_id, @gameinfo, :id, :game_selection, options = {include_blank: "Select a game title" } %>
@@ -75,9 +69,10 @@
   <div id="badge_entry">
     <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, prompt: "Enter badge" %>
   </div>
-  <%= f.hidden_field :checked_out, :value => Time.now %>
-  <%= f.hidden_field :checked_in, :value => Time.now %>
+  <%= f.hidden_field :checked_out, value: Time.now %>
+  <%= f.hidden_field :checked_in, value: Time.now %>
   <%= f.hidden_field :quantity_left %>
+  <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
   <br>
   <div class="button"><%= f.submit 'Check-out' %>
   <%= f.submit 'Check-in', name: 'checkin_game', method: 'check_in' %></div>

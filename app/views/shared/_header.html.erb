@@ -21,3 +21,18 @@
     </div>
   </div>
 </header>
+
+<div>
+<% if flash[:alert] %>
+  <%= flash[:alert] %>
+<% end %>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+<div>Event: <%= @event_info[0]["event_code"] %></div>
+<% if session[:user_id] != nil %>
+  <%= "User: #{session[:user_name]}" %>
+<% else %>
+  <%= "You are not currently logged in." %>
+<% end %>
+</div>

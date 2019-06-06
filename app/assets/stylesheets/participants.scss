@@ -47,3 +47,11 @@ input[type=submit] {
 .member_info {
   grid-column-start: 2;
 }
+
+.show_table {
+  border-style: inherit;
+}
+
+.radio {
+  display: inline-flex;
+}

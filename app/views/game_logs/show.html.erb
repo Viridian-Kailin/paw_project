@@ -1,33 +1,52 @@
-<h1>Game Logs</h1>
+<script>
+$('document').ready(function() {
+  $('#dialog_editlog').dialog({
+    autoOpen: false,
+    modal: true,
+  });
+});
 
-<h2>FAILURE</h2>
+  function functionTest(obj) {
+    $('#dialog_editlog').dialog('open');
+    $.ajax({
+      url: '/game_logs/' + $(obj).data().id + "/edit",
+      success: function(e) {
+        $('#dialog_editlog').html(e)
+      }
+    })
+  }
+</script>
 
-<%= render "shared/header" %>
-
-<%= form_tag do %>
-  Game Title:<%= collection_select :inventory, :title, Inventory.all, :title, :game_selection, prompt: "Select a game title" %><br>
-  Time logged:<%= select_datetime (Time.now)%><br>
-<br>
-  <table class="log_entry">
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Timestamp</th>
+    <th>Participant</th>
+    <th>Rating</th>
+    <% if session[:user_name] == "admin" %>
+      <th>Admin Controls</th>
+    <% end %>
+  </tr>
+  <% @log_info.each do |v| %>
     <tr>
-    <td></td>
-    <td id="badge_header">Badge ID</td>
-    <td id="rating_header">Rating</td>
-    </tr>
-      <!-- 12 Entry fields -->
-      <% for i in 1..12 do %>
-        <tr>
-        <td class="column_row">Entry <%= "#{i}" %>:</td>
-        <td class="column_badge"><%= number_field_tag(:badge)%></td>
-        <td class="column_rating">
-          <%= radio_button_tag("entry_#{i}_rating", "1") %> 1
-          <%= radio_button_tag("entry_#{i}_rating", "2") %> 2
-          <%= radio_button_tag("entry_#{i}_rating", "3") %> 3
-          <%= radio_button_tag("entry_#{i}_rating", "4") %> 4
-          <%= radio_button_tag("entry_#{i}_rating", "5") %> 5
+      <td class="title"><%= v[:title] %></td>
+      <td class="timestamp"><%= v[:timestamp] %></td>
+      <td><%= v[:member] %></td>
+      <td><%= v[:rating] %></td>
+      <% if session[:user_name] == "admin" %>
+        <td>
+          <%= link_to "Edit", "javascript:void(0)", data: {id: v[:id]}, onclick: "functionTest(this)" %>
+          <%= link_to "Delete", v, method: :delete,
+                                   data: { confirm: "Are you sure?" } %>
         </td>
-        </tr>
-      <% end %>
-  </table>
-  <%= submit_tag ("Add game log") %>
-<% end %>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
+<br><br>
+
+<%= button_to "Add Game Log", game_logs_path, method: :get %>
+
+<div id="dialog_editlog">
+Failed to load Edit Page
+</div>

@@ -1,0 +1,25 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <%= form.label :event_code %>
+  <%= form.text_field :event_code %>
+  <%= form.label :event_year %>
+  <%= form.number_field :event_year %>
+  <%= form.label :event_location %>
+  <%= form.text_field :event_location %>
+  <%= form.label :set, "Set event?" %>
+  <%= form.check_box :set %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

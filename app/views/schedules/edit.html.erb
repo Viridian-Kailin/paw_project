@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <% @schedule.as_json.each do |k,v| %>
+    <th>
+      <%= k %>
+    </th>
+    <% end %>
+  </tr>
+  <tr>
+    <% @schedule.as_json.each do |k,v| %>
+    <td>
+      <%= v %>
+    </td>
+    <%end%>
+  </tr>
+</table>
+<br><br>
+
+<%= render 'schedule_form' %>

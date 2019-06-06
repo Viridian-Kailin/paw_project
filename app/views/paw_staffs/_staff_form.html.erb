@@ -1,0 +1,16 @@
+<%= form_with(model: @staff) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+  <%= f.label :badge %>
+  <%= f.number_field :badge %>
+  <%= f.label :phone %>
+  <%= f.phone_field :phone %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :role %>
+  <%= f.text_field :role %>
+  <br>
+  <%= f.submit %>
+<% end %>

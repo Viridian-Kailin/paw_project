@@ -1,0 +1,15 @@
+<% if flash[:alert] %>
+<%= flash[:alert] %>
+<% end %>
+
+Title: <%= @log_info[:title] %><br>
+Title ID: <%= @log_info[:inventory_id] %><br>
+Timestamp: <%= @log_info[:timestamp] %><br>
+Member: <%= @log_info[:name] %><br>
+Member ID: <%= @log_info[:participant_id] %><br>
+<%= form_with(model: @log) do |f|%>
+<%= f.label :rating %>
+<%= f.number_field :rating, min: 1, max: 5, required: true %>
+<%= f.submit %>
+<% end %>
+

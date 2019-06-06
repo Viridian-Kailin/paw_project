@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Event Code</th>
+      <th>Event Year</th>
+      <th>Event Location</th>
+      <th>Event Set?</th>
+      <th>Admin Controls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.id %></td>
+        <td><%= event.event_code %></td>
+        <td><%= event.event_year %></td>
+        <td><%= event.event_location %></td>
+        <td>
+          <% if event.set == true %>
+          Yes
+          <% else %>
+          No
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_event_path(event) %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>
