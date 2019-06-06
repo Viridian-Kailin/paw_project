@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  skip_before_action :admin, only: [:show]
+  skip_before_action :admin
   before_action :event_id, only: [:show, :edit, :update, :destroy]
 
   # GET /events
