@@ -26,6 +26,4 @@
   <% end %>
 </table>
 <br><br>
-<% if session[:user_name] == "admin" %>
 <%= button_to "Add to Schedule", new_schedule_path, method: :get %>
-<% end %>
