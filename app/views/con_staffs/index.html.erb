@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Con Staffs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Event</th>
+      <th>Admin Controls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @con_info.each do |con_staff| %>
+      <tr>
+        <td><%= con_staff[:name] %></td>
+        <td><%= con_staff[:title] %></td>
+        <td><%= con_staff[:phone] %></td>
+        <td><%= con_staff[:email] %></td>
+        <td><%= con_staff[:event_code] %></td>
+        <td>
+          <%= link_to 'Edit', edit_con_staff_path(con_staff) %>
+          <%= link_to 'Delete', con_staff_path(con_staff), method: :delete, data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Con Staff', new_con_staff_path %>
+
+

@@ -1,7 +1,0 @@
----
-# * 'event_code' is required
-# * 'event_year' is optional
-# * 'event_location' is optional
-- event_code: "GS2019"
-  event_year: 2019
-  event_location: "Red Lion"

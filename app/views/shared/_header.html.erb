@@ -29,9 +29,10 @@
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
+<div>Event: <%= @event_info[0]["event_code"] %></div>
 <% if session[:user_id] != nil %>
-  <div>Currently logged in as <%= session[:user_name] %></div>
+  <%= "User: #{session[:user_name]}" %>
 <% else %>
-  <div>You are not currently logged in.</div>
+  <%= "You are not currently logged in." %>
 <% end %>
 </div>

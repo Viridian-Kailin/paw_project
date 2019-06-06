@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :events
   resources :schedules
   resources :rules
-  resources :con_staff
   resources :paw_staffs, path: 'staff'
+  resources :con_staffs
   resources :users
 
   controller :sessions do

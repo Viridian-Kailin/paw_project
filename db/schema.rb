@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_171719) do
+ActiveRecord::Schema.define(version: 2019_06_05_202301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,23 @@ ActiveRecord::Schema.define(version: 2019_06_03_171719) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "con_staffs", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.string "phone"
+    t.string "email"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "event_code"
     t.string "event_year"
     t.string "event_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "set", default: true
   end
 
   create_table "game_logs", force: :cascade do |t|
@@ -77,7 +88,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_171719) do
     t.string "phone"
     t.string "email"
     t.string "pref"
-    t.boolean "proxy", default: false
+    t.boolean "proxy"
     t.integer "p_badge"
     t.string "p_name"
     t.string "p_phone"
@@ -116,6 +127,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_171719) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "con_staffs", "events"
   add_foreign_key "game_logs", "events"
   add_foreign_key "game_logs", "inventories"
   add_foreign_key "game_logs", "participants"

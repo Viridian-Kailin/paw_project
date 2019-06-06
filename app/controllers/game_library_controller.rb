@@ -89,23 +89,23 @@ class GameLibraryController < ApplicationController
         @quantity = params[:library][:quantity_left]
         @quantity = @quantity.to_i + 1
 
-        params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :quantity_left).merge(quantity_left: @quantity)
+        params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :quantity_left, :event_id).merge(quantity_left: @quantity)
       else
         @quantity = 99
 
-        params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :quantity_left).merge(quantity_left: @quantity)
+        params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :quantity_left, :event_id).merge(quantity_left: @quantity)
       end
     elsif params.has_key?(:checkin_game) == false && params[:library][:quantity_left].to_i >= Library.where(inventory_id: params[:library][:inventory_id]).pluck(:quantity_left)[0].to_i
 
       @quantity = params[:library][:quantity_left]
       @quantity = @quantity.to_i - 1
 
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_out, :quantity_left).merge(quantity_left: @quantity)
+      params.require(:library).permit(:inventory_id, :participant_id, :checked_out, :quantity_left, :event_id).merge(quantity_left: @quantity)
 
     else
       @quantity = nil
 
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_out,:quantity_left).merge(quantity_left: @quantity)
+      params.require(:library).permit(:inventory_id, :participant_id, :checked_out,:quantity_left, :event_id).merge(quantity_left: @quantity)
     end
   end
 

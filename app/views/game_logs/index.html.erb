@@ -8,7 +8,7 @@
           text: "Add non-registered Participant",
           click: function() {
             if ($("form#member_submit")[0].checkValidity()) {
-              $(this).submit();
+              $("form#member_submit").submit();
               alert($("form#member_submit > div > input")[0].value + " has been added.");
               $(this).dialog("close");
             } else {
@@ -43,7 +43,8 @@
 
 <%= form_tag "", :id => "log_submit", data: { type: :json } do %>
   Game Title:<%= collection_select :entry, :inventory_id, Inventory.all, :id, :game_selection, prompt: "Select a game title" %><br>
-  Time logged:<%= datetime_select "entry", "timestamp", :default => Time.now, ampm: true %><br>
+  Time logged:<%= datetime_select "entry", "timestamp", :default => Time.now, ampm: true %>
+  <%= hidden_field_tag "entry[event_id]", @event_info[0]["id"] %><br>
 <br>
   <table class="log_entry">
     <tr>
@@ -71,4 +72,7 @@
 
 <div id="dialog_addmember" title="Add non-registered Participant">
   <%= render "shared/addmember" %>
+  <!--
+  <button form="member_submit" type="submit" id="main_submit" class="member_info">Add registered Participant</button>
+-->
 </div>

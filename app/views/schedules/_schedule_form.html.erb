@@ -10,5 +10,10 @@
 <%= f.label :end, "End Time" %>
 <%= f.datetime_local_field :end, required: true %>
 <br>
+  <% if @event_info[0]["id"] != @schedule[:event_id] %>
+    <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
+  <% else %>
+    <%= f.hidden_field :event_id %>
+  <% end %>
 <%= f.submit %>
 <% end %>

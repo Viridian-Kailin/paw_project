@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   skip_before_action :admin
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :event_id, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -38,12 +38,22 @@ class EventsController < ApplicationController
     end
   end
 
+  def set_event
+    @event = Event.find(params[:id])
+
+    Event.update_all(set: false)
+    Event.where(id: @event[:id]).update(set: true)
+  end
+
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event = Event.find(params[:id])
+
+    set_event
     respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+      if @event.update_attributes(event_params)
+        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -64,12 +74,12 @@ class EventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_event
+    def event_id
       @event = Event.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.fetch(:event, {})
+      params.require(:event).permit(:event_code,:event_year,:event_location,:set)
     end
 end

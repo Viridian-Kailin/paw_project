@@ -74,6 +74,6 @@ class SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require(:schedule).permit(:inventory_id, :location, :paw_staff_id, :start, :end)
+    params.require(:schedule).permit(:inventory_id, :location, :paw_staff_id, :start, :end, :event_id)
   end
 end

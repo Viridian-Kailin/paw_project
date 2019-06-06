@@ -58,7 +58,8 @@ class GameLogsController < ApplicationController
           inventory_id: params[:entry][:inventory_id],
           timestamp: @logs_timestamp,
           participant_id: Participant.where(badge: params[:entry]["badge_#{i}"]).ids[0],
-          rating: params[:entry]["rating_#{i}".to_sym].to_i
+          rating: params[:entry]["rating_#{i}".to_sym].to_i,
+          event_id: params[:entry][:event_id]
           )
       end
     end
