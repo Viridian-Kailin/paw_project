@@ -22,16 +22,18 @@
     var firstCell = $('.title')[i].innerHTML;
     //debugger
 
-    if (i != 0) {
-      if (firstCell == ($('.title')[i - 1].innerHTML)) {
-        $('.title')[i].remove();
-        document.getElementsByClassName("title")[i - 1].rowSpan += 1;
-        i -= 1;
-      }
-    } else {
-      if (firstCell == ($('.title')[i + 1].innerHTML)) {
-        $('.title')[i + 1].remove();
-        document.getElementsByClassName("title")[i].rowSpan += 1;
+    if ($('.title').length > 1 ) {
+      if (i != 0) {
+        if (firstCell == ($('.title')[i - 1].innerHTML)) {
+          $('.title')[i].remove();
+          document.getElementsByClassName("title")[i - 1].rowSpan += 1;
+          i -= 1;
+        }
+      } else {
+        if (firstCell == ($('.title')[i + 1].innerHTML)) {
+          $('.title')[i + 1].remove();
+          document.getElementsByClassName("title")[i].rowSpan += 1;
+        }
       }
     }
   }
@@ -40,16 +42,18 @@
     var firstCell = $('.timestamp')[i].innerHTML;
     //debugger
 
-    if (i != 0) {
-      if (firstCell == ($('.timestamp')[i - 1].innerHTML)) {
-        $('.timestamp')[i].remove();
-        document.getElementsByClassName("timestamp")[i - 1].rowSpan += 1;
-        i -= 1;
-      }
-    } else {
-      if (firstCell == ($('.timestamp')[i + 1].innerHTML)) {
-        $('.timestamp')[i + 1].remove();
-        document.getElementsByClassName("timestamp")[i].rowSpan += 1;
+    if ($('.timestamp').length > 1 ) {
+      if (i != 0) {
+        if (firstCell == ($('.timestamp')[i - 1].innerHTML)) {
+          $('.timestamp')[i].remove();
+          document.getElementsByClassName("timestamp")[i - 1].rowSpan += 1;
+          i -= 1;
+        }
+      } else {
+        if (firstCell == ($('.timestamp')[i + 1].innerHTML)) {
+          $('.timestamp')[i + 1].remove();
+          document.getElementsByClassName("timestamp")[i].rowSpan += 1;
+        }
       }
     }
   }

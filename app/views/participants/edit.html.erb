@@ -19,6 +19,24 @@
 
 </script>
 
+<table>
+  <tr>
+    <% @member.as_json.each do |k,v| %>
+    <th>
+      <%= k %>
+    </th>
+    <% end %>
+  </tr>
+  <tr>
+    <% @member.as_json.each do |k,v| %>
+    <td>
+      <%= v %>
+    </td>
+    <%end%>
+  </tr>
+</table>
+<br><br>
+
 <%= form_with(model: @member) do |f| %>
   <%= f.label "Badge" %>
   <%= f.number_field :badge, required: true %>

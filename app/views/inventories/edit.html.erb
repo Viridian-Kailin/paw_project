@@ -1,1 +1,19 @@
+<table>
+  <tr>
+    <% @game.as_json.each do |k,v| %>
+    <th>
+      <%= k %>
+    </th>
+    <% end %>
+  </tr>
+  <tr>
+    <% @game.as_json.each do |k,v| %>
+    <td>
+      <%= v %>
+    </td>
+    <%end%>
+  </tr>
+</table>
+<br><br>
+
 <%= render 'game_form' %>
