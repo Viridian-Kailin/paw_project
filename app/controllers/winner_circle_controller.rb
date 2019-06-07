@@ -72,7 +72,6 @@ class WinnerCircleController < ApplicationController
     @won = params[:badge_id]
 
     if @won != "undefined"
-      #binding.pry
       if ActiveLog.where(inventory_id: @game).length > 1
         ActiveLog.where(inventory_id: @game, badge: @won.to_i).delete_all
         @new_winner = ActiveLog.where(inventory_id: @game).as_json[Random.rand(ActiveLog.where(inventory_id: @game).length)]

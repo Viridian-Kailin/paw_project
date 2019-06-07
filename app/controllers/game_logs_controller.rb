@@ -30,7 +30,6 @@ class GameLogsController < ApplicationController
 
   def update
     @log = GameLog.find(params[:id])
-    #binding.pry
     if @log.update_attributes(update_params)
       flash[:notice] = "GameLog updated."
       redirect_to game_logs_total_url
@@ -47,7 +46,6 @@ class GameLogsController < ApplicationController
   end
 
   def create
-    binding.pry
     @logs_timestamp = DateTime.new(params["timestamp(1i)"].to_i,params["timestamp(2i)"].to_i,params["timestamp(3i)"].to_i,params["timestamp(4i)"].to_i,params["timestamp(5i)"].to_i)
 
     12.times do |i|
