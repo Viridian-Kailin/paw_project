@@ -6,40 +6,41 @@
   $(document).ready(function(){
 
     $('#library_inventory_id').change(function() {
+      // Update game id
       gametitle = $('#library_inventory_id').val()
 
       $.ajax ({
         url: "list_game/" + gametitle,
         dataType: 'JSON',
         success: function(data){
-          console.log(data);
-          //Basic game info
+          // Clear out Game Info table except for header
           if ($('.display_game > tbody')[0].childElementCount > 1) {
             $('.display_game > tbody > tr:last').empty()
           };
-
-          $('#library_quantity_left').val(data.logs.reverse()[0].quantity_left);
-
-          $('.display_game > tbody:last').append('<tr><td>' + data.inventory[0].title + '</td><td>' + data.inventory[0].company + '</td><td>' + data.inventory[0].quantity_total + '</td></tr>');
-
-          //Game schedule
+          // Add Game Info
+          $('.display_game > tbody:last').append('<tr><td>' + data.inventory.title + '</td><td>' + data.inventory.company + '</td><td>' + data.inventory.quantity_total + '</td></tr>');
+          //Clear out game schedule except for header
           if ($('.display_schedule > tbody')[0].childElementCount > 1) {
             $('.display_schedule').find("tr:gt(0)").empty()
           };
-
+          // Add Game Schedule
           $.each ( $(data.schedule), function (i) {
-            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + data.schedule[i].start + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i][0] + '</td></tr>' );
+            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + data.schedule[i].start + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i] + '</td></tr>' );
           });
-
-          //Game logs
+          // Clear out game log except for header
           if ($('.display_logs > tbody')[0].childElementCount > 1) {
-            $('.display_logs > tbody > tr:last').empty()
+            var test = $('.display_logs > tbody > tr').length;
+            for (i = 1; i < (test);i++) {
+              $('.display_logs > tbody > tr:last').remove()
+            }
           };
-
+          // Find quantity left based on log data
+          $('#library_quantity_left').val(data.logs.reverse()[0]["quantity_left"]);
+          // Add Library logs
           $.each ( $(data.logs), function (i) {
-            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td><a href="javascript:void(0)" id="find_member">' + data.memberinfo[i][0].badge + '</a></td><td>' + data.logs[i].quantity_left);
+            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
           });
-
+          // Show member information
           $("a#find_member").click(function(){
             var badge_id = $(this)[0].innerHTML;
 
@@ -47,10 +48,11 @@
               url: "list_member/" + badge_id,
               dataType: 'JSON',
               success: function(data){
+                // Clear out member info except for header
                 if ($('.contact_info > tbody')[0].childElementCount > 1) {
                   $('.contact_info').find("tr:gt(0)").empty()
                 };
-
+                // Add member info
                 $('.contact_info > tbody:last').append('<tr><td>' + data.member[0].name + '</td><td>' + data.member[0].phone + '</td><td>' + data.member[0].email + '</td><td>' + data.member[0].pref + '</td></tr>');
               }
             });
@@ -62,22 +64,19 @@
 
 </script>
 
-<%= form_for :library do |f| %>
-  Game:
-  <%= f.collection_select :inventory_id, @gameinfo, :id, :game_selection, options = {include_blank: "Select a game title" } %>
-  <br><br>
-  <div id="badge_entry">
-    <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, prompt: "Enter badge" %>
-  </div>
+<%= form_with(url: game_library_index_path, scope: :library) do |f| %>
+  <%= f.label :inventory_id, "Game" %>
+  <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %>
+  <%= f.label :participant_id, "Enter badge" %>
+  <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, {prompt: true}, {required: true} %>
   <%= f.hidden_field :checked_out, value: Time.now %>
   <%= f.hidden_field :checked_in, value: Time.now %>
   <%= f.hidden_field :quantity_left %>
   <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
   <br>
-  <div class="button"><%= f.submit 'Check-out' %>
-  <%= f.submit 'Check-in', name: 'checkin_game', method: 'check_in' %></div>
-  <br>
-<%end%>
+  <%= f.submit "Check Out" %>
+  <%= f.submit "Check In", name: 'checkin_game', method: 'check_in' %>
+<% end %>
 
 <h3>Game Information:</h3>
 <div class="table"><table class="display_game">

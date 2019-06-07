@@ -1,0 +1,13 @@
+<%= form_with(model: @library) do |f| %>
+  <%= f.label :inventory_id, "Game" %>
+  <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, prompt: true, required: true %>
+  <%= f.label :participant_id, "Enter badge" %>
+  <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, prompt: true, required: true %>
+  <%= f.hidden_field :checked_out, value: Time.now %>
+  <%= f.hidden_field :checked_in, value: Time.now %>
+  <%= f.hidden_field :quantity_left %>
+  <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
+  <br>
+  <%= f.submit "Check Out" %>
+  <%= f.submit "Check In", name: 'checkin_game', method: 'check_in' %>
+<% end %>

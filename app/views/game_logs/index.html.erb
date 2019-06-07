@@ -27,13 +27,6 @@
         url: "check_entry/" + $(this)[0].value,
         dataType: 'JSON',
         error: function(data) {
-          console.log(data);
-          /* Manual redirect to Participants view
-          var check_badge = confirm("Badge " + data.responseJSON.badge_info + " must be added before proceeding");
-          if (check_badge == true) {
-            window.location.href = "/participants";
-          }*/
-
           $('#dialog_addmember').dialog( "open" );
         }
       })
@@ -72,7 +65,4 @@
 
 <div id="dialog_addmember" title="Add non-registered Participant">
   <%= render "shared/addmember" %>
-  <!--
-  <button form="member_submit" type="submit" id="main_submit" class="member_info">Add registered Participant</button>
-  -->
 </div>
