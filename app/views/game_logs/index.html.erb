@@ -19,7 +19,7 @@
       ]
     });
 
-    $('.column_badge > input').change(function () {
+    $('.column_badge').change(function () {
       console.log($(this).val());
       //Modal box
 
@@ -36,43 +36,43 @@
 
           $('#dialog_addmember').dialog( "open" );
         }
-      });
+      })
     });
   });
 </script>
 
-<%= form_tag "", :id => "log_submit", data: { type: :json } do %>
-  Game Title:<%= collection_select :entry, :inventory_id, Inventory.all, :id, :game_selection, prompt: "Select a game title" %><br>
-  Time logged:<%= datetime_select "entry", "timestamp", :default => Time.now, ampm: true %>
-  <%= hidden_field_tag "entry[event_id]", @event_info[0]["id"] %><br>
-<br>
-  <table class="log_entry">
+<%= form_with(url: game_logs_path) do |f| %>
+  <%= f.label :inventory_id, "Game Title" %>
+  <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, prompt: true, required: true %>
+  <%= f.label :timestamp %>
+  <%= f.datetime_select :timestamp, ampm: true, default: Time.now %>
+  <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
+
+  <table>
     <tr>
-    <td></td>
-    <td id="badge_header">Badge ID</td>
-    <td id="rating_header">Rating</td>
+      <th></th>
+      <th>Badge ID</th>
+      <th>Rating</th>
     </tr>
-      <!-- 12 Entry fields -->
-      <% for i in 1..12 do %>
-        <tr>
-        <td class="column_row">Entry <%= "#{i}" %>:</td>
-        <td class="column_badge"><%= number_field_tag("entry[badge_#{i}]")%></td>
-        <td class="column_rating">
-          <%= radio_button_tag("entry[rating_#{i}]", "1") %> 1
-          <%= radio_button_tag("entry[rating_#{i}]", "2") %> 2
-          <%= radio_button_tag("entry[rating_#{i}]", "3") %> 3
-          <%= radio_button_tag("entry[rating_#{i}]", "4") %> 4
-          <%= radio_button_tag("entry[rating_#{i}]", "5") %> 5
+    <% 12.times do |e| %>
+      <tr>
+        <td><%= "Entry #{e + 1}" %></td>
+        <td><%= f.number_field :badge_id, name: "badge_#{e}", class: "column_badge" %></td>
+        <td>
+        <% 5.times do |r| %>
+            <%= "#{r + 1}" %>
+            <%= f.radio_button "rating_#{e}", (r + 1) %>
+        <% end %>
         </td>
-        </tr>
-      <% end %>
+      </tr>
+    <% end %>
   </table>
-  <%= submit_tag ("Add game log") %>
+  <%= f.submit %>
 <% end %>
 
 <div id="dialog_addmember" title="Add non-registered Participant">
   <%= render "shared/addmember" %>
   <!--
   <button form="member_submit" type="submit" id="main_submit" class="member_info">Add registered Participant</button>
--->
+  -->
 </div>

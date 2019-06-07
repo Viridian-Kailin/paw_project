@@ -47,26 +47,25 @@ class GameLogsController < ApplicationController
   end
 
   def create
-
-    @logs_timestamp = DateTime.new(params[:entry]["timestamp(1i)"].to_i,params[:entry]["timestamp(2i)"].to_i,params[:entry]["timestamp(3i)"].to_i,params[:entry]["timestamp(4i)"].to_i,params[:entry]["timestamp(5i)"].to_i)
+    binding.pry
+    @logs_timestamp = DateTime.new(params["timestamp(1i)"].to_i,params["timestamp(2i)"].to_i,params["timestamp(3i)"].to_i,params["timestamp(4i)"].to_i,params["timestamp(5i)"].to_i)
 
     12.times do |i|
-      i = i + 1
-      if params[:entry]["badge_#{i}".to_sym].blank? == false && Participant.all.where(badge: params[:entry]["badge_#{i}".to_sym].to_i) != []
+      if params["badge_#{i}".to_sym].blank? == false && Participant.all.where(badge: params["badge_#{i}".to_sym].to_i) != []
 
-        @log = GameLog.create(
-          inventory_id: params[:entry][:inventory_id],
+        @log = GameLog.create({
+          inventory_id: params[:inventory_id],
           timestamp: @logs_timestamp,
-          participant_id: Participant.where(badge: params[:entry]["badge_#{i}"]).ids[0],
-          rating: params[:entry]["rating_#{i}".to_sym].to_i,
-          event_id: params[:entry][:event_id]
-          )
+          participant_id: Participant.where(badge: params["badge_#{i}"]).ids[0],
+          rating: params["rating_#{i}".to_sym].to_i,
+          event_id: params[:event_id]
+          })
       end
     end
 
-    if @log.save
+    if @log.save!
       redirect_to "/game_logs"
-      flash[:notice] = "Entry for #{Inventory.where(id: params[:entry][:inventory_id]).pluck(:title)[0]} at #{@logs_timestamp} has been added."
+      flash[:notice] = "Entry for #{Inventory.where(id: params[:inventory_id]).pluck(:title)[0]} at #{@logs_timestamp} has been added."
     else
       render :show
     end
@@ -85,7 +84,22 @@ class GameLogsController < ApplicationController
   private
 
   def initial_params
-    params.require(:entry).permit(:inventory_id)
+    accepted_params = Hash.new
+    accepted_params[:inventory_id] = params[:inventory_id]
+    accepted_params[:event_id] = params[:event_id]
+    12.times { |p|
+      if params["badge_#{p}"] != ""
+        if params["rating_#{p}"] != ""
+          accepted_params["badge_#{p}"] = params["badge_#{p}"]
+          accepted_params["rating_#{p}"] = params["rating_#{p}"]
+        else
+          accepted_params["badge_#{p}"] = params["badge_#{p}"]
+          accepted_params["rating_#{p}"] = 1
+        end
+      end
+    }
+
+    params.require(accepted_params)
   end
 
   def update_params
