@@ -1,38 +1,26 @@
 <header>
   <div class="header_container">
-    <div class="header_button" id="left_header">
-      <%= link_to participants_path do %>
-        <button>Add Participant</button>
-      <% end %>
-      <%= link_to game_logs_path do %>
-        <button>Add Game Log</button>
-      <% end %>
-    </div>
-    <%= link_to welcome_index_path do %>
-      <%= image_tag "PAW-Logo.jpg", id: "menu_img" %>
-    <% end %>
-    <div class="header_button" id="right_header">
-      <%= link_to game_library_index_path do %>
-        <button>Library</button>
-      <% end %>
-      <%= link_to winner_circle_index_path do %>
-        <button>Winner Circle</button>
-      <% end %>
-    </div>
+    <%= button_to "Add Participant", participants_path, method: :get %>
+    <%= button_to "Add Game Log", game_logs_path, method: :get %>
+    <%= link_to (image_tag "PAW-Logo.jpg", id: "menu_img"), welcome_index_path %>
+    <%= button_to "Library", game_library_index_path, method: :get %>
+    <%= button_to "Winner Circle", winner_circle_index_path, method: :get %>
+  </div>
+  <div class="info_container">
+  <% if flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %>
+
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <br>
+  Event: <%= @event_info[0]["event_code"] %>
+  <br>
+  <% if session[:user_id] != nil %>
+    <%= "User: #{session[:user_name]}" %>
+  <% else %>
+    <%= "You are not currently logged in." %>
+  <% end %>
   </div>
 </header>
-
-<div>
-<% if flash[:alert] %>
-  <%= flash[:alert] %>
-<% end %>
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
-<div>Event: <%= @event_info[0]["event_code"] %></div>
-<% if session[:user_id] != nil %>
-  <%= "User: #{session[:user_name]}" %>
-<% else %>
-  <%= "You are not currently logged in." %>
-<% end %>
-</div>

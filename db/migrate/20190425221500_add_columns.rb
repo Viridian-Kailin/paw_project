@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumns < ActiveRecord::Migration[5.2]
   def change
     change_table :paw_staffs do |t|
@@ -8,6 +10,5 @@ class AddColumns < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :role
     end
-
   end
 end

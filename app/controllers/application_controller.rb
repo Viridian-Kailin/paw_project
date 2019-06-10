@@ -1,25 +1,22 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-before_action :authorize
-before_action :admin
-before_action :current_event
+  before_action :authorize
+  before_action :admin
+  before_action :current_event
 
-protected
+    protected
 
-  def authorize
-    unless User.find_by(id: session[:user_id])
-      redirect_to login_path, alert: "Please log in"
+    def authorize
+      redirect_to login_path, alert: 'Please log in' unless User.find_by(id: session[:user_id])
     end
-  end
 
-  def admin
-    unless session[:user_name] == "admin"
-      redirect_to request.referrer, alert: "You need to be an admin."
+    def admin
+      redirect_to request.referrer, alert: 'You need to be an admin.' unless session[:user_name] == 'admin'
     end
-  end
 
-  def current_event
-    @event = Event.where(set: true)
-    @event_info = @event.as_json
-  end
-
+    def current_event
+      @event = Event.where(set: true)
+      @event_info = @event.as_json
+    end
 end

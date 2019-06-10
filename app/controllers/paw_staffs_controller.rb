@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PawStaffsController < ApplicationController
   skip_before_action :admin, only: [:show]
 
@@ -10,7 +12,7 @@ class PawStaffsController < ApplicationController
   end
 
   def new
-    @staff = PawStaff.new()
+    @staff = PawStaff.new
   end
 
   def create
@@ -29,10 +31,10 @@ class PawStaffsController < ApplicationController
     @staff = PawStaff.find(params[:id])
 
     if @staff.update_attributes(staff_params)
-      flash[:notice] = "Staff member updated."
+      flash[:notice] = 'Staff member updated.'
       redirect_to paw_staffs_path
     else
-      flash[:alert] = "Unable to save edit."
+      flash[:alert] = 'Unable to save edit.'
       render 'edit'
     end
   end
@@ -43,20 +45,17 @@ class PawStaffsController < ApplicationController
 
   def destroy
     PawStaff.find(params[:id]).destroy
-    flash[:notice] = "Staf f member has been deleted."
+    flash[:notice] = 'Staf f member has been deleted.'
     redirect_to paw_staffs_path
   end
 
   private
 
   def staff_params
-    params[:paw_staff].as_json.each { |k,v|
-      if v == ""
-        params[:paw_staff][k] = "NA"
-      end
-    }
+    params[:paw_staff].as_json.each do |k, v|
+      params[:paw_staff][k] = 'NA' if v == ''
+    end
 
     params.require(:paw_staff).permit(:name, :badge, :phone, :email, :title, :role)
   end
-
 end

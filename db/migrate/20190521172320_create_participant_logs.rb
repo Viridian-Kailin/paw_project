@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateParticipantLogs < ActiveRecord::Migration[5.2]
   def change
     create_table :participant_logs do |t|

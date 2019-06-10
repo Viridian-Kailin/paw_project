@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 class Inventory < ApplicationRecord
   has_many :game_logs
   has_many :libraries
   has_many :schedules
 
-  def game_selection
-    "#{title}"
-  end
+  validates :title, presence: true
 
+  def game_selection
+    title.to_s
+  end
 end

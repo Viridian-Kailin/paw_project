@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Be careful about route placement, and restart server when adding routes
@@ -31,5 +33,4 @@ Rails.application.routes.draw do
   get 'show_winners', to: 'winner_circle#show_winners'
   get 'redraw', to: 'winner_circle#redraw_winner'
   get 'game_logs/total', to: 'game_logs#show'
-
 end

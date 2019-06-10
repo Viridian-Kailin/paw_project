@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ForeignkeysAddition < ActiveRecord::Migration[5.2]
   def change
     add_column :libraries, :inventory_id, :integer
