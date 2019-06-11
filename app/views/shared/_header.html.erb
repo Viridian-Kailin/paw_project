@@ -8,11 +8,11 @@
   </div>
   <div class="info_container">
   <% if flash[:alert] %>
-    <%= flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
   <% end %>
 
   <% if flash[:notice] %>
-    <%= flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
   <% end %>
   <br>
   Event: <%= @event_info[0]["event_code"] %>

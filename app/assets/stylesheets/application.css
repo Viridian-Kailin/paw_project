@@ -72,15 +72,15 @@
 }
 
 body {
-  background-color: #6eb7d8;
+  background-color: #53993A;
   font-size: 16px;
+  color: #1f2021;
 }
 
 header {
-  background-color: #40cc6c;
-  border-style: inset;
-  border-color: #2eab55;
-  padding-top: 20px;
+  background-color: #5DAF93;
+  border: inset #423b4f;
+  padding: 20px 100px 10px 100px;
 }
 
 .info_container {
@@ -94,4 +94,18 @@ header {
 .future_feature {
   font-size: 12px;
   font-style: italic;
+}
+
+.alert {
+  background-color: #A0231C;
+  border: outset thin #423b4f;
+  padding: 5px 0px 5px 0px;
+}
+
+h3, h1{
+  background-color: #716587;
+  border: outset thin #423b4f;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 5px;
 }
