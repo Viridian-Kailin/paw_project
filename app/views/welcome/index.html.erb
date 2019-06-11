@@ -8,13 +8,13 @@
       <br><br>
       <div id="admin_buttons">
         <%= button_to "Login", login_path, method: :get, class: "btn" %>
-        <%= button_to "Add Staff", paw_staffs_path, method: :get %>
+        <%= button_to "Add Staff", paw_staffs_path, method: :get, class: "btn" %>
         <br>
-        <%= button_to "Check Members", participants_total_url, method: :get %>
-        <%= button_to "Check Inventory", inventories_path, method: :get %>
+        <%= button_to "Check Members", participants_total_url, method: :get, class: "btn" %>
+        <%= button_to "Check Inventory", inventories_path, method: :get, class: "btn" %>
         <br>
-        <%= button_to "Check Logs", game_logs_total_url, method: :get %>
-        <%= button_to "Set Event", events_path, method: :get %>
+        <%= button_to "Check Logs", game_logs_total_url, method: :get, class: "btn" %>
+        <%= button_to "Set Event", events_path, method: :get, class: "btn" %>
       </div>
     </section>
   </div>
@@ -24,23 +24,46 @@
       <h1>PAW Information</h1>
       <br><br>
       <div id="info_buttons">
-        <%= button_to "Game Schedule", schedules_path, method: :get %>
-        <%= button_to "PAW Staff List", staff_total_path, method: :get %>
+        <%= button_to "Game Schedule", schedules_path, method: :get, class: "btn" %>
+        <%= button_to "PAW Staff List", staff_total_path, method: :get, class: "btn" %>
         <br>
-        <%= button_to "PAW Rules & Guidelines", rules_url, method: :get %>
-        <%= button_to "Event Staff", con_staffs_path, method: :get %>
+        <%= button_to "PAW Rules & Guidelines", rules_url, method: :get, class: "btn" %>
+        <%= button_to "Event Staff", con_staffs_path, method: :get, class: "btn" %>
       </div>
     </article>
   </div>
 
   <div class="grid-item-4">
     <aside>
-      <h1>USER IS A NERD</h1>
-      <br><br>
-      <h1>USER IS A NERD</h1>
-      <br><br>
-      <h1>USER IS A NERD</h1>
-      <br><br>
-      <h1>USER IS A NERD</h1>
+      <h3>How to use this website:</h3>
+      <dl class="welcome_info">
+        <dt>Register participants:</dt>
+          <dd>
+            To register a convention member for participation in the Play and Win (PAW) program, go to "Add Participant" in the navigation header.<br>
+            <p class="future_feature">Future feature: registered vs non-registered participants</p>
+          </dd>
+        <dt>Add game log:</dt>
+          <dd>
+            Player submitted game logs can be recorded by going to "Add Game Log" in the navigation header. Single entry game logs are not accepted. <i>If the game was demoed by a PAW Game Master (GM) and only one person attended, add the PAW GM to validate game log.</i>
+          </dd>
+        <dt>PAW Library</dt>
+          <dd>
+            The PAW Library is separate from the convention library. Be sure that all PAW game copies have a PAW logo sticker. Members that have registered may check out PAW games. Go to "Library" to check in/out games. <i>All games must be checked in/out, even when being demoed by a PAW GM.</i>
+          </dd>
+        <dt>Winner Circle</dt>
+          <dd>
+            At the end of the event, PAW runs a last event called "Winner Circle" to pass out the games that were won. While this page can be accessed and used at any time, it should only be used during the Winner Circle.
+          </dd>
+      </dl>
     </aside>
+</div>
+
+<div style="display:none;">
+TODO LIST:
+
+* Add reg/unreg check to participants (depending on how they were registered)
+* Add check that confirms user has "registered" before allowing checkout
+* Registered participants will have their data stored for re-use; non-registered participants will have their data removed after the convention
+* Allow admin to create new users on the front end
+
 </div>

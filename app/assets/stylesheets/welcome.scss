@@ -18,11 +18,13 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+  padding-bottom: 10px;
 }
 
 #admin_buttons {
   text-align: center;
   border: none;
+  display: table;
 }
 
 #admin_buttons tr td{
@@ -32,8 +34,7 @@
 .grid-item-3 {
   border: 5px solid;
   grid-column-start: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 2;
 }
 
 #info_buttons {
@@ -44,8 +45,10 @@
 .grid-item-4 {
   border: 5px solid;
   grid-column-start: 4;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 4;
+  padding: 20px 20px 20px 20px;
 }
 
 
@@ -56,3 +59,8 @@
 .button_to {
   display: contents;
 }
+
+.welcome_info {
+  font-size: 14px;
+}
+

@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 
   badge: 1
   name: MyString
   phone: MyString
@@ -15,14 +14,13 @@ one:
   p_pref: MyString
 
 two:
-  id: 
-  badge: 1
+  badge: 100
   name: MyString
   phone: MyString
   email: MyString
   pref: MyString
-  proxy: false
-  p_badge: 1
+  proxy: true
+  p_badge: 200
   p_name: MyString
   p_phone: MyString
   p_email: MyString

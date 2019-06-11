@@ -1,19 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 
-  event: 1
-  title_id: 1
-  start: 2019-04-15 10:18:53
-  end: 2019-04-15 10:18:53
-  assigned: MyString
+  event_id: 1
+  inventory_id: 1
+  start: 2019-04-15 10:30:00
+  end: 2019-04-15 11:00:00
+  paw_staff_id: 1
   location: MyString
 
 two:
-  id: 
-  event: 1
-  title_id: 1
-  start: 2019-04-15 10:18:53
-  end: 2019-04-15 10:18:53
-  assigned: MyString
+  event_id: 1
+  inventory_id: 1
+  start: 2019-04-15 11:30:00
+  end: 2019-04-15 12:00:00
+  paw_staff_id: 1
   location: MyString

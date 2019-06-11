@@ -1,19 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 
-  title: MyString
-  event: 1
-  badge_log: 1
-  checked_out: 2019-04-15 10:17:37
-  checked_in: 2019-04-15 10:17:37
+  inventory_id: 1
+  event_id: 1
+  participant_id: 1
+  checked_out: 2019-04-15 10:00:00
   quantity_left: 1
 
 two:
-  id: 
-  title: MyString
-  event: 1
-  badge_log: 1
-  checked_out: 2019-04-15 10:17:37
+  inventory_id: 1
+  event_id: 1
+  participant_id: 1
   checked_in: 2019-04-15 10:17:37
   quantity_left: 1
