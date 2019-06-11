@@ -1,11 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  company: MyString
+missing_title:
+  company: Company
   quantity_total: 1
 
-two:
-  title: MyString
-  company: MyString
+pikoko:
+  title: Pikoko
+  company: Company
   quantity_total: 1

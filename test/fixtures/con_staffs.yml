@@ -1,15 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  title: MyString
-  phone: MyString
-  email: MyString
+missing_name:
+  title: Organizer
+  phone: 555-555-5555
+  email: test@test.test
   event_id: 1
 
-two:
-  name: MyString
-  title: MyString
-  phone: MyString
-  email: MyString
+missing_event:
+  name: Greg
+  title: Organizer
+  phone: 555-555-5555
+  email: test@test.test
+
+greg:
+  name: Greg
+  title: Organizer
+  phone: 555-555-5555
+  email: test@test.test
   event_id: 1

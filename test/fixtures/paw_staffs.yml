@@ -4,18 +4,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
+missing_name:
   badge: 500
-  name: MyString
-  phone: MyString
-  email: MyString
-  title: MyString
-  role: MyString
+  phone: 555-555-5555
+  email: test@test.test
+  title: Cultist
+  role: Organizer
 
-two:
+grace:
   badge: 600
-  name: MyString
-  phone: MyString
-  email: MyString
-  title: MyString
-  role: MyString
+  name: Grace
+  phone: 555-555-5555
+  email: test@test.test
+  title: Cultist
+  role: Organizer

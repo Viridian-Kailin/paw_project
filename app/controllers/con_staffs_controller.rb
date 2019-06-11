@@ -23,17 +23,10 @@ class ConStaffsController < ApplicationController
     end
   end
 
-# GET /con_staffs/1
-# GET /con_staffs/1.json
-  def show; end
-
 # GET /con_staffs/new
   def new
     @con_staff = ConStaff.new
   end
-
-# GET /con_staffs/1/edit
-  def edit; end
 
 # POST /con_staffs
 # POST /con_staffs.json
@@ -45,6 +38,7 @@ class ConStaffsController < ApplicationController
         format.html { redirect_to con_staffs_path, notice: 'Con staff was successfully created.' }
         format.json { render :show, status: :created, location: @con_staff }
       else
+        puts @con_staff.errors.full_messages
         format.html { render :new }
         format.json { render json: @con_staff.errors, status: :unprocessable_entity }
       end

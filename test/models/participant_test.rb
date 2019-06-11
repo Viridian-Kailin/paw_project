@@ -5,29 +5,29 @@ require 'test_helper'
 class ParticipantTest < ActiveSupport::TestCase
   # Validation test
   test "participant must have name and badge" do
-    participant = Participant.new(phone: "555-555-5555",
-                                  email: "test@test.test",
-                                  pref: "Text",
-                                  proxy: false
-                                  )
-    # No name or badge
+    participant = Participant.new()
     assert participant.invalid?
 
-    # Name only
-    participant.name = "Greg"
-    assert participant.invalid?
-    assert participant.errors[:badge].any?
-    assert_equal ["can't be blank"], participant.errors[:badge]
+    # Badge missing, proxy true
+    assert participants(:missing_badge_proxy).invalid?
+    assert participants(:missing_badge_proxy).errors[:badge].any?
 
-    # Badge only
-    participant.name = nil
-    participant.badge = 1000
-    assert participant.invalid?
-    assert participant.errors[:name].any?
-    assert_equal ["can't be blank"], participant.errors[:name]
+    # Badge missing, proxy false
+    assert participants(:missing_badge_noproxy).invalid?
+    assert participants(:missing_badge_noproxy).errors[:badge].any?
 
-    # Name and badge provided
-    participant.name = "Greg"
-    assert participant.valid?
+    # Name missing, proxy true
+    assert participants(:missing_name_proxy).invalid?
+    assert participants(:missing_name_proxy).errors[:name].any?
+
+    # Name missing, proxy false
+    assert participants(:missing_name_noproxy).invalid?
+    assert participants(:missing_name_noproxy).errors[:name].any?
+
+    # Valid member, proxy true
+    assert participants(:greg_proxy).valid?
+
+    # Valid member, proxy false
+    assert participants(:beth_noproxy).valid?
   end
 end

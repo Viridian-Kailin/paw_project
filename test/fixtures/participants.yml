@@ -1,27 +1,75 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  badge: 1
-  name: MyString
-  phone: MyString
-  email: MyString
-  pref: MyString
-  proxy: false
-  p_badge: 1
-  p_name: MyString
-  p_phone: MyString
-  p_email: MyString
-  p_pref: MyString
-
-two:
-  badge: 100
-  name: MyString
-  phone: MyString
-  email: MyString
-  pref: MyString
+missing_name_proxy:
+  badge: 1001
+  phone: 555-555-5555
+  email: test@test.test
+  pref: Text
   proxy: true
-  p_badge: 200
-  p_name: MyString
-  p_phone: MyString
-  p_email: MyString
-  p_pref: MyString
+  p_badge: 2002
+  p_name: Greg
+  p_phone: 555-555-5555
+  p_email: test@test.test
+  p_pref: Text
+
+missing_name_noproxy:
+  badge: 1003
+  phone: 555-555-5555
+  email: test@test.test
+  pref: Text
+  proxy: false
+  p_badge: 2004
+  p_name: Greg
+  p_phone: 555-555-5555
+  p_email: test@test.test
+  p_pref: Text
+
+missing_badge_proxy:
+  name: Beth
+  phone: 555-555-5555
+  email: test@test.test
+  pref: Text
+  proxy: true
+  p_badge: 2005
+  p_name: Greg
+  p_phone: 555-555-5555
+  p_email: test@test.test
+  p_pref: Text
+
+missing_badge_noproxy:
+  name: Beth
+  phone: 555-555-5555
+  email: test@test.test
+  pref: Text
+  proxy: false
+  p_badge: 2006
+  p_name: Greg
+  p_phone: 555-555-5555
+  p_email: test@test.test
+  p_pref: Text
+
+greg_proxy:
+  badge: 1007
+  name: Greg
+  phone: 555-555-5555
+  email: test@test.test
+  pref: Text
+  proxy: true
+  p_badge: 2008
+  p_name: Beth
+  p_phone: 555-555-5555
+  p_email: test@test.test
+  p_pref: Text
+
+beth_noproxy:
+  badge: 1009
+  name: Beth
+  phone: 555-555-5555
+  email: test@test.test
+  pref: Text
+  proxy: false
+  p_badge: 2010
+  p_name: Greg
+  p_phone: 555-555-5555
+  p_email: test@test.test
+  p_pref: Text

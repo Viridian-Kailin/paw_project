@@ -1,17 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+missing_title:
   event_id: 1
-  inventory_id: 1
   start: 2019-04-15 10:30:00
   end: 2019-04-15 11:00:00
   paw_staff_id: 1
-  location: MyString
+  location: "Q01"
 
-two:
+missing_start:
+  event_id: 1
+  inventory_id: 1
+  end: 2019-04-15 12:00:00
+  paw_staff_id: 1
+  location: "Q01"
+
+missing_end:
+  event_id: 1
+  inventory_id: 1
+  start: 2019-04-15 11:30:00
+  paw_staff_id: 1
+  location: "Q01"
+
+missing_event:
+  inventory_id: 1
+  start: 2019-04-15 11:30:00
+  end: 2019-04-15 12:00:00
+  paw_staff_id: 1
+  location: "Q01"
+
+first_game:
   event_id: 1
   inventory_id: 1
   start: 2019-04-15 11:30:00
   end: 2019-04-15 12:00:00
   paw_staff_id: 1
-  location: MyString
+  location: "Q01"

@@ -1,11 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  event_code: MyString
-  event_year: MyString
-  event_location: MyString
+missing_code:
+  event_year: 2019
+  event_location: "Red Lion"
 
-two:
-  event_code: MyString
-  event_year: MyString
-  event_location: MyString
+gamestorm:
+  event_code: "GS2019"
+  event_year: 2019
+  event_location: "Red Lion"
