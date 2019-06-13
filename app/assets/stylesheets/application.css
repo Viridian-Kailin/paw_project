@@ -78,7 +78,7 @@ body {
 }
 
 header {
-  background-color: #5DAF6B;
+  background-color: #64BA72;
   border: inset #423b4f;
   padding: 20px 100px 10px 100px;
 }
@@ -100,6 +100,7 @@ header {
   background-color: #A0231C;
   border: outset thin #423b4f;
   padding: 5px 0px 5px 0px;
+  font-weight: bold;
 }
 
 h3, h1{

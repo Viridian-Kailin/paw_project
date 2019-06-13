@@ -5,6 +5,9 @@
         if ($('.redraw_error')[i].innerHTML != "") {
           $('.redraw_error')[i].innerHTML = "";
         }
+        if ($('.redraw_error')[i].style[0] == "display") {
+          $('.redraw_error')[i].style.removeProperty('display');
+        }
       }
 
       $.ajax ({
@@ -29,8 +32,10 @@
     });
 
     $('.redraw').click(function(){
+      var redraw_button = $(this);
       var title_id = this.closest('button').name.split('_')[1];
       if ((this.closest('button').id.split('_')[0]) == "submit"){
+        $(this).siblings('.redraw_error').toggle();
         $('.redraw_error')[title_id - 1].innerHTML = "Please press the 'Pick the Winners' button first.";
       }
       else {
@@ -42,11 +47,9 @@
         dataType: 'JSON',
         success: function(data){
           if (Object.keys(data) == "error"){
-            console.log(data);
+            redraw_button.siblings('.redraw_error').toggle();
             $('.redraw_error')[title_id - 1].innerHTML = data.error;
           } else {
-            console.log($('#badge_' + badge_id));
-
             $('#badge_' + badge_id).attr('id', 'badge_' + data.new_winner["badge"]);
 
             $('[id$="_' + data.new_winner["inventory_id"] + '"] > #winner_list > li.badge_info')[0].innerHTML = "Badge: " + data.new_winner["badge"];
@@ -79,10 +82,9 @@
   <% Inventory.all.each_slice(4) do |rows| %>
     <tr>
       <% rows.each do |cells| %>
-        <td id='<%= "#{cells.title}" %>_<%= "#{cells.id}" %>'>
+        <td id='<%= "#{cells.title}" %>_<%= "#{cells.id}" %>' class="winner_cell">
           <div class="redraw_error"></div>
-          <h4>Game Title:</h4>
-          <div class="game_title"><%= "#{cells.title}" %></div>
+          <div><h3><%= "#{cells.title}" %></h3></div>
           <h4>Winner:</h4>
           <ul id='winner_list'>
           </ul>

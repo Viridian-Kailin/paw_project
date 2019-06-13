@@ -2,15 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table {
-  border-style: solid;
+table, td {
+  border-style: ridge;
 }
 
 td {
   padding-left: 10px;
-  font-size: 20px;
+  padding-top: 5px;
 }
 
-.game_title {
-  padding-left: 20px;
+.winner_cell {
+  background-color: #64BA72;
+}
+
+.redraw_error {
+  background-color: #A0231C;
+  border: outset thin #423b4f;
+  padding: 5px 0px 5px 0px;
+  display: none;
+  font-weight: bold;
+  text-align: center;
 }

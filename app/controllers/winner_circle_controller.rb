@@ -43,6 +43,7 @@ class WinnerCircleController < ApplicationController
   end
 
   def select_winners
+    ActiveLog.all.each { |i| i.delete }
     @checklog.each_key do |key|
       if @checklog[key] != 'No entry'
         @checklog[key].each_index do |entry|
