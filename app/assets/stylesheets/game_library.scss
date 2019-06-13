@@ -6,9 +6,8 @@ table {
   border-collapse: collapse;
 }
 
-table, th, td {
-  border-style: solid;
-  border-width: thin;
+td {
+  font-size: medium;
 }
 
 th, td {
@@ -17,6 +16,7 @@ th, td {
 
 .table {
   padding-left: 50px;
+  background-color: #64BA72;
 }
 
 button {
@@ -29,6 +29,7 @@ button {
 
 h3 {
   padding-left: 20px;
+  width: 450px;
 }
 
 #badge_entry {
@@ -41,4 +42,33 @@ input[type=number] {
 
 .logout_time, .login_time, .q_left {
   display: none;
+}
+
+#library_form {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 10px 50px 10px 30px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+  font-weight: bold;
+}
+
+#dialog_memberinfo {
+  background-color: #53993A;
+  border: inset #423b4f;
+  padding: 10px 50px 10px 30px;
+  font-weight: bold;
+}
+
+#dialog_memberinfo > table {
+  background-color: #64BA72;
+}
+
+.library-container {
+  display: grid;
+  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
+}
+
+#game, #badge {
+  display: flex;
 }

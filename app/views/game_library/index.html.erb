@@ -5,6 +5,13 @@
 
   $(document).ready(function(){
 
+    $('#dialog_memberinfo').dialog({
+      autoOpen: false,
+      modal: true,
+      height: "auto",
+      width: "auto"
+    });
+
     $('#library_inventory_id').change(function() {
       // Update game id
       gametitle = $('#library_inventory_id').val()
@@ -48,6 +55,8 @@
               url: "list_member/" + badge_id,
               dataType: 'JSON',
               success: function(data){
+                // Open modal window
+                $('#dialog_memberinfo').dialog( "open" );
                 // Clear out member info except for header
                 if ($('.contact_info > tbody')[0].childElementCount > 1) {
                   $('.contact_info').find("tr:gt(0)").empty()
@@ -63,55 +72,64 @@
   });
 
 </script>
+<div class="library-container">
+  <div id="library_form">
+    <%= form_with(url: game_library_index_path, scope: :library) do |f| %>
+      <div id="game"><%= f.label :inventory_id, "Game:" %>
+      <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></div><br>
+      <div id="badge"><%= f.label :participant_id, "Select badge:" %>
+      <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, {prompt: true}, {required: true} %></div>
+      <%= f.hidden_field :checked_out, value: Time.now %>
+      <%= f.hidden_field :checked_in, value: Time.now %>
+      <%= f.hidden_field :quantity_left %>
+      <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
+      <br>
+      <%= f.submit "Check Out" %>
+      <%= f.submit "Check In", name: 'checkin_game', method: 'check_in' %>
+    <% end %>
 
-<%= form_with(url: game_library_index_path, scope: :library) do |f| %>
-  <%= f.label :inventory_id, "Game" %>
-  <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %>
-  <%= f.label :participant_id, "Enter badge" %>
-  <%= f.collection_select :participant_id, Participant.all, :id, :badge_selection, {prompt: true}, {required: true} %>
-  <%= f.hidden_field :checked_out, value: Time.now %>
-  <%= f.hidden_field :checked_in, value: Time.now %>
-  <%= f.hidden_field :quantity_left %>
-  <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
-  <br>
-  <%= f.submit "Check Out" %>
-  <%= f.submit "Check In", name: 'checkin_game', method: 'check_in' %>
-<% end %>
+    <h3>Game Information:</h3>
+    <div class="table"><table class="display_game">
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Total Quantity</th>
+      </tr>
+    </table></div><br>
 
-<h3>Game Information:</h3>
-<div class="table"><table class="display_game">
-  <tr>
-    <th>Title</th>
-    <th>Company</th>
-    <th>Total Quantity</th>
-  </tr>
-</table></div><br>
+    <h3>Game Schedule:</h3>
+    <div class="table"><table class="display_schedule">
+      <tr>
+        <th>Start Time</th>
+        <th>Location</th>
+        <th>GM</th>
+      </tr>
+    </table></div><br>
 
-<h3>Game Schedule:</h3>
-<div class="table"><table class="display_schedule">
-  <tr>
-    <th>Start Time</th>
-    <th>Location</th>
-    <th>GM</th>
-  </tr>
-</table></div><br>
+    <h3>Checkout/in History:</h3>
+    <div class="table"><table class="display_logs">
+      <tr>
+        <th>Check-out Time</th>
+        <th>Check-in Time</th>
+        <th>Participant Name</th>
+        <th>Quantity</th>
+      </tr>
+    </table></div><br>
+  </div>
+</div>
 
-<h3>Checkout/in History:</h3>
-<div class="table"><table class="display_logs">
-  <tr>
-    <th>Check-out Time</th>
-    <th>Check-in Time</th>
-    <th>Participant Name</th>
-    <th>Quantity</th>
-  </tr>
-</table></div><br>
+  <div id="dialog_memberinfo" title="Participant Information">
+    <table class="contact_info">
+      <tr>
+        <th>Participant Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Preference</th>
+      </tr>
+    </table>
+  </div>
 
-<h3>Contact Information: </h3>
-<div class="table"><table class="contact_info">
-  <tr>
-    <th>Participant Name</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Preference</th>
-  </tr>
-</table></div>
+<div style="display: none;">
+  TODO List:
+    Add schedule check to add warning about games that are about to be demo'd.
+</div>
