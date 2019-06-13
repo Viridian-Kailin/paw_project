@@ -45,7 +45,7 @@ input[type=submit] {
 }
 
 .member_info {
-  grid-column-start: 2;
+
 }
 
 .show_table {
@@ -54,4 +54,16 @@ input[type=submit] {
 
 .radio {
   display: inline-flex;
+}
+
+#member_form {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 20px 10px 10px 10px;
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+div#form_button {
+    padding-left: 80px;
 }

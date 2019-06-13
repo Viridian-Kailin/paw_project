@@ -33,36 +33,39 @@
     });
   });
 </script>
-
-<%= form_with(url: game_logs_path) do |f| %>
-  <%= f.label :inventory_id, "Game Title" %>
-  <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, prompt: true, required: true %>
-  <%= f.label :timestamp %>
-  <%= f.datetime_select :timestamp, ampm: true, default: Time.now %>
-  <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
-
-  <table>
-    <tr>
-      <th></th>
-      <th>Badge ID</th>
-      <th>Rating</th>
-    </tr>
-    <% 12.times do |e| %>
-      <tr>
-        <td><%= "Entry #{e + 1}" %></td>
-        <td><%= f.number_field :badge_id, name: "badge_#{e}", class: "column_badge" %></td>
-        <td>
-        <% 5.times do |r| %>
-            <%= "#{r + 1}" %>
-            <%= f.radio_button "rating_#{e}", (r + 1) %>
+<div class="log-container">
+  <div id="log_form">
+    <%= form_with(url: game_logs_path) do |f| %>
+      <div id="game_header"><%= f.label :inventory_id, "Game Title: " %>
+      <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, prompt: true, required: true %></div><br>
+      <div id="detail_header"><%= f.label :timestamp, "Timestamp:" %>
+      <%= f.datetime_select :timestamp, ampm: true, default: Time.now %>
+      <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %></div>
+      <br><br>
+      <table>
+        <tr>
+          <th class="entry"></th>
+          <th>Badge ID</th>
+          <th>Rating</th>
+        </tr>
+        <% 12.times do |e| %>
+          <tr>
+            <td class="entry"><%= "Entry #{e + 1}" %></td>
+            <td><div class="badge"><%= f.number_field :badge_id, name: "badge_#{e}", class: "column_badge" %></div></td>
+            <td><div class="rating">
+            <% 5.times do |r| %>
+                <%= "#{r + 1}" %>
+                <%= f.radio_button "rating_#{e}", (r + 1) %>
+            <% end %>
+            </div></td>
+          </tr>
         <% end %>
-        </td>
-      </tr>
+      </table>
+      <%= f.submit %>
     <% end %>
-  </table>
-  <%= f.submit %>
-<% end %>
 
-<div id="dialog_addmember" title="Add non-registered Participant">
-  <%= render "shared/addmember" %>
+    <div id="dialog_addmember" title="Add non-registered Participant">
+      <%= render "shared/addmember" %>
+    </div>
+  </div>
 </div>

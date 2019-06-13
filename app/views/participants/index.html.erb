@@ -1,10 +1,13 @@
-<div id="error"></div>
+<div class="grid-container">
+  <div id="member_form">
+    <h3>Register Convention Member</h3>
+    <%= render "shared/addmember" %><br>
 
-<div id="notice"><%= notice %></div>
-
-<%= render "shared/addmember" %>
-
-<div class="grid-container"><button form="member_submit" type="submit" id="main_submit" class="member_info">Add registered Participant</button></div>
+    <div id="form_button">
+      <button form="member_submit" type="submit" id="main_submit" class="member_info">Add registered Participant</button>
+    </div>
+  </div>
+</div></div>
 
 <!-- Add an internally scrolling log of participants? -->
 
