@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'faker'
 
 namespace :db do
   desc 'Empty and fill with example data for development'
@@ -19,12 +20,12 @@ namespace :db do
 
     5.times do |s|
       staff = PawStaff.create(
-        badge: 100 + s,
-        name: "Name #{s}",
-        title: "Title #{s}",
-        phone: "555-555-555#{s}",
-        email: "test#{s}@test.test",
-        role: "Role #{s}"
+        badge: Faker::Number.unique.number(3),
+        name: Faker::Name.name,
+        title: Faker::Job.title,
+        phone: Faker::PhoneNumber.phone_number,
+        email: Faker::Internet.free_email,
+        role: Faker::Job.title
       )
 
       staff.save!
@@ -34,8 +35,8 @@ namespace :db do
 
     20.times do |i|
       game = Inventory.create(
-        title: "Title#{i}",
-        company: "Company#{i}",
+        title: Faker::App.unique.name,
+        company: Faker::App.author,
         quantity_total: 1
       )
 
@@ -46,10 +47,10 @@ namespace :db do
 
     5.times do |p|
       member = Participant.create(
-        badge: 200 + p,
-        name: "Member #{p}",
-        phone: "555-555-555#{p}",
-        email: "test#{p}@test.test",
+        badge: Faker::Number.unique.number(5),
+        name: Faker::Name.name,
+        phone: Faker::PhoneNumber.phone_number,
+        email: Faker::Internet.free_email,
         pref: %w[Call Text Email].sample,
         proxy: [true, false].sample,
         p_badge: nil,
@@ -59,10 +60,10 @@ namespace :db do
         p_pref: nil
       )
       if member[:proxy] == true
-        member[:p_badge] = 300 + p
-        member[:p_name] = "Proxy #{p}"
-        member[:p_phone] = '555-555-5555'
-        member[:p_email] = "proxy#{p}@test.test"
+        member[:p_badge] = Faker::Number.number(5)
+        member[:p_name] = Faker::Name.name
+        member[:p_phone] = Faker::PhoneNumber.phone_number
+        member[:p_email] = Faker::Internet.free_email
         member[:p_pref] = %w[Call Text Email].sample
       end
 
@@ -76,12 +77,12 @@ namespace :db do
       randomtime = Random.rand(1..21)
       startTime = Time.new(2019, 6, randomdate, randomtime)
       endTime = startTime + 1800
-      randomlocation = ('a'..'z').to_a.sample
+      randomlocation = ('A'..'Z').to_a.sample
 
       schedule = Schedule.create(
         start: startTime,
         end: endTime,
-        location: "#{randomlocation}#{sh}",
+        location: "#{randomlocation}0#{sh}",
         inventory_id: Random.rand(1..20),
         paw_staff_id: Random.rand(1..5),
         event_id: 1

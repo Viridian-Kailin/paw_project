@@ -1,5 +1,7 @@
 <script>
   $(document).ready(function(){
+    $('details > ul.no_proxy').toggle();
+    $('details > ul.proxy_list').toggle();
     $('#pick_winners').click(function(){
       for (i = 0; i < $('.redraw_error').length; i++) {
         if ($('.redraw_error')[i].innerHTML != "") {
@@ -18,7 +20,11 @@
             if (data.winners[i] != "No entry") {
               $('[id$="_' + (i) + '"] > #winner_list').append('<li class="badge_info">Badge: ' + data.winners[i]["badge"] + '</li><li class="name_info">Name: ' + data.winners[i]["name"] + '</li><li class="phone_info">Phone: ' + data.winners[i]["phone"] + '</li><li class="email_info">Email: ' + data.winners[i]["email"] + '</li><li class="pref_info">Preference: ' + data.winners[i]["pref"] + '</li><li class="rating">Rating: ' + data.winners[i]["rating"] + '</li>');
               if (data.winners[i]["proxy"] == true) {
-                $('[id$="_' + i + '"] > #proxy_list').append('<li class="p_badge">Badge: ' + data.winners[i]["p_badge"] + '</li><li class="p_name">Name: ' + data.winners[i]["p_name"] + '</li><li class="p_phone">Phone: ' + data.winners[i]["p_phone"] + '</li><li class="p_email">Email: ' + data.winners[i]["p_email"] + '</li><li class="p_pref">Preference: ' + data.winners[i]["p_pref"] + '</li>');
+                $('[id$="_' + i + '"] > details > ul.proxy_list').toggle();
+                $('[id$="_' + i + '"] > details > ul.proxy_list').append('<li class="p_badge">Badge: ' + data.winners[i]["p_badge"] + '</li><li class="p_name">Name: ' + data.winners[i]["p_name"] + '</li><li class="p_phone">Phone: ' + data.winners[i]["p_phone"] + '</li><li class="p_email">Email: ' + data.winners[i]["p_email"] + '</li><li class="p_pref">Preference: ' + data.winners[i]["p_pref"] + '</li>');
+              } else {
+                $('[id$="_' + i + '"] > details > ul.no_proxy').toggle();
+                $('[id$="_' + i + '"] > details > ul.proxy_list').append('<li class="p_badge">Badge: </li><li class="p_name">Name: </li><li class="p_phone">Phone: </li><li class="p_email">Email: </li><li class="p_pref">Preference: </li>');
               }
             } else {
               $('[id$="_' + (i) + '"] > #winner_list').append('<li>No entries logged for this title.</li>');
@@ -46,6 +52,7 @@
         data: { badge_id: badge_id, title_id: title_id },
         dataType: 'JSON',
         success: function(data){
+          console.log(data);
           if (Object.keys(data) == "error"){
             redraw_button.siblings('.redraw_error').toggle();
             $('.redraw_error')[title_id - 1].innerHTML = data.error;
@@ -60,13 +67,20 @@
             $('[id$="_' + data.new_winner["inventory_id"] + '"] > #winner_list > li.rating')[0].innerHTML = "Rating: " + data.new_winner["rating"];
 
             if (data.new_winner["proxy"] == true) {
-              $('[id$="_' + data.new_winner["inventory_id"] + '"] > #proxy_list > li.p_badge')[0].innerHTML = "Badge: " + data.new_winner["p_badge"];
-              $('[id$="_' + data.new_winner["inventory_id"] + '"] > #proxy_list > li.p_name')[0].innerHTML = "Name: " + data.new_winner["p_name"];
-              $('[id$="_' + data.new_winner["inventory_id"] + '"] > #proxy_list > li.p_phone')[0].innerHTML = "Phone: " + data.new_winner["p_phone"];
-              $('[id$="_' + data.new_winner["inventory_id"] + '"] > #proxy_list > li.p_email')[0].innerHTML = "Email: " + data.new_winner["p_email"];
-              $('[id$="_' + data.new_winner["inventory_id"] + '"] > #proxy_list > li.p_pref')[0].innerHTML = "Preference: " + data.new_winner["p_pref"];
+              if ($('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list')[0].style["display"] == "none") {
+                $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.no_proxy').toggle();
+                $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list').toggle();
+              }
+              $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list > li.p_badge')[0].innerHTML = "Badge: " + data.new_winner["p_badge"];
+              $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list > li.p_name')[0].innerHTML = "Name: " + data.new_winner["p_name"];
+              $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list > li.p_phone')[0].innerHTML = "Phone: " + data.new_winner["p_phone"];
+              $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list > li.p_email')[0].innerHTML = "Email: " + data.new_winner["p_email"];
+              $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list > li.p_pref')[0].innerHTML = "Preference: " + data.new_winner["p_pref"];
             } else {
-              $('[id$="_' + data.new_winner["inventory_id"] + '"] > #proxy_list').empty();
+              if ($('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list')[0].style["display"] == "block") {
+                $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.proxy_list').toggle();
+                $('[id$="_' + data.new_winner["inventory_id"] + '"] > details > ul.no_proxy').toggle();
+              }
             }
             }
           }
@@ -88,9 +102,10 @@
           <h4>Winner:</h4>
           <ul id='winner_list'>
           </ul>
-          <h4>Proxy info:</h4>
-          <ul id='proxy_list'>
-          </ul>
+          <details><summary>Proxy Info</summary>
+          <ul class='no_proxy'>No proxy info</ul>
+          <ul class='proxy_list'></ul>
+          </details><br>
           <button class="redraw" id='submit_<%= "#{cells.id}" %>' name='inventory_<%= "#{cells.id}" %>'>Redraw</button><br><br>
         </td>
       <% end %>
