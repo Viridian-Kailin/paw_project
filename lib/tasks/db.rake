@@ -4,7 +4,7 @@ require 'faker'
 namespace :db do
   desc 'Empty and fill with example data for development'
   task sampledata: :environment do
-    Rake::Task['db:reset'].invoke
+    Rake::Task['db:reset'].invoke('DISABLE_DATABASE_ENVIRONMENT_CHECK=1')
 
     # Create event data
     event = Event.create(
