@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class PawStaff < ApplicationRecord
   validates :name, presence: true
 

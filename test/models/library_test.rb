@@ -4,8 +4,8 @@ require 'test_helper'
 
 class LibraryTest < ActiveSupport::TestCase
   # Validation (name, event_id)
-  test "library must have a inventory_id and participant_id" do
-    library = Library.new()
+  test 'library must have a inventory_id and participant_id' do
+    library = Library.new
     assert library.invalid?
 
     # No inventory_id

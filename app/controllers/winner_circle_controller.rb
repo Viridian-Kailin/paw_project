@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class WinnerCircleController < ApplicationController
   skip_before_action :admin
 
@@ -83,6 +83,4 @@ class WinnerCircleController < ApplicationController
       render json: { error: 'No entries logged for this title.' }
     end
   end
-
-  private
 end

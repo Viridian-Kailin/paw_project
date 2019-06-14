@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'faker'
 
 namespace :db do
@@ -18,7 +19,7 @@ namespace :db do
 
     # Create paw staff list
 
-    5.times do |s|
+    5.times do |_s|
       staff = PawStaff.create(
         badge: Faker::Number.unique.number(3),
         name: Faker::Name.name,
@@ -33,7 +34,7 @@ namespace :db do
 
     # Create inventory list
 
-    20.times do |i|
+    20.times do |_i|
       game = Inventory.create(
         title: Faker::App.unique.name,
         company: Faker::App.author,
@@ -45,7 +46,7 @@ namespace :db do
 
     # Create sample participants
 
-    5.times do |p|
+    5.times do |_p|
       member = Participant.create(
         badge: Faker::Number.unique.number(5),
         name: Faker::Name.name,
@@ -75,13 +76,13 @@ namespace :db do
     10.times do |sh|
       randomdate = Random.rand(1..30)
       randomtime = Random.rand(1..21)
-      startTime = Time.new(2019, 6, randomdate, randomtime)
-      endTime = startTime + 1800
+      start_time = Time.new(2019, 6, randomdate, randomtime)
+      end_time = start_time + 1800
       randomlocation = ('A'..'Z').to_a.sample
 
       schedule = Schedule.create(
-        start: startTime,
-        end: endTime,
+        start: start_time,
+        end: end_time,
         location: "#{randomlocation}0#{sh}",
         inventory_id: Random.rand(1..20),
         paw_staff_id: Random.rand(1..5),

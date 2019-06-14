@@ -1,5 +1,7 @@
 <script>
   $(document).ready(function() {
+    $('[name="badge_0"]').prop('required',true);
+
     $('#dialog_addmember').dialog({
       autoOpen: false,
       modal: true,
@@ -33,11 +35,12 @@
     });
   });
 </script>
+
 <div class="log-container">
   <div id="log_form">
     <%= form_with(url: game_logs_path) do |f| %>
       <div id="game_header"><%= f.label :inventory_id, "Game Title: " %>
-      <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, prompt: true, required: true %></div><br>
+      <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></div><br>
       <div id="detail_header"><%= f.label :timestamp, "Timestamp:" %>
       <%= f.datetime_select :timestamp, ampm: true, default: Time.now %>
       <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %></div>

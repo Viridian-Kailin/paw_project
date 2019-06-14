@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class ParticipantsController < ApplicationController
   skip_before_action :admin, only: %i[new create index show]
   # Grabs data entered into form fields and creates a new record.

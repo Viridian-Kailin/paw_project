@@ -4,8 +4,8 @@ require 'test_helper'
 
 class GameLogTest < ActiveSupport::TestCase
   # Validation (name, event_id)
-  test "game log must have an inventory_id, timestamp, and event_id" do
-    gamelog = GameLog.new()
+  test 'game log must have an inventory_id, timestamp, and event_id' do
+    gamelog = GameLog.new
     assert gamelog.invalid?
 
     # No inventory_id

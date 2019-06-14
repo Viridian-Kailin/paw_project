@@ -4,8 +4,8 @@ require 'test_helper'
 
 class PawStaffTest < ActiveSupport::TestCase
   # Validation (name, event_id)
-  test "paw staff must have a name" do
-    pawstaff = PawStaff.new()
+  test 'paw staff must have a name' do
+    pawstaff = PawStaff.new
     assert pawstaff.invalid?
 
     # No name

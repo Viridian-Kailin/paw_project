@@ -4,8 +4,8 @@ require 'test_helper'
 
 class ParticipantTest < ActiveSupport::TestCase
   # Validation test
-  test "participant must have name and badge" do
-    participant = Participant.new()
+  test 'participant must have name and badge' do
+    participant = Participant.new
     assert participant.invalid?
 
     # Badge missing, proxy true

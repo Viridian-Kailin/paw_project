@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class Inventory < ApplicationRecord
   has_many :game_logs
   has_many :libraries

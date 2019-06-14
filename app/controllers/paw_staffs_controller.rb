@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class PawStaffsController < ApplicationController
   skip_before_action :admin, only: [:show]
 

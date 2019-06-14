@@ -4,8 +4,8 @@ require 'test_helper'
 
 class ScheduleTest < ActiveSupport::TestCase
   # Validation (name, event_id)
-  test "schedule must have an inventory_id, start, end, and event_id" do
-    schedule = Schedule.new()
+  test 'schedule must have an inventory_id, start, end, and event_id' do
+    schedule = Schedule.new
     assert schedule.invalid?
 
     # No inventory_id

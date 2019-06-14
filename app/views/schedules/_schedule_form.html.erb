@@ -1,14 +1,14 @@
 <%= form_with(model: @schedule) do |f| %>
 <%= f.label :inventory_id, "Title" %>
-<%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, prompt: true, required: true %>
+<%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %>
 <%= f.label :location %>
 <%= f.text_field :location %>
 <%= f.label :paw_staff_id, "Staff" %>
-<%= f.collection_select :paw_staff_id, PawStaff.all, :id, :staff_name, prompt: true %>
+<%= f.collection_select :paw_staff_id, PawStaff.all, :id, :staff_name, {prompt: true} %>
 <%= f.label :start, "Start Time" %>
-<%= f.datetime_local_field :start, required: true %>
+<%= f.datetime_local_field :start, {required: true} %>
 <%= f.label :end, "End Time" %>
-<%= f.datetime_local_field :end, required: true %>
+<%= f.datetime_local_field :end, {required: true} %>
 <br>
   <% if @event_info[0]["id"] != @schedule[:event_id] %>
     <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>

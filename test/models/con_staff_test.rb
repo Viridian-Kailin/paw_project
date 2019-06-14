@@ -4,8 +4,8 @@ require 'test_helper'
 
 class ConStaffTest < ActiveSupport::TestCase
   # Validation (name, event_id)
-  test "con staff must have a name and event_id" do
-    constaff = ConStaff.new()
+  test 'con staff must have a name and event_id' do
+    constaff = ConStaff.new
     assert constaff.invalid?
 
     # No name
@@ -21,6 +21,5 @@ class ConStaffTest < ActiveSupport::TestCase
     # Name and event_id provided
     con_staffs(:greg)
     assert con_staffs(:greg).valid?
-
   end
 end

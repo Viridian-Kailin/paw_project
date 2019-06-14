@@ -4,8 +4,8 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   # Validation (name, event_id)
-  test "event must have an event_code" do
-    event = Event.new()
+  test 'event must have an event_code' do
+    event = Event.new
     assert event.invalid?
 
     # Missing event_code

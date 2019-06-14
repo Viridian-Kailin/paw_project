@@ -1,22 +1,22 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class EventsController < ApplicationController
   skip_before_action :admin, only: [:show]
   before_action :event_id, only: %i[show edit update destroy]
 
-# GET /events
-# GET /events.json
+  # GET /events
+  # GET /events.json
   def index
     @events = Event.all
   end
 
-# GET /events/new
+  # GET /events/new
   def new
     @event = Event.new
   end
 
-# POST /events
-# POST /events.json
+  # POST /events
+  # POST /events.json
   def create
     @event = Event.new(event_params)
 
@@ -38,8 +38,8 @@ class EventsController < ApplicationController
     Event.where(id: @event[:id]).update(set: true)
   end
 
-# PATCH/PUT /events/1
-# PATCH/PUT /events/1.json
+  # PATCH/PUT /events/1
+  # PATCH/PUT /events/1.json
   def update
     @event = Event.find(params[:id])
 
@@ -55,8 +55,8 @@ class EventsController < ApplicationController
     end
   end
 
-# DELETE /events/1
-# DELETE /events/1.json
+  # DELETE /events/1
+  # DELETE /events/1.json
   def destroy
     @event.destroy
     respond_to do |format|
@@ -67,12 +67,12 @@ class EventsController < ApplicationController
 
   private
 
-# Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
   def event_id
     @event = Event.find(params[:id])
   end
 
-# Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
     params.require(:event).permit(:event_code, :event_year, :event_location, :set)
   end

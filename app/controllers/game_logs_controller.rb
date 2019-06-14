@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class GameLogsController < ApplicationController
   skip_before_action :admin, only: %i[index show create need_reg]
 
@@ -62,25 +62,27 @@ class GameLogsController < ApplicationController
       params['timestamp(3i)'].to_i,
       params['timestamp(4i)'].to_i,
       params['timestamp(5i)'].to_i
-      )
+    )
 
     12.times do |i|
       next unless params["badge_#{i}".to_sym].blank? == false && Participant.all.where(badge: params["badge_#{i}".to_sym].to_i) != []
 
-      @log = GameLog.create(
+      @log = GameLog.new(
         inventory_id: params[:inventory_id],
         timestamp: @logs_timestamp,
-        participant_id: Participant.where(badge: params["badge_#{i}"]).ids[0],
-        rating: params["rating_#{i}".to_sym].to_i,
+        participant_id: Participant.where(badge: params["badge_1"]).ids[0],
+        rating: params["rating_1".to_sym].to_i,
         event_id: params[:event_id]
       )
+
     end
 
     if @log.save!
       redirect_to '/game_logs'
       flash[:notice] = "Entry for #{Inventory.where(id: params[:inventory_id]).pluck(:title)[0]} at #{@logs_timestamp} has been added."
     else
-      render :show
+      redirect_to '/game_logs'
+      flash[:error] = @log.errors.full_messages
     end
   end
 

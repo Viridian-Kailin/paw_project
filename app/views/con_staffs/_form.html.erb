@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :event_id %>
-    <%= form.collection_select :event_id, Event.all, :id, :event_selection, prompt: true, required: true %>
+    <%= form.collection_select :event_id, Event.all, :id, :event_selection, {prompt: true}, {required: true} %>
   </div>
 
   <div class="actions">

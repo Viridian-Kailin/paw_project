@@ -43,8 +43,8 @@ input[type=submit] { font-size: 18px; }
 </style>
 
 <%= form_with url: participants_path, model: @participant, class: "grid-container", id: "member_submit" do |form| %>
-  <div class="member_info">Badge: <%= form.number_field "member[badge]", required: true %></div><br>
-  <div class="member_info">Name: <%= form.text_field "member[name]", required: true %></div><br>
+  <div class="member_info">Badge: <%= form.number_field "member[badge]", {required: true} %></div><br>
+  <div class="member_info">Name: <%= form.text_field "member[name]", {required: true} %></div><br>
   <div class="member_info">Phone: <%= form.number_field "member[phone]" %></div><br>
   <div class="member_info">Email: <%= form.text_field "member[email]" %></div><br>
   <div class="member_info">Preference: <%= form.select "member[pref]", ["Text", "Call", "Email"] %></div><br>

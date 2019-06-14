@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class Library < ApplicationRecord
   validates :inventory_id, presence: true
   validates :participant_id, presence: true

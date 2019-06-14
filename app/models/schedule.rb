@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#:nodoc:
 class Schedule < ApplicationRecord
   validates :inventory_id, presence: true
   validates :start, presence: true
