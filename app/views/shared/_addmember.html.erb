@@ -2,7 +2,7 @@
 
   $(document).ready(function(){
     $("input[type=radio]").change(function (e) {
-      $("#yes, #no").removeClass("selected");
+      $("#true, #false").removeClass("selected");
       $("#" + $(e.currentTarget).val()).addClass("selected");
     });
 
@@ -17,11 +17,11 @@
 
 </script>
 <style type="text/css">
-#yes, #no { display:none; }
+#true, #false { display:none; }
 
-#yes.selected { display:block; }
+#true.selected { display:block; }
 
-#no.selected { display:block; }
+#false.selected { display:block; }
 
 form {
   padding-top: 50px;
@@ -48,11 +48,11 @@ input[type=submit] { font-size: 18px; }
   <div class="member_info">Phone: <%= form.number_field "member[phone]" %></div><br>
   <div class="member_info">Email: <%= form.text_field "member[email]" %></div><br>
   <div class="member_info">Preference: <%= form.select "member[pref]", ["Text", "Call", "Email"] %></div><br>
-  <div class="member_info">Yes<%= form.radio_button "member[proxy]", :yes %>
-  No<%= form.radio_button "member[proxy]", :no %></div>
+  <div class="member_info">Yes<%= form.radio_button "member[proxy]", :true %>
+  No<%= form.radio_button "member[proxy]", :false %></div>
 
-  <div id="no"></div>
-  <div id="yes" class="member_info">
+  <div id="false"></div>
+  <div id="true" class="member_info">
     Enter Proxy's Information<br><br>
     Badge: <%= form.number_field "member[p_badge]" %><br><br>
     Name: <%= form.text_field "member[p_name]" %><br><br>
