@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+#:nodoc:
 class FixingIndexColumns < ActiveRecord::Migration[5.2]
   def change
     remove_column :libraries, :inventories_id

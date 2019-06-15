@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class WelcomeController < ApplicationController
   skip_before_action :authorize

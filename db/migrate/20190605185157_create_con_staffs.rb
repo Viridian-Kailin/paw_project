@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+#:nodoc:
 class CreateConStaffs < ActiveRecord::Migration[5.2]
   def change
     create_table :con_staffs do |t|

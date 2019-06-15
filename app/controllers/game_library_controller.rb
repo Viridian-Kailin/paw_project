@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class GameLibraryController < ApplicationController
   skip_before_action :admin
@@ -12,36 +13,31 @@ class GameLibraryController < ApplicationController
   end
 
   def create
-      @checkstatus = Library.new(library_params)
+    @checkstatus = Library.new(library_params)
 
-      # Checks that a valid quantity was confirmed
-      if !library_params[:quantity_left].nil? && library_params[:quantity_left] != 99
-        # If quantity is valid and "check in" was selected, checks the game in
-        if params.key?(:checkin_game)
-
-          if @checkstatus.save
-
-            redirect_to '/game_library'
-            flash[:notice] = "#{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} has been checked in by #{Participant.where(id: library_params[:participant_id]).pluck(:name)[0]}, badge #{Participant.where(id: library_params[:participant_id]).pluck(:badge)[0]}."
-          end
-        # If quantity is valid and "check out" was selected, checks the game out
-        else
-
-          if @checkstatus.save
-
-            redirect_to '/game_library'
-            flash[:notice] = "#{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} has been checked out by #{Participant.where(id: library_params[:participant_id]).pluck(:name)[0]}, badge #{Participant.where(id: library_params[:participant_id]).pluck(:badge)[0]}."
-          end
-        end
-      # If check in was selected with a quantity matching the initial, warns about extra copies
-      elsif library_params[:quantity_left] == 99
-        redirect_to '/game_library'
-        flash[:notice] = "Max number of copies for #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} already checked in. Please ensure this is a PAW copy."
-      # If check out was selected with a quantity of 0, warns about no available copies
+    # Checks that a valid quantity was confirmed
+    if !library_params[:quantity_left].nil? && library_params[:quantity_left] != 99
+      # If quantity is valid, save the record
+      if @checkstatus.save
+        # If "checkin_game" was included, only add the checkin time.
+        flash[:notice] = if params.key?(:checkin_game)
+                           "#{Inventory.find(library_params[:inventory_id])[:title]} has been checked in by #{Participant.find(library_params[:participant_id])[:name]}, badge #{Participant.find(library_params[:participant_id])[:badge]}."
+                         # Else only add the checkout time.
+                         else
+                           "#{Inventory.find(library_params[:inventory_id])[:title]} has been checked out by #{Participant.find(library_params[:participant_id])[:name]}, badge #{Participant.find(library_params[:participant_id])[:badge]}."
+                         end
       else
-        redirect_to '/game_library'
-        flash[:notice] = "No copies of #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} available."
+        @checkstatus.errors.full_messages
       end
+    # If check in was selected with a quantity matching the initial, warns about extra copies
+    elsif library_params[:quantity_left] == 99
+      flash[:notice] = "Max number of copies for #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} already checked in. Please ensure this is a PAW copy."
+    # If check out was selected with a quantity of 0, warns about no available copies
+    else
+      flash[:notice] = "No copies of #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} available."
+    end
+
+    redirect_to '/game_library'
   end
 
   def gameinfo
@@ -62,7 +58,10 @@ class GameLibraryController < ApplicationController
       @librarylogs[i][:participant_id] = Participant.find(@librarylogs[i].participant_id)[:badge]
     end
 
-    render json: { inventory: @gameinfo, schedule: @gameschedule, staff: @staff, logs: @librarylogs }
+    render json: { inventory: @gameinfo,
+                   schedule: @gameschedule,
+                   staff: @staff,
+                   logs: @librarylogs }
   end
 
   def memberinfo
@@ -102,19 +101,25 @@ class GameLibraryController < ApplicationController
         @quantity = 99
       end
 
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_in, :event_id, :quantity_left).merge(quantity_left: @quantity)
+      params.require(:library).permit(:inventory_id,
+                                      :participant_id,
+                                      :checked_in,
+                                      :event_id,
+                                      :quantity_left).merge(quantity_left: @quantity)
     # Checking out a game that has quantity left
-    elsif params[:library][:quantity_left].to_i == Inventory.find(params[:library][:inventory_id])[:quantity_total] && params[:quantity_left].to_i > -1
-
-      @quantity = params[:library][:quantity_left]
-      @quantity = @quantity.to_i - 1
-
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_out, :event_id, :quantity_left).merge(quantity_left: @quantity)
-    # If "check in" was not selected and the quantity left is 0, return nil for error checking.
     else
-      @quantity = nil
+      if params[:library][:quantity_left].to_i == Inventory.find(params[:library][:inventory_id])[:quantity_total] && params[:quantity_left].to_i > -1
 
-      params.require(:library).permit(:inventory_id, :participant_id, :checked_out, :event_id, :quantity_left).merge(quantity_left: @quantity)
+        @quantity = params[:library][:quantity_left]
+        @quantity = @quantity.to_i - 1
+      else
+        @quantity = nil
+      end
+      params.require(:library).permit(:inventory_id,
+                                      :participant_id,
+                                      :checked_out,
+                                      :event_id,
+                                      :quantity_left).merge(quantity_left: @quantity)
     end
   end
 end

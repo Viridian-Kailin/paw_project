@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class WinnerCircleController < ApplicationController
   skip_before_action :admin
@@ -43,7 +44,7 @@ class WinnerCircleController < ApplicationController
   end
 
   def select_winners
-    ActiveLog.all.each { |i| i.delete }
+    ActiveLog.all.each(&:delete)
     @checklog.each_key do |key|
       if @checklog[key] != 'No entry'
         @checklog[key].each_index do |entry|

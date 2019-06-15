@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Be careful about route placement, and restart server when adding routes
-
   resources :participants
   resources :game_library
   resources :game_logs
@@ -23,7 +22,6 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
-
   get 'welcome/index'
   get 'participants/total', to: 'participants#show'
   get 'staff/total', to: 'paw_staffs#show'

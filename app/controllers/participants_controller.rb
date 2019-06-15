@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class ParticipantsController < ApplicationController
   skip_before_action :admin, only: %i[new create index show]
@@ -55,10 +56,30 @@ class ParticipantsController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:badge, :name, :email, :phone, :pref, :proxy, :p_badge, :p_name, :p_phone, :p_email, :p_pref)
+    params.require(:member).permit(:badge,
+                                   :name,
+                                   :email,
+                                   :phone,
+                                   :pref,
+                                   :proxy,
+                                   :p_badge,
+                                   :p_name,
+                                   :p_phone,
+                                   :p_email,
+                                   :p_pref)
   end
 
   def update_member
-    params.require(:participant).permit(:badge, :name, :email, :phone, :pref, :proxy, :p_badge, :p_name, :p_phone, :p_email, :p_pref)
+    params.require(:participant).permit(:badge,
+                                        :name,
+                                        :email,
+                                        :phone,
+                                        :pref,
+                                        :proxy,
+                                        :p_badge,
+                                        :p_name,
+                                        :p_phone,
+                                        :p_email,
+                                        :p_pref)
   end
 end

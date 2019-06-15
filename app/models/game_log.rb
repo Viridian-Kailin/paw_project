@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class GameLog < ApplicationRecord
   validates :inventory_id, presence: true

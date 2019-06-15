@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class PawStaffsController < ApplicationController
   skip_before_action :admin, only: [:show]
@@ -56,6 +57,11 @@ class PawStaffsController < ApplicationController
       params[:paw_staff][k] = 'NA' if v == ''
     end
 
-    params.require(:paw_staff).permit(:name, :badge, :phone, :email, :title, :role)
+    params.require(:paw_staff).permit(:name,
+                                      :badge,
+                                      :phone,
+                                      :email,
+                                      :title,
+                                      :role)
   end
 end

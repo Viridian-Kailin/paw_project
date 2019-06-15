@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class ConStaffsController < ApplicationController
   skip_before_action :admin, only: [:index]
@@ -35,12 +36,22 @@ class ConStaffsController < ApplicationController
 
     respond_to do |format|
       if @con_staff.save
-        format.html { redirect_to con_staffs_path, notice: 'Con staff was successfully created.' }
-        format.json { render :show, status: :created, location: @con_staff }
+        format.html do
+          redirect_to con_staffs_path,
+                      notice: 'Con staff was successfully created.'
+        end
+        format.json do
+          render :show,
+                 status: :created,
+                 location: @con_staff
+        end
       else
         puts @con_staff.errors.full_messages
         format.html { render :new }
-        format.json { render json: @con_staff.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @con_staff.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -50,11 +61,20 @@ class ConStaffsController < ApplicationController
   def update
     respond_to do |format|
       if @con_staff.update(con_staff_params)
-        format.html { redirect_to con_staffs_path, notice: 'Con staff was successfully updated.' }
-        format.json { render :show, status: :ok, location: @con_staff }
+        format.html do
+          redirect_to con_staffs_path,
+                      notice: 'Con staff was successfully updated.'
+        end
+        format.json do
+          render :show,
+                 status: :ok, location: @con_staff
+        end
       else
         format.html { render :edit }
-        format.json { render json: @con_staff.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @con_staff.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -76,6 +96,10 @@ class ConStaffsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def con_staff_params
-    params.require(:con_staff).permit(:name, :title, :phone, :email, :event_id)
+    params.require(:con_staff).permit(:name,
+                                      :title,
+                                      :phone,
+                                      :email,
+                                      :event_id)
   end
 end

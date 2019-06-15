@@ -1,14 +1,19 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class InventoriesController < ApplicationController
   skip_before_action :admin, only: [:index]
 
-  def index
+  def list_games
     @games = Inventory.all.order(:title)
   end
 
+  def index
+    list_games
+  end
+
   def show
-    @games = Inventory.all.order(:title)
+    list_games
   end
 
   def new
@@ -52,6 +57,8 @@ class InventoriesController < ApplicationController
   private
 
   def game_params
-    params.require(:inventory).permit(:title, :company, :quantity_total)
+    params.require(:inventory).permit(:title,
+                                      :company,
+                                      :quantity_total)
   end
 end

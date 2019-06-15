@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class GameLogsController < ApplicationController
   skip_before_action :admin, only: %i[index show create need_reg]
@@ -70,20 +71,19 @@ class GameLogsController < ApplicationController
       @log = GameLog.new(
         inventory_id: params[:inventory_id],
         timestamp: @logs_timestamp,
-        participant_id: Participant.where(badge: params["badge_1"]).ids[0],
-        rating: params["rating_1".to_sym].to_i,
+        participant_id: Participant.where(badge: params['badge_1']).ids[0],
+        rating: params['rating_1'.to_sym].to_i,
         event_id: params[:event_id]
       )
-
     end
 
     if @log.save!
-      redirect_to '/game_logs'
       flash[:notice] = "Entry for #{Inventory.where(id: params[:inventory_id]).pluck(:title)[0]} at #{@logs_timestamp} has been added."
     else
-      redirect_to '/game_logs'
       flash[:error] = @log.errors.full_messages
     end
+
+    redirect_to '/game_logs'
   end
 
   def need_reg
@@ -103,15 +103,14 @@ class GameLogsController < ApplicationController
     accepted_params[:inventory_id] = params[:inventory_id]
     accepted_params[:event_id] = params[:event_id]
     12.times do |p|
-      if params["badge_#{p}"] != ''
-        if params["rating_#{p}"] != ''
-          accepted_params["badge_#{p}"] = params["badge_#{p}"]
-          accepted_params["rating_#{p}"] = params["rating_#{p}"]
-        else
-          accepted_params["badge_#{p}"] = params["badge_#{p}"]
-          accepted_params["rating_#{p}"] = 1
-        end
-      end
+      next unless params["badge_#{p}"] != ''
+
+      accepted_params["rating_#{p}"] = if params["rating_#{p}"] != ''
+                                         params["rating_#{p}"]
+                                       else
+                                         1
+                                       end
+      accepted_params["badge_#{p}"] = params["badge_#{p}"]
     end
 
     params.require(accepted_params)

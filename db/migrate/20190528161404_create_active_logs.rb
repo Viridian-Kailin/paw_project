@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+#:nodoc:
 class CreateActiveLogs < ActiveRecord::Migration[5.2]
   def change
     create_table :active_logs do |t|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class SchedulesController < ApplicationController
   skip_before_action :admin, only: [:index]
@@ -76,6 +77,11 @@ class SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require(:schedule).permit(:inventory_id, :location, :paw_staff_id, :start, :end, :event_id)
+    params.require(:schedule).permit(:inventory_id,
+                                     :location,
+                                     :paw_staff_id,
+                                     :start,
+                                     :end,
+                                     :event_id)
   end
 end

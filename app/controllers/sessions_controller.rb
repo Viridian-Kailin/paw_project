@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class SessionsController < ApplicationController
   skip_before_action :authorize

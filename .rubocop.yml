@@ -11,3 +11,9 @@ inherit_from: .rubocop_todo.yml
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 
+AllCops:
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'
+    - 'lib/db/dbloader.rb'
+    - 'test/test_helper.rb'

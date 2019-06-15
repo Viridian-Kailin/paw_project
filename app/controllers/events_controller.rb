@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class EventsController < ApplicationController
   skip_before_action :admin, only: [:show]
@@ -22,11 +23,21 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        format.html do
+          redirect_to events_path,
+                      notice: 'Event was successfully created.'
+        end
+        format.json do
+          render :show,
+                 status: :created,
+                 location: @event
+        end
       else
         format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @event.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -46,11 +57,21 @@ class EventsController < ApplicationController
     set_event
     respond_to do |format|
       if @event.update_attributes(event_params)
-        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
+        format.html do
+          redirect_to events_path,
+                      notice: 'Event was successfully updated.'
+        end
+        format.json do
+          render :show,
+                 status: :ok,
+                 location: @event
+        end
       else
         format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @event.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -60,7 +81,10 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html do
+        redirect_to events_url,
+                    notice: 'Event was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
@@ -74,6 +98,9 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:event_code, :event_year, :event_location, :set)
+    params.require(:event).permit(:event_code,
+                                  :event_year,
+                                  :event_location,
+                                  :set)
   end
 end

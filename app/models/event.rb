@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #:nodoc:
 class Event < ApplicationRecord
   validates :event_code, presence: true
