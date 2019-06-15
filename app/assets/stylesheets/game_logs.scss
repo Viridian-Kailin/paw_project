@@ -5,6 +5,8 @@
 .log-container {
   display: grid;
   grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
+  grid-template-rows: 394px 394px;
+  grid-gap: 10px;
 }
 
 #log_form {
@@ -13,6 +15,8 @@
   padding: 10px 50px 50px 0px;
   grid-column-start: 2;
   grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
 }
 
 .entry {
@@ -35,4 +39,14 @@
 
 #detail_header {
   display: flex;
+}
+
+.todo_list {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  padding: 20px;
 }
