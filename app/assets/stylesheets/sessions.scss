@@ -1,3 +1,18 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.session-container {
+  display: grid;
+  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
+  grid-template-rows: 394px 394px;
+  grid-gap: 10px;
+}
+
+.depot_form {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 10px 50px 50px 0px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
