@@ -1,0 +1,17 @@
+.event-container {
+  display: grid;
+  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
+  grid-gap: 10px;
+}
+
+#event_form {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 50px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+}
+
+#event_form > table > tbody > tr > td {
+  font-size: medium;
+}

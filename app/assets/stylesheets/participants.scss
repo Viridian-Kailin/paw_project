@@ -67,3 +67,21 @@ input[type=submit] {
 div#form_button {
     padding-left: 80px;
 }
+
+.member-container {
+  display: grid;
+  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
+  grid-gap: 10px;
+}
+
+#memberinfo_table {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 50px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+}
+
+#memberinfo_table > table > tbody > tr > td {
+  font-size: medium;
+}

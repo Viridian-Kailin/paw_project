@@ -1,20 +1,24 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Badge</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Title</th>
-    <th>Role</th>
-  </tr>
-  <% @staff.each do |s| %>
-    <tr>
-      <td><%= s[:name] %> </td>
-      <td><%= s[:badge] %></td>
-      <td><%= s[:phone] ||= "NA" %></td>
-      <td><%= s[:email] ||= "NA" %></td>
-      <td><%= s[:title] ||= "NA" %></td>
-      <td><%= s[:role] ||= "NA" %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="staff-container">
+  <div id="staff_form">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Badge</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Title</th>
+        <th>Role</th>
+      </tr>
+      <% @staff.each do |s| %>
+        <tr>
+          <td><%= s[:name] %> </td>
+          <td><%= s[:badge] %></td>
+          <td><%= s[:phone] ||= "NA" %></td>
+          <td><%= s[:email] ||= "NA" %></td>
+          <td><%= s[:title] ||= "NA" %></td>
+          <td><%= s[:role] ||= "NA" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

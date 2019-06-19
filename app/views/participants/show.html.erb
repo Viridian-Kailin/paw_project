@@ -1,44 +1,48 @@
-<table class="show_table">
-  <tr>
-    <th>Badge</th>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Preference</th>
-    <th>Proxy</th>
-    <th>Proxy Badge</th>
-    <th>Proxy Name</th>
-    <th>Proxy Phone</th>
-    <th>Proxy Email</th>
-    <th>Proxy Preference</th>
-    <% if session[:user_name] == "admin" %>
-    <th>Admin Controls</th>
-    <% end %>
-  </tr>
-  <% @members.each do |m| %>
-    <tr>
-      <td><%= m[:badge] %></td>
-      <td><%= m[:name] %></td>
-      <td><%= m[:phone] %></td>
-      <td><%= m[:email] %></td>
-      <td><%= m[:pref] %></td>
-      <td><%= m[:proxy] %></td>
-      <% if m[:proxy] != "false" %>
-        <td><%= m[:p_badge] %></td>
-        <td><%= m[:p_name] %></td>
-        <td><%= m[:p_phone] %></td>
-        <td><%= m[:p_email] %></td>
-        <td><%= m[:p_pref] %></td>
+<div class="member-container">
+  <div id="memberinfo_table">
+    <table class="show_table">
+      <tr>
+        <th>Badge</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Preference</th>
+        <th>Proxy</th>
+        <th>Proxy Badge</th>
+        <th>Proxy Name</th>
+        <th>Proxy Phone</th>
+        <th>Proxy Email</th>
+        <th>Proxy Preference</th>
+        <% if session[:user_name] == "admin" %>
+        <th></th>
+        <% end %>
+      </tr>
+      <% @members.each do |m| %>
+        <tr>
+          <td><%= m[:badge] %></td>
+          <td><%= m[:name] %></td>
+          <td><%= m[:phone] %></td>
+          <td><%= m[:email] %></td>
+          <td><%= m[:pref] %></td>
+          <td><%= m[:proxy] %></td>
+          <% if m[:proxy] != "false" %>
+            <td><%= m[:p_badge] %></td>
+            <td><%= m[:p_name] %></td>
+            <td><%= m[:p_phone] %></td>
+            <td><%= m[:p_email] %></td>
+            <td><%= m[:p_pref] %></td>
+          <% end %>
+          <% if session[:user_name] == "admin" %>
+            <td>
+              <%= link_to "Edit", edit_participant_path(m), method: :get %>
+              <%= link_to 'Delete', m, method: :delete,
+                                       data: { confirm: "Are you sure?" } %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-      <% if session[:user_name] == "admin" %>
-        <td>
-          <%= link_to "Edit", edit_participant_path(m), method: :get %>
-          <%= link_to 'Delete', m, method: :delete,
-                                   data: { confirm: "Are you sure?" } %>
-        </td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
-<br><br>
-<%= button_to "New Participant", participants_path, method: :get %>
+    </table>
+    <br><br>
+    <%= button_to "New Participant", participants_path, method: :get %>
+  </div>
+</div>

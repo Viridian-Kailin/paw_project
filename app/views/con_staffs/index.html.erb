@@ -1,42 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="con-container">
+  <div id="con_form">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Event</th>
+          <% if session[:user_name] == "admin" %>
+          <th></th>
+          <% end %>
+        </tr>
+      </thead>
 
-<h1>Con Staffs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Event</th>
-      <% if session[:user_name] == "admin" %>
-      <th>Admin Controls</th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @con_info.each do |con_staff| %>
-      <tr>
-        <td><%= con_staff[:name] %></td>
-        <td><%= con_staff[:title] %></td>
-        <td><%= con_staff[:phone] %></td>
-        <td><%= con_staff[:email] %></td>
-        <td><%= con_staff[:event_code] %></td>
-        <% if session[:user_name] == "admin" %>
-        <td>
-          <%= link_to 'Edit', edit_con_staff_path(con_staff) %>
-          <%= link_to 'Delete', con_staff_path(con_staff), method: :delete, data: {confirm: "Are you sure?"} %>
-        </td>
+      <tbody>
+        <% @con_info.each do |con_staff| %>
+          <tr>
+            <td><%= con_staff[:name] %></td>
+            <td><%= con_staff[:title] %></td>
+            <td><%= con_staff[:phone] %></td>
+            <td><%= con_staff[:email] %></td>
+            <td><%= con_staff[:event_code] %></td>
+            <% if session[:user_name] == "admin" %>
+            <td>
+              <%= link_to 'Edit', edit_con_staff_path(con_staff) %>
+              <%= link_to 'Delete', con_staff_path(con_staff), method: :delete, data: {confirm: "Are you sure?"} %>
+            </td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
 
-<br>
-<% if session[:user_name] == "admin" %>
-<%= link_to 'New Con Staff', new_con_staff_path %>
-<% end %>
+    <br>
+    <% if session[:user_name] == "admin" %>
+      <%= button_to 'New Con Staff', new_con_staff_path %>
+    <% end %>
+  </div>
+</div>
 

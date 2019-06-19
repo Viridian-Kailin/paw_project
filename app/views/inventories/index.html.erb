@@ -1,28 +1,33 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Company</th>
-    <th>Quantity</th>
-    <% if session[:user_name] == "admin" %>
-      <th>Admin Controls</th>
-    <% end %>
-  </tr>
-  <% @games.each do |g| %>
-    <tr>
-      <td><%= g[:title] %></td>
-      <td><%= g[:company] %></td>
-      <td><%= g[:quantity_total] %></td>
-      <% if session[:user_name] == "admin" %>
-        <td>
-          <%= link_to "Edit", edit_inventory_path(g), method: :get %>
-          <%= link_to 'Delete', g, method: :delete,
-                                   data: { confirm: "Are you sure?" } %>
-        </td>
+<div class="games-container">
+  <div id="games_form">
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Quantity</th>
+        <% if session[:user_name] == "admin" %>
+          <th></th>
+        <% end %>
+      </tr>
+      <% @games.each do |g| %>
+        <tr>
+          <td><%= g[:title] %></td>
+          <td><%= g[:company] %></td>
+          <td><%= g[:quantity_total] %></td>
+          <% if session[:user_name] == "admin" %>
+            <td>
+              <%= link_to "Edit", edit_inventory_path(g), method: :get %>
+              <%= link_to 'Delete', g, method: :delete,
+                                       data: { confirm: "Are you sure?" } %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table>
-<br><br>
-<% if session[:user_name] == "admin" %>
-  <%= button_to "Add New Title", new_inventory_path, method: :get %>
-<% end %>
+    </table>
+    <br><br>
+    <% if session[:user_name] == "admin" %>
+      <%= button_to "Add New Title", new_inventory_path, method: :get %>
+    <% end %>
+  </div>
+</div>
+

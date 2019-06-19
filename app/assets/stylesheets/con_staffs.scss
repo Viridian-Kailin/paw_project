@@ -1,3 +1,21 @@
 // Place all the styles related to the ConStaffs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.con-container {
+  display: grid;
+  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
+  grid-gap: 10px;
+}
+
+#con_form {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 50px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+}
+
+#con_form > table > tbody > tr > td {
+  font-size: medium;
+}

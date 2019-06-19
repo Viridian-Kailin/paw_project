@@ -17,36 +17,41 @@ $('document').ready(function() {
   }
 </script>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Timestamp</th>
-    <th>Participant</th>
-    <th>Rating</th>
-    <% if session[:user_name] == "admin" %>
-      <th>Admin Controls</th>
-    <% end %>
-  </tr>
-  <% @log_info.each do |v| %>
-    <tr>
-      <td class="title"><%= v[:title] %></td>
-      <td class="timestamp"><%= v[:timestamp] %></td>
-      <td><%= v[:member] %></td>
-      <td><%= v[:rating] %></td>
-      <% if session[:user_name] == "admin" %>
-        <td>
-          <%= link_to "Edit", "javascript:void(0)", data: {id: v[:id]}, onclick: "functionTest(this)" %>
-          <%= link_to "Delete", v, method: :delete,
-                                   data: { confirm: "Are you sure?" } %>
-        </td>
-    <% end %>
-    </tr>
-  <% end %>
-</table>
-<br><br>
+<div class="log-container">
+  <div id="show_log_form">
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Timestamp</th>
+        <th>Participant</th>
+        <th>Rating</th>
+        <% if session[:user_name] == "admin" %>
+          <th>Admin Controls</th>
+        <% end %>
+      </tr>
+      <% @log_info.each do |v| %>
+        <tr>
+          <td class="title"><%= v[:title] %></td>
+          <td class="timestamp"><%= v[:timestamp] %></td>
+          <td><%= v[:member] %></td>
+          <td><%= v[:rating] %></td>
+          <% if session[:user_name] == "admin" %>
+            <td>
+              <%= link_to "Edit", "javascript:void(0)", data: {id: v[:id]}, onclick: "functionTest(this)" %>
+              <%= link_to "Delete", v, method: :delete,
+                                       data: { confirm: "Are you sure?" } %>
+            </td>
+        <% end %>
+        </tr>
+      <% end %>
+    </table>
+    <br><br>
 
-<%= button_to "Add Game Log", game_logs_path, method: :get %>
+    <%= button_to "Add Game Log", game_logs_path, method: :get %>
+
+  </div>
+</div>
 
 <div id="dialog_editlog">
-Failed to load Edit Page
+  Failed to load Edit Page
 </div>
