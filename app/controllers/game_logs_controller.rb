@@ -13,16 +13,7 @@ class GameLogsController < ApplicationController
   end
 
   def edit
-    @log = GameLog.find(params[:id])
-    @log_info = {
-      id: @log[:id],
-      inventory_id: @log[:inventory_id],
-      title: Inventory.where(id: @log[:inventory_id])[0][:title],
-      timestamp: @log[:timestamp],
-      participant_id: @log[:participant_id],
-      member: Participant.where(id: @log[:participant_id])[0][:name],
-      rating: @log[:rating]
-    }
+    @logs = GameLog.log_info(GameLog.find(params[:id]))
     render 'game_logs/edit', layout: false
   end
 
