@@ -59,7 +59,6 @@ class WinnerCircleController < ApplicationController
   end
 
   def show_winners
-    binding.pry
     grab_logs
     define_logs
     @winner = {}

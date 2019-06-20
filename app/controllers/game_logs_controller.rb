@@ -57,9 +57,9 @@ class GameLogsController < ApplicationController
     @member = {}
     params.each { |k, v| @member[k.split('_')[1]] = v if k.start_with?('badge_') }
 
-    @member.length.times { |i|
+    @member.length.times do |i|
       @accepted_params[i] = { participant_id: Participant.where(badge: @member[i.to_s])[0][:id], rating: params["rating_#{i}"] || 1 }
-    }
+    end
   end
 
   def convert_entries
@@ -73,14 +73,14 @@ class GameLogsController < ApplicationController
 
   def create
     convert_entries
-    @accepted_params.length.times { |i|
+    @accepted_params.length.times do |i|
       @new_log = GameLog.new(@accepted_params[i])
       if @new_log.save
         flash[:notice] = "Entry for #{Inventory.find(@accepted_params[i][:inventory_id])[:title]} at #{@logs_timestamp} has been added."
       else
         flash[:error] = @log.errors.full_messages
       end
-    }
+    end
     redirect_to '/game_logs'
   end
 

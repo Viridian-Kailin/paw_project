@@ -13,7 +13,6 @@ class GameLibraryController < ApplicationController
   end
 
   def create
-    binding.pry
     @checkstatus = Library.new(library_params)
 
     # Checks that a valid quantity was confirmed
