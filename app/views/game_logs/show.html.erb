@@ -26,10 +26,10 @@ $('document').ready(function() {
         <th>Participant</th>
         <th>Rating</th>
         <% if session[:user_name] == "admin" %>
-          <th>Admin Controls</th>
+          <th></th>
         <% end %>
       </tr>
-      <% @log_info.each do |v| %>
+      <% @logs.each do |v| %>
         <tr>
           <td class="title"><%= v[:title] %></td>
           <td class="timestamp"><%= v[:timestamp] %></td>
@@ -41,7 +41,7 @@ $('document').ready(function() {
               <%= link_to "Delete", v, method: :delete,
                                        data: { confirm: "Are you sure?" } %>
             </td>
-        <% end %>
+          <% end %>
         </tr>
       <% end %>
     </table>

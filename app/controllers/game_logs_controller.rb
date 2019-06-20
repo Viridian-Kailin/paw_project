@@ -9,20 +9,7 @@ class GameLogsController < ApplicationController
   end
 
   def show
-    @logs = GameLog.all.order(:inventory_id)
-    @log_info = []
-
-    @logs.length.times do |i|
-      @log_info[i] = {
-        id: @logs[i][:id],
-        inventory_id: @logs[i][:inventory_id],
-        title: Inventory.where(id: @logs[i][:inventory_id])[0][:title],
-        timestamp: @logs[i][:timestamp],
-        participant_id: @logs[i][:participant_id],
-        member: Participant.where(id: @logs[i][:participant_id])[0][:name],
-        rating: @logs[i][:rating]
-      }
-    end
+    @logs = GameLog.log_info(GameLog.all)
   end
 
   def edit

@@ -17,3 +17,5 @@ AllCops:
     - 'bin/update'
     - 'lib/db/dbloader.rb'
     - 'test/test_helper.rb'
+    - 'db/schema.rb'
+    - 'config/routes.rb'
