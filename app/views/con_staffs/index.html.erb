@@ -35,7 +35,7 @@
 
     <br>
     <% if session[:user_name] == "admin" %>
-      <%= button_to 'New Con Staff', new_con_staff_path %>
+      <%= button_to 'New Con Staff', new_con_staff_path, method: :get %>
     <% end %>
   </div>
 </div>

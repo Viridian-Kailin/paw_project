@@ -34,4 +34,5 @@ class GameLog < ApplicationRecord
     end
     @log_info
   end
+
 end

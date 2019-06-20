@@ -34,7 +34,7 @@ class GameLogsController < ApplicationController
     redirect_to game_logs_total_url
   end
 
-  def create
+  def timestamp
     @logs_timestamp = DateTime.new(
       params['timestamp(1i)'].to_i,
       params['timestamp(2i)'].to_i,
@@ -42,25 +42,45 @@ class GameLogsController < ApplicationController
       params['timestamp(4i)'].to_i,
       params['timestamp(5i)'].to_i
     )
+  end
 
-    12.times do |i|
-      next unless params["badge_#{i}".to_sym].blank? == false && Participant.all.where(badge: params["badge_#{i}".to_sym].to_i) != []
+  def static_values
+    timestamp
+    @static = { inventory_id: params[:inventory_id].to_i,
+                event_id: params[:event_id].to_i,
+                timestamp: @logs_timestamp }
+  end
 
-      @log = GameLog.new(
-        inventory_id: params[:inventory_id],
-        timestamp: @logs_timestamp,
-        participant_id: Participant.where(badge: params['badge_1']).ids[0],
-        rating: params['rating_1'.to_sym].to_i,
-        event_id: params[:event_id]
-      )
+  def count_entries
+    initial_params
+    @accepted_params = {}
+    @member = {}
+    params.each { |k, v| @member[k.split('_')[1]] = v if k.start_with?('badge_') }
+
+    @member.length.times { |i|
+      @accepted_params[i] = { participant_id: Participant.where(badge: @member[i.to_s])[0][:id], rating: params["rating_#{i}"] || 1 }
+    }
+  end
+
+  def convert_entries
+    count_entries
+    static_values
+
+    @accepted_params.length.times do |c|
+      @accepted_params[c].merge!(@static)
     end
+  end
 
-    if @log.save!
-      flash[:notice] = "Entry for #{Inventory.where(id: params[:inventory_id]).pluck(:title)[0]} at #{@logs_timestamp} has been added."
-    else
-      flash[:error] = @log.errors.full_messages
-    end
-
+  def create
+    convert_entries
+    @accepted_params.length.times { |i|
+      @new_log = GameLog.new(@accepted_params[i])
+      if @new_log.save
+        flash[:notice] = "Entry for #{Inventory.find(@accepted_params[i][:inventory_id])[:title]} at #{@logs_timestamp} has been added."
+      else
+        flash[:error] = @log.errors.full_messages
+      end
+    }
     redirect_to '/game_logs'
   end
 
@@ -77,21 +97,9 @@ class GameLogsController < ApplicationController
   private
 
   def initial_params
-    accepted_params = {}
-    accepted_params[:inventory_id] = params[:inventory_id]
-    accepted_params[:event_id] = params[:event_id]
-    12.times do |p|
-      next unless params["badge_#{p}"] != ''
+    params.keep_if { |_k, v| v != '' }
 
-      accepted_params["rating_#{p}"] = if params["rating_#{p}"] != ''
-                                         params["rating_#{p}"]
-                                       else
-                                         1
-                                       end
-      accepted_params["badge_#{p}"] = params["badge_#{p}"]
-    end
-
-    params.require(accepted_params)
+    params.each { |k, _v| params.require(k) }
   end
 
   def update_params

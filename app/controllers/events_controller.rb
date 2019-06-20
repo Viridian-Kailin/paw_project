@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     Event.update_all(set: false)
-    Event.where(id: @event[:id]).update(set: true)
+    Event.find(@event[:id]).update(set: true)
   end
 
   # PATCH/PUT /events/1

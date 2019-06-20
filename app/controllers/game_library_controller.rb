@@ -13,6 +13,7 @@ class GameLibraryController < ApplicationController
   end
 
   def create
+    binding.pry
     @checkstatus = Library.new(library_params)
 
     # Checks that a valid quantity was confirmed
@@ -31,10 +32,10 @@ class GameLibraryController < ApplicationController
       end
     # If check in was selected with a quantity matching the initial, warns about extra copies
     elsif library_params[:quantity_left] == 99
-      flash[:notice] = "Max number of copies for #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} already checked in. Please ensure this is a PAW copy."
+      flash[:notice] = "Max number of copies for #{Inventory.find(library_params[:inventory_id])[:title]} already checked in. Please ensure this is a PAW copy."
     # If check out was selected with a quantity of 0, warns about no available copies
     else
-      flash[:notice] = "No copies of #{Inventory.where(id: library_params[:inventory_id]).pluck(:title)[0]} available."
+      flash[:notice] = "No copies of #{Inventory.find(library_params[:inventory_id])[:title]} available."
     end
 
     redirect_to '/game_library'

@@ -33,7 +33,7 @@ class WinnerCircleController < ApplicationController
       @checklog[i].as_json.length.times do |y|
         front_end = %w[rating inventory_id badge name phone email pref proxy p_badge p_name p_phone p_email p_pref]
 
-        @checklog[i][y] = @checklog[i][y].as_json.merge(Participant.where(id: @checklog[i][y]['participant_id'].to_i).as_json[0])
+        @checklog[i][y] = @checklog[i][y].as_json.merge(Participant.find(@checklog[i][y][:participant_id]).as_json)
         @checklog[i][y].keep_if { |k, _v| front_end.include? k }
 
         @checklog[i][y].each_key do |k|
@@ -59,6 +59,7 @@ class WinnerCircleController < ApplicationController
   end
 
   def show_winners
+    binding.pry
     grab_logs
     define_logs
     @winner = {}

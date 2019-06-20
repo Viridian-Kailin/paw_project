@@ -19,7 +19,7 @@ class ConStaffsController < ApplicationController
         phone: @con_staffs[i][:phone],
         email: @con_staffs[i][:email],
         event_id: @con_staffs[i][:event_id],
-        event_code: Event.where(id: @con_staffs[i][:event_id])[0][:event_code]
+        event_code: Event.find(@con_staffs[i][:event_id])[:event_code]
       }
     end
   end
