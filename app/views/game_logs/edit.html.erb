@@ -1,17 +1,14 @@
-<% if flash[:alert] %>
-  <%= flash[:alert] %>
-<% end %>
-
-Title: <%= @logs[:title] %><br>
-Title ID: <%= @logs[:inventory_id] %><br>
-Timestamp: <%= @logs[:timestamp] %><br>
-Member: <%= @logs[:member] %><br>
-Member ID: <%= @logs[:participant_id] %><br>
-<%= form_with(model: @log) do |f|%>
-<%= f.label :rating %>
-<%= f.number_field :rating, min: 1, max: 5, required: true %>
-<%= f.submit %>
-<% end %>
-
-<%= @logs %>
-
+<div class="log-container">
+  <div id="log_form">
+    Title: <%= @logs[:title] %><br>
+    Title ID: <%= @logs[:inventory_id] %><br>
+    Timestamp: <%= @logs[:timestamp] %><br>
+    Member: <%= @logs[:member] %><br>
+    Member ID: <%= @logs[:participant_id] %><br>
+    <%= form_with(url: game_log_path, method: :patch, scope: :game_log) do |f|%>
+    <%= f.label :rating %>
+    <%= f.number_field :rating, min: 1, max: 5, required: true %>
+    <%= f.submit %>
+    <% end %>
+  </div>
+</div>

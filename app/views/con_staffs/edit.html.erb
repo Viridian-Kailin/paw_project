@@ -1,6 +1,9 @@
 <h1>Editing Con Staff</h1>
+<div class="con-container">
+  <div id="con_form">
+    <%= render 'form', con_staff: @con_staff %>
 
-<%= render 'form', con_staff: @con_staff %>
-
-<%= link_to 'Show', @con_staff %> |
-<%= link_to 'Back', con_staffs_path %>
+    <%= link_to 'Show', @con_staff %> |
+    <%= link_to 'Back', con_staffs_path %>
+  </div>
+</div>

@@ -1,19 +1,23 @@
-<table>
-  <tr>
-    <% @staff.as_json.each do |k,v| %>
-    <th>
-      <%= k %>
-    </th>
-    <% end %>
-  </tr>
-  <tr>
-    <% @staff.as_json.each do |k,v| %>
-    <td>
-      <%= v %>
-    </td>
-    <%end%>
-  </tr>
-</table>
-<br><br>
+<div class="staff-container">
+  <div id="staff_form">
+    <table>
+      <tr>
+        <% @staff.as_json.each do |k,v| %>
+        <th>
+          <%= k %>
+        </th>
+        <% end %>
+      </tr>
+      <tr>
+        <% @staff.as_json.each do |k,v| %>
+        <td>
+          <%= v %>
+        </td>
+        <%end%>
+      </tr>
+    </table>
+    <br><br>
 
-<%= render 'staff_form' %>
+    <%= render 'staff_form' %>
+  </div>
+</div>

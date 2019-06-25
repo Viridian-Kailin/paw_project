@@ -9,7 +9,9 @@
         <th>Email</th>
         <th>Title</th>
         <th>Role</th>
+        <% if session[:user_name] == "admin" %>
         <th></th>
+        <% end %>
       </tr>
       <% @staff.each do |s| %>
         <tr>
@@ -19,16 +21,19 @@
           <td><%= s[:email] ||= "NA" %></td>
           <td><%= s[:title] ||= "NA" %></td>
           <td><%= s[:role] ||= "NA" %></td>
+          <% if session[:user_name] == "admin" %>
           <td>
             <%= link_to 'Edit', edit_paw_staff_path(s), method: :get %>
             <%= link_to 'Delete', s, method: :delete,
                                     data: { confirm: "Are you sure?" } %>
           </td>
+          <% end %>
         </tr>
       <% end %>
     </table>
     <br>
-
-    <%= button_to "Add staff", new_paw_staff_path, method: :get %>
+    <% if session[:user_name] == "admin" %>
+      <%= button_to "Add staff", new_paw_staff_path, method: :get %>
+    <% end %>
   </div>
 </div>

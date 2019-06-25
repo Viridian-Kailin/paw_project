@@ -2,13 +2,13 @@
 
 #:nodoc:
 class GameLogsController < ApplicationController
-  skip_before_action :admin, only: %i[index show create need_reg]
+  skip_before_action :admin, only: [:index, :new, :create, :need_reg]
 
   def new
     @logs = GameLog.new
   end
 
-  def show
+  def index
     @logs = GameLog.log_info(GameLog.all)
   end
 
@@ -18,10 +18,10 @@ class GameLogsController < ApplicationController
   end
 
   def update
-    @log = GameLog.find(params[:id])
-    if @log.update_attributes(update_params)
+    @log = GameLog.update_record(params[:id])
+    if @log.update(update_params)
       flash[:notice] = 'GameLog updated.'
-      redirect_to game_logs_total_url
+      redirect_to game_logs_path
     else
       flash[:alert] = 'Unable to save edit.'
       render 'edit'
@@ -29,9 +29,9 @@ class GameLogsController < ApplicationController
   end
 
   def destroy
-    GameLog.find(params[:id]).destroy
+    GameLog.destroy_record(params[:id])
     flash[:notice] = 'Single game log entry has been deleted.'
-    redirect_to game_logs_total_url
+    redirect_to game_logs_path
   end
 
   def timestamp

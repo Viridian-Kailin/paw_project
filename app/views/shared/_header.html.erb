@@ -1,7 +1,7 @@
 <header>
   <div class="header_container">
-    <%= button_to "Add Participant", participants_path, method: :get %>
-    <%= button_to "Add Game Log", game_logs_path, method: :get %>
+    <%= button_to "Add Participant", new_participant_path, method: :get %>
+    <%= button_to "Add Game Log", new_game_log_path, method: :get %>
     <%= link_to (image_tag "PAW-Logo.jpg", id: "menu_img"), welcome_index_path %>
     <%= button_to "Library", game_library_index_path, method: :get %>
     <%= button_to "Winner Circle", winner_circle_index_path, method: :get %>

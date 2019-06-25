@@ -85,3 +85,11 @@ div#form_button {
 #memberinfo_table > table > tbody > tr > td {
   font-size: medium;
 }
+
+#member_edit_form {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 50px;
+  grid-column-start: 2;
+  grid-column-end: 7;
+}

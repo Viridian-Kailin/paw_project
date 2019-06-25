@@ -6,4 +6,5 @@ class Library < ApplicationRecord
   validates :participant_id, presence: true
 
   # Update table so that there is a static one-to-one relationship between inventory quantity and initial quantity in the library?
+  # Game logs should not be editable
 end

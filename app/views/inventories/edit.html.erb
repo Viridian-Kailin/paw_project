@@ -1,19 +1,23 @@
-<table>
-  <tr>
-    <% @game.as_json.each do |k,v| %>
-    <th>
-      <%= k %>
-    </th>
-    <% end %>
-  </tr>
-  <tr>
-    <% @game.as_json.each do |k,v| %>
-    <td>
-      <%= v %>
-    </td>
-    <%end%>
-  </tr>
-</table>
-<br><br>
+<div class="games-container">
+  <div id="games_form">
+    <table>
+      <tr>
+        <% @game.as_json.each do |k,v| %>
+        <th>
+          <%= k %>
+        </th>
+        <% end %>
+      </tr>
+      <tr>
+        <% @game.as_json.each do |k,v| %>
+        <td>
+          <%= v %>
+        </td>
+        <%end%>
+      </tr>
+    </table>
+    <br><br>
 
-<%= render 'game_form' %>
+    <%= render 'game_form' %>
+  </div>
+</div>

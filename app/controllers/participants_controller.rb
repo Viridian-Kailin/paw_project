@@ -10,7 +10,7 @@ class ParticipantsController < ApplicationController
     @members = Participant.new
   end
 
-  def show
+  def index
     @members = Participant.all.order(:badge)
     @members.length.times do |m|
       @members[m].as_json.each do |k, v|

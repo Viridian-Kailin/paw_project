@@ -11,10 +11,10 @@
         <% end %>
         <%= button_to "Add Staff", paw_staffs_path, method: :get, class: "btn" %>
         <br>
-        <%= button_to "Check Members", participants_total_url, method: :get, class: "btn" %>
+        <%= button_to "Check Members", participants_path, method: :get, class: "btn" %>
         <%= button_to "Check Inventory", inventories_path, method: :get, class: "btn" %>
         <br>
-        <%= button_to "Check Logs", game_logs_total_url, method: :get, class: "btn" %>
+        <%= button_to "Check Logs", game_logs_path, method: :get, class: "btn" %>
         <%= button_to "Set Event", events_path, method: :get, class: "btn" %>
       </div>
     </section>
@@ -26,7 +26,7 @@
       <br><br>
       <div id="info_buttons">
         <%= button_to "Game Schedule", schedules_path, method: :get, class: "btn" %>
-        <%= button_to "PAW Staff List", staff_total_path, method: :get, class: "btn" %>
+        <%= button_to "PAW Staff List", paw_staffs_path, method: :get, class: "btn" %>
         <br>
         <%= button_to "PAW Rules & Guidelines", rules_url, method: :get, class: "btn" %>
         <%= button_to "Event Staff", con_staffs_path, method: :get, class: "btn" %>

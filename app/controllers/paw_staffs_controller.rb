@@ -2,7 +2,7 @@
 
 #:nodoc:
 class PawStaffsController < ApplicationController
-  skip_before_action :admin, only: [:show]
+  skip_before_action :admin, only: [:index]
 
   def index
     @staff = PawStaff.all.order(:badge)

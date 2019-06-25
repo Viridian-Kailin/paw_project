@@ -1,23 +1,27 @@
-<h1>Editing Event</h1>
+<div class='event-container'>
+  <div id='event_form'>
+    <h1>Editing Event</h1>
 
-<table>
-  <tr>
-    <% @event.as_json.each do |k,v| %>
-    <th>
-      <%= k %>
-    </th>
-    <% end %>
-  </tr>
-  <tr>
-    <% @event.as_json.each do |k,v| %>
-    <td>
-      <%= v %>
-    </td>
-    <%end%>
-  </tr>
-</table>
-<br><br>
+    <table>
+      <tr>
+        <% @event.as_json.each do |k,v| %>
+        <th>
+          <%= k %>
+        </th>
+        <% end %>
+      </tr>
+      <tr>
+        <% @event.as_json.each do |k,v| %>
+        <td>
+          <%= v %>
+        </td>
+        <%end%>
+      </tr>
+    </table>
+    <br><br>
 
-<%= render 'form', event: @event %>
+    <%= render 'form', event: @event %>
 
-<%= link_to 'Back', events_path %>
+    <%= link_to 'Back', events_path %>
+  </div>
+</div>

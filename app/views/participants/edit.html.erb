@@ -19,54 +19,58 @@
 
 </script>
 
-<table>
-  <tr>
-    <% @member.as_json.each do |k,v| %>
-    <th>
-      <%= k %>
-    </th>
-    <% end %>
-  </tr>
-  <tr>
-    <% @member.as_json.each do |k,v| %>
-    <td>
-      <%= v %>
-    </td>
-    <%end%>
-  </tr>
-</table>
-<br><br>
+<div class="member-container">
+  <div id="member_edit_form">
+    <table>
+      <tr>
+        <% @member.as_json.each do |k,v| %>
+        <th>
+          <%= k %>
+        </th>
+        <% end %>
+      </tr>
+      <tr>
+        <% @member.as_json.each do |k,v| %>
+        <td>
+          <%= v %>
+        </td>
+        <%end%>
+      </tr>
+    </table>
+    <br><br>
 
-<%= form_with(model: @member) do |f| %>
-  <%= f.label "Badge" %>
-  <%= f.number_field :badge, required: true %>
-  <%= f.label "Name" %>
-  <%= f.text_field :name, required: true %>
-  <%= f.label "Phone" %>
-  <%= f.phone_field :phone %>
-  <%= f.label "Email" %>
-  <%= f.email_field :email %>
-  <%= f.label "Preference" %>
-  <%= f.select :pref, ["Text", "Call", "Email"] %>
-  <%= f.label "Proxy" %>
-  <%= f.label "Yes", class: "radio" %>
-  <%= f.radio_button :proxy, :yes %>
-  <%= f.label "No", class: "radio" %>
-  <%= f.radio_button :proxy, :no %>
-  <br><br>
-  <div class="proxy">
-  Enter Proxy's Information<br>
-  <%= f.label "Badge" %>
-  <%= f.number_field :p_badge, disabled: true, placeholder: "No proxy" %>
-  <%= f.label "Name" %>
-  <%= f.text_field :p_name, disabled: true, placeholder: "No proxy" %>
-  <%= f.label "Phone" %>
-  <%= f.number_field :p_phone, disabled: true, placeholder: "No proxy" %>
-  <%= f.label "Email" %>
-  <%= f.text_field :p_email, disabled: true, placeholder: "No proxy" %>
-  <%= f.label "Preference" %>
-  <%= f.select :p_pref, ["Text","Call","Email"], disabled: true, include_blank: true %>
+    <%= form_with(model: @member) do |f| %>
+      <%= f.label "Badge" %>
+      <%= f.number_field :badge, required: true %>
+      <%= f.label "Name" %>
+      <%= f.text_field :name, required: true %>
+      <%= f.label "Phone" %>
+      <%= f.phone_field :phone %>
+      <%= f.label "Email" %>
+      <%= f.email_field :email %>
+      <%= f.label "Preference" %>
+      <%= f.select :pref, ["Text", "Call", "Email"] %>
+      <%= f.label "Proxy" %>
+      <%= f.label "Yes", class: "radio" %>
+      <%= f.radio_button :proxy, :yes %>
+      <%= f.label "No", class: "radio" %>
+      <%= f.radio_button :proxy, :no %>
+      <br><br>
+      <div class="proxy">
+      Enter Proxy's Information<br>
+      <%= f.label "Badge" %>
+      <%= f.number_field :p_badge, disabled: true, placeholder: "No proxy" %>
+      <%= f.label "Name" %>
+      <%= f.text_field :p_name, disabled: true, placeholder: "No proxy" %>
+      <%= f.label "Phone" %>
+      <%= f.number_field :p_phone, disabled: true, placeholder: "No proxy" %>
+      <%= f.label "Email" %>
+      <%= f.text_field :p_email, disabled: true, placeholder: "No proxy" %>
+      <%= f.label "Preference" %>
+      <%= f.select :p_pref, ["Text","Call","Email"], disabled: true, include_blank: true %>
+      </div>
+      <br>
+      <%= f.submit %>
+    <% end %>
   </div>
-  <br>
-  <%= f.submit %>
-<% end %>
+</div>
