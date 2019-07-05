@@ -10,17 +10,10 @@ class UsersController < ApplicationController
     @users = User.all.order(:username)
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show; end
-
   # GET /users/new
   def new
     @user = User.new
   end
-
-  # GET /users/1/edit
-  def edit; end
 
   # POST /users
   # POST /users.json
@@ -32,10 +25,6 @@ class UsersController < ApplicationController
         format.html do
           redirect_to users_url,
                       notice: 'User was successfully created.'
-        end
-        format.json do
-          render :show,
-                 status: :created, location: @user
         end
       else
         format.html { render :new }

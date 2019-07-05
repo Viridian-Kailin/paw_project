@@ -8,9 +8,17 @@ RSpec.describe User, type: :model do
   end
 
   describe '.new' do
+    before do
+      @user_count = User.all.count
+    end
+
     context 'given valid conditions' do
       it 'saves the record and notifies the user' do
-        expect(@user).to be_valid
+        @new_user = @user.dup
+        expect(@new_user).to be_valid
+        @new_user.save
+        expect(User.all.count).to eq @user_count + 1
+        expect(User.find_user(@new_user[:username])[:id]).to eq @new_user[:id]
       end
     end
     context 'given that no username is provided' do

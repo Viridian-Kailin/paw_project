@@ -5,10 +5,8 @@ class SessionsController < ApplicationController
   skip_before_action :authorize
   skip_before_action :admin
 
-  def new; end
-
   def create
-    user = User.find_by(username: params[:username])
+    user = User.find_user(params[:username])
     if user.try(:authenticate, params[:password])
       session[:user_id] = user.id
       session[:user_name] = user.username
