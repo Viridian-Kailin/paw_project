@@ -3,7 +3,7 @@
 require 'faker'
 
 namespace :db do
-  desc 'Empty and fill with example data for development'
+  desc 'Fill with example data for development'
   task sampledata: :environment do
     # Create event data
     event = Event.create(
@@ -120,5 +120,18 @@ namespace :db do
     )
 
     staff.save!
+  end
+
+  desc 'Empty and fill with only the bare necessarities'
+  task initial: :environment do
+    # Create event data
+    event = Event.create(
+      event_code: 'GS2019',
+      event_year: 2019,
+      event_location: 'Red Lion',
+      set: true
+    )
+
+    event.save!
   end
 end
