@@ -16,79 +16,215 @@
  *= require jquery-ui/dialog
  */
 
-.grid-item-1 {
-  grid-column-start: 1;
-  grid-column-end: 1;
+body {
+  background-color: #53993A;
+  margin: 0px;
+  font-family: "Verdana", sans-serif;
 }
 
-.grid-item-5 {
-  grid-column-start: 5;
-  grid-column-end: 5;
+h3, h1{
+  background-color: #854E99;
+  border: outset thin #423b4f;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 5px;
 }
 
-.header_container {
-  text-align: center;
-  position: relative;
-  bottom: 40px;
-  right: 5px;
+table, td, th {
+  border: inset #423b4f;
 }
 
-.header_button {
-  position: relative;
-  top: -9px;
+header {
+  border-bottom: double #423b4f thick;
+  background-color: #64BA72;
+  padding: 10px;
+  margin-bottom: 25px;
+  font-family: "Verdana", sans-serif;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 100px auto 187px;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:'img dummy event_code'
+                      'img title username'
+                      'img nav login';
 }
 
-.header_button button {
-  width: 400px;
-  height: 100px;
+header > nav > a {
+  border-left: solid thin #423b4f;
+  border-radius: 80%;
+  padding: 6px 10px 6px 10px;
+  text-decoration: none;
+}
+
+header > nav > a:hover {
+  background-color: #854E99;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+/* Header features */
+#pages {
+  grid-area: nav;
+  display: inline;
 }
 
 #menu_img {
-  width: 100px;
   height: 100px;
-  position: relative;
-  top: 35px;
+  width: 100px;
+  grid-area: img;
+  border: solid #423b4f;
+  display: inline;
 }
 
-#left_header {
+#program {
+  grid-area: title;
+  font-size: 45px;
+  font-weight: bolder;
+  display: inline;
+  padding-bottom: 10px;
+}
+
+#default {
+  grid-area: login;
   display: inline-flex;
 }
 
-#right_header {
-  display: inline-flex;
+#username {
+  grid-area: username;
+  display: inline;
+  text-align: right;
+}
+
+#event_code {
+  grid-area: event_code;
+  display: inline;
+  text-align: right;
+}
+
+/* Admin menu options */
+/* Menu Styles */
+
+.third-level-menu
+{
+    position: absolute;
+    top: -3px;
+    right: 153px;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    border-right: outset #423b4f;
+    border-top: outset #423b4f;
+    border-left: outset #423b4f;
+}
+
+.third-level-menu > li
+{
+    height: 30px;
+    background: #64BA72;
+    border-bottom: outset #423b4f;
+}
+
+.second-level-menu
+{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    border-right: outset #423b4f;
+    border-top: outset #423b4f;
+    border-left: outset #423b4f;
+}
+
+.second-level-menu > li
+{
+    position: relative;
+    height: 30px;
+    background: #64BA72;
+    border-bottom: outset #423b4f;
+}
+
+.top-level-menu
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-level-menu > li
+{
+    position: relative;
+    height: 30px;
+    display: inline-flex;
+    border-left: solid thin #423b4f;
+    border-radius: 80%;
+    padding-left: 6px;
+}
+
+.top-level-menu li:hover > ul
+{
+    /* On hover, display the next level's menu */
+    display: inline;
+}
+
+/* Menu Link Styles */
+
+.top-level-menu a /* Apply to all links inside the multi-level menu */
+{
+    text-decoration: none;
+    padding: 5px;
+
+    /* Make the link cover the entire list item-container*/
+    display: block;
+    border-radius: 80%;
+}
+
+.top-level-menu a:hover {
+  background-color: #854E99;
+  color: black;
+}
+
+.top-level-menu li:hover {
+  background-color: #854E99;
+  color: black;
+}
+
+/* Main body features */
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  grid-template-columns: 50px auto 100px auto 50px;
+  grid-template-rows: auto auto auto auto;
+}
+
+.grid-item-1 {
+  grid-column: 1;
+}
+
+.grid-item-3 {
+  grid-column: 3;
+}
+
+.grid-item-5 {
+  grid-column: 5;
 }
 
 #notice {
   text-align: center;
 }
 
-.grid-container {
-  display: grid;
-  grid-gap: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  grid-template-columns: auto auto auto auto auto;
-  grid-template-rows: auto auto auto auto;
-}
-
-body {
-  background-color: #53993A;
-  font-size: 16px;
-  color: #1f2021;
-}
-
-header {
-  background-color: #64BA72;
-  border: inset #423b4f;
-  padding: 20px 100px 10px 100px;
-}
-
 .info_container {
   text-align: center;
-}
-
-#menu_img {
-  border: solid;
 }
 
 .future_feature {
@@ -103,20 +239,8 @@ header {
   font-weight: bold;
 }
 
-h3, h1{
-  background-color: #854E99;
-  border: outset thin #423b4f;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  border-radius: 5px;
-}
-
 .form_entry {
   background-color: #64BA72;
   border: inset #423b4f;
   padding: 20px 10px 10px 10px;
-}
-
-table, td, th {
-  border: inset #423b4f;
 }
