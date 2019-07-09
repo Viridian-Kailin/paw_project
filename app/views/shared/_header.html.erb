@@ -24,13 +24,21 @@
       <a href="#">Admin</a>
       <ul class="second-level-menu">
         <li>
-          <a href="#">Staff Management</a>
+          <a href="#">Staff</a>
           <ul class="third-level-menu">
-            <li><a href="#">PAW Staff</a></li>
-            <li><a href="#">Con Staff</a></li>
+            <li><%= link_to "PAW Staff", paw_staffs_path %></li>
+            <li><%= link_to "Con Staff", con_staffs_path %></li>
           </ul>
         </li>
-        <li><a href="#">Inventory</a></li>
+        <li><%= link_to "Inventory", inventories_path %></li>
+        <li><%= link_to "Event Schedule", schedules_path %></li>
+        <li><%= link_to "Game Logs", game_logs_path %></li>
+        <li><%= link_to "Participants", participants_path %></li>
+        <% if session[:user_name] == 'admin' %>
+          <li><a href="#">Library Logs</a></li>
+          <li><%= link_to "Event Information", events_path %></li>
+          <li><%= link_to "Winner Circle", winner_circle_index_path %></li>
+        <% end %>
       </ul>
     </li>
     </ul>
