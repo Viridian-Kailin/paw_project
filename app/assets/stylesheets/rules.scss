@@ -16,6 +16,18 @@
   grid-column-end: 7;
 }
 
-#rules_form > table > tbody > tr > td {
-  font-size: medium;
+table {
+  border: inset #423b4f;
+  border-collapse: collapse;
+}
+
+th {
+  background: #675c7b;
+  color: #cdd5ec;
+  border: solid #423b4f ;
+}
+
+td {
+  background: #dfe5f3;
+  border: solid #423b4f thin;
 }

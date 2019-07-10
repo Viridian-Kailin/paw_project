@@ -92,7 +92,7 @@
 
 <button id="pick_winners">Pick the Winners!</button>
 <br><br>
-<table>
+<table class="winner_table">
   <% Inventory.all.each_slice(4) do |rows| %>
     <tr>
       <% rows.each do |cells| %>

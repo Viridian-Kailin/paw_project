@@ -30,8 +30,18 @@ h3, h1{
   border-radius: 5px;
 }
 
-table, td, th {
+table {
   border: inset #423b4f;
+  border-collapse: collapse;
+}
+
+th {
+  background: #675c7b;
+  color: #cdd5ec;
+}
+
+td {
+  background: #dfe5f3;
 }
 
 header {

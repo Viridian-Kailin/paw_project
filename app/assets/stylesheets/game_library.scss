@@ -2,13 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table {
-  border-collapse: collapse;
-}
-
-td {
-  font-size: medium;
-}
 
 th, td {
   width: 400px;
@@ -16,7 +9,6 @@ th, td {
 
 .table {
   padding-left: 50px;
-  background-color: #64BA72;
 }
 
 button {
