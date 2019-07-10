@@ -42,3 +42,24 @@
   font-size: 14px;
 }
 
+section {
+  background: #dfe5f3;
+  border: solid #423b4f thin;
+  padding: 0px 20px 20px 20px;
+}
+
+#program_details {
+  text-align: center;
+}
+
+#rule_details {
+  text-align: center;
+}
+
+section ul {
+  text-align: left;
+}
+
+section ul li {
+  list-style-image: url(asset_path("Image001.png"));
+}
