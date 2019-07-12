@@ -46,7 +46,7 @@
   <div id="event_code">
     Event: <%= @event_info[0]["event_code"] %>
   </div>
-  <div id="username">
+  <div id="user_info">
     <% if session[:user_id] != nil %>
       <%= "User: #{session[:user_name]}" %>
     <% else %>

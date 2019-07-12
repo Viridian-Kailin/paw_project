@@ -119,7 +119,7 @@ td {
   display: inline-flex;
 }
 
-#username {
+#user_info {
   grid-area: username;
   display: inline;
   text-align: right;
