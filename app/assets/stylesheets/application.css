@@ -28,7 +28,7 @@ section ul {
 }
 
 section ul li {
-  list-style-image: url("Image001.png");
+  list-style-image: image-url("Image001.png");
 }
 
 body {
