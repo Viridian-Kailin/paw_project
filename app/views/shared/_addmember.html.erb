@@ -5,50 +5,17 @@
       $("#true, #false").removeClass("selected");
       $("#" + $(e.currentTarget).val()).addClass("selected");
     });
-
-    $("#main_submit").click(function() {
-      if ($("form#member_submit")[0].checkValidity()) {
-        $(this).submit();
-        alert($("form#member_submit > div > input")[0].value + " has been added.");
-        location.reload();
-      }
-    });
   });
 
 </script>
-<style type="text/css">
-#true, #false { display:none; }
-
-#true.selected { display:block; }
-
-#false.selected { display:block; }
-
-form {
-  padding-top: 50px;
-  padding-left: 100px;
-  font-size: 20px;
-}
-
-select { font-size: 18px; }
-
-input { width: 200px; }
-
-input[type=radio] { width: 15px; }
-
-input[type=submit] { font-size: 18px; }
-
-#submit_member { padding-left: 100px; }
-
-.member_info { grid-column-start: 2; grid-column-end: 4; }
-</style>
-
+<section>
 <%= form_with url: participants_path, model: @participant, class: "grid-container", id: "member_submit" do |form| %>
   <div class="member_info">Badge: <%= form.number_field "member[badge]", {required: true} %></div><br>
   <div class="member_info">Name: <%= form.text_field "member[name]", {required: true} %></div><br>
-  <div class="member_info">Phone: <%= form.number_field "member[phone]" %></div><br>
+  <div class="member_info">Phone: <%= form.telephone_field "member[phone]" %></div><br>
   <div class="member_info">Email: <%= form.text_field "member[email]" %></div><br>
   <div class="member_info">Preference: <%= form.select "member[pref]", ["Text", "Call", "Email"] %></div><br>
-  <div class="member_info">Yes<%= form.radio_button "member[proxy]", :true %>
+  <div class="member_info">Proxy Info: Yes<%= form.radio_button "member[proxy]", :true %>
   No<%= form.radio_button "member[proxy]", :false %></div>
 
   <div id="false"></div>
@@ -57,9 +24,10 @@ input[type=submit] { font-size: 18px; }
     Badge: <%= form.number_field "member[p_badge]" %><br><br>
     Name: <%= form.text_field "member[p_name]" %><br><br>
     Phone: <%= form.number_field "member[p_phone]" %><br><br>
-    Email: <%= form.text_field "member[:p_email]" %><br><br>
+    Email: <%= form.text_field "member[p_email]" %><br><br>
     Preference: <%= form.select "member[p_pref]", ["Call","Text","Email"] %>
   </div>
 
 
 <% end %>
+</section>

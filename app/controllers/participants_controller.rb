@@ -24,7 +24,7 @@ class ParticipantsController < ApplicationController
 
     if @member.update_attributes(update_member)
       flash[:notice] = 'Participant updated.'
-      redirect_to participants_total_url
+      redirect_to participants_path
     else
       flash[:alert] = 'Unable to save edit.'
       render 'edit'
@@ -37,14 +37,15 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    @members = Participant.new(member_params)
+    @member = Participant.new(member_params)
 
-    if @members.save
-      flash[:notice] = "#{@members.badge} has been added."
+    if @member.save
+      flash.now[:notice] = "#{@member.badge} has been added."
     else
-      flash[:notice] = "#{@members.badge} already exists."
-      render 'index'
+      flash.now[:alert] = "#{@member.badge} already exists."
     end
+
+    render 'new'
   end
 
   def destroy

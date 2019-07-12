@@ -26,7 +26,7 @@
       //Modal box
 
       $.ajax ({
-        url: "check_entry/" + $(this)[0].value,
+        url: "/check_entry/" + $(this)[0].value,
         dataType: 'JSON',
         error: function(data) {
           $('#dialog_addmember').dialog( "open" );
