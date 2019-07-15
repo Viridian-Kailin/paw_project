@@ -16,8 +16,8 @@
           <td class="title"><%= s[:title] %></td>
           <td><%= s[:staff_member] %></td>
           <td><%= s[:location] %></td>
-          <td><%= s[:start] %></td>
-          <td><%= s[:end] %></td>
+          <td class="timestamp"><%= s[:start] %></td>
+          <td class="timestamp"><%= s[:end] %></td>
           <% if session[:user_name] == "admin" %>
             <td>
               <%= link_to "Edit", edit_schedule_path(s), method: :get %>

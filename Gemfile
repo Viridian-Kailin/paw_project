@@ -51,6 +51,11 @@ gem 'jquery-ui-rails'
 # Add faker manually to provide more realistic looking test data
 gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 
+# Add momentjs to easily translate date formatting
+gem 'momentjs-rails'
+
+# Add jquery-turbolinks to return some base jquery behavior
+gem 'jquery-turbolinks'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

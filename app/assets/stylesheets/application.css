@@ -252,6 +252,8 @@ td {
 
 .info_container {
   text-align: center;
+  font-size: large;
+  font-weight: bold;
 }
 
 .future_feature {
@@ -262,8 +264,15 @@ td {
 .alert {
   background-color: #A0231C;
   border: outset thin #423b4f;
-  padding: 5px 0px 5px 0px;
-  font-weight: bold;
+  display: -webkit-inline-box;
+  padding: 20px;
+}
+
+.notice {
+  background-color: #dfe5f3;
+  border: outset thin #423b4f;
+  display: -webkit-inline-box;
+  padding: 20px;
 }
 
 .form_entry {

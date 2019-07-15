@@ -1,5 +1,8 @@
+<!--
 <script>
 $('document').ready(function() {
+
+
   $('#dialog_editlog').dialog({
     autoOpen: false,
     modal: true,
@@ -17,6 +20,7 @@ $('document').ready(function() {
     })
   }
 </script>
+-->
 
 <div class="log-container">
   <div id="show_log_form">
@@ -38,8 +42,8 @@ $('document').ready(function() {
           <td><%= v[:rating] %></td>
           <% if session[:user_name] == "admin" %>
             <td>
-              <%= link_to "Edit", "javascript:void(0)", data: {id: v[:id]}, onclick: "functionTest(this)" %>
-              <%= link_to "Delete", v, method: :delete,
+              <%= link_to "Edit", edit_game_log_url(v), method: :get %>
+              <%= link_to "Delete", game_log_path(v), method: :delete,
                                        data: { confirm: "Are you sure?" } %>
             </td>
           <% end %>

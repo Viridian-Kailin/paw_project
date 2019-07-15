@@ -46,7 +46,7 @@ class PawStaffsController < ApplicationController
 
   def destroy
     PawStaff.find(params[:id]).destroy
-    flash[:notice] = 'Staf f member has been deleted.'
+    flash[:notice] = 'Staff member has been deleted.'
     redirect_to paw_staffs_path
   end
 

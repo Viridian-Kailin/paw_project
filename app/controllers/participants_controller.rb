@@ -51,7 +51,7 @@ class ParticipantsController < ApplicationController
   def destroy
     Participant.find(params[:id]).destroy
     flash[:notice] = 'Participant has been deleted.'
-    redirect_to participants_total_url
+    redirect_to participants_path
   end
 
   private

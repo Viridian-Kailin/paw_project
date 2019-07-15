@@ -32,7 +32,7 @@
           };
           // Add Game Schedule
           $.each ( $(data.schedule), function (i) {
-            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + data.schedule[i].start + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i] + '</td></tr>' );
+            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + moment(data.schedule[i].start).format('LLLL') + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i] + '</td></tr>' );
           });
           // Clear out game log except for header
           if ($('.display_logs > tbody')[0].childElementCount > 1) {
@@ -45,7 +45,14 @@
           $('#library_quantity_left').val(data.logs.reverse()[0]["quantity_left"]);
           // Add Library logs
           $.each ( $(data.logs), function (i) {
-            $('.display_logs').append('<tr><td>' + data.logs[i].checked_out + '</td><td>' + data.logs[i].checked_in + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+            // Translate date with momentjs or display blank
+            if (moment(data.logs[i].checked_out).isValid()) {
+              $('.display_logs').append('<tr><td>' + moment(data.logs[i].checked_out).format('LLLL') + '</td><td>--</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+            } else if (moment(data.logs[i].checked_in).isValid()) {
+              $('.display_logs').append('<tr><td>--</td><td>' + moment(data.logs[i].checked_in).format('LLLL') + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+            } else {
+              $('.display_logs').append('<tr><td>' + moment(data.logs[i].checked_out).format('LLLL') + '</td><td>' + moment(data.logs[i].checked_in).format('LLLL') + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+            }
           });
           // Show member information
           $("a#find_member").click(function(){

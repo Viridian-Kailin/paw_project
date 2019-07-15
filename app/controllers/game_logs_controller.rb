@@ -14,7 +14,6 @@ class GameLogsController < ApplicationController
 
   def edit
     @logs = GameLog.log_info(GameLog.find(params[:id]))
-    render 'game_logs/edit', layout: false
   end
 
   def update
