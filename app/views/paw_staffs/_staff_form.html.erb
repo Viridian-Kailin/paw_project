@@ -1,16 +1,29 @@
-<%= form_with(model: @staff) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, required: true %>
-  <%= f.label :badge %>
-  <%= f.number_field :badge %>
-  <%= f.label :phone %>
-  <%= f.phone_field :phone %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :role %>
-  <%= f.text_field :role %>
-  <br>
-  <%= f.submit %>
-<% end %>
+<table id="staff_edit">
+  <%= form_with(model: @staff) do |f| %>
+    <tr>
+      <th><%= f.label :name %></th>
+      <td><%= f.text_field :name, required: true %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :badge %></th>
+      <td><%= f.number_field :badge %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :phone %></th>
+      <td><%= f.phone_field :phone %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :email %></th>
+      <td><%= f.email_field :email %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :title %></th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :role %></th>
+      <td><%= f.text_field :role %></td>
+    </tr>
+    <tr><td colspan="2"><%= f.submit %></td></tr>
+  <% end %>
+</table>

@@ -42,6 +42,7 @@ class PawStaffsController < ApplicationController
 
   def edit
     @staff = PawStaff.find(params[:id])
+    @staff_info = PawStaff.simplify(params[:id])
   end
 
   def destroy

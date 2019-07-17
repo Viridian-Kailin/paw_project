@@ -22,6 +22,9 @@ class SchedulesController < ApplicationController
 
   def edit
     @schedule = Schedule.find(params[:id])
+    @title = Inventory.find(params[:inventory_id])
+    @staff = PawStaff.find(params[:paw_staff_id]) unless params[:paw_staff_id].nil?
+    @scheduled_event = Event.find(params[:event_id])
   end
 
   def update
@@ -57,7 +60,8 @@ class SchedulesController < ApplicationController
                               staff_member: PawStaff.find(@schedule[i][:paw_staff_id])[:name],
                               start: @schedule[i][:start],
                               end: @schedule[i][:end],
-                              location: @schedule[i][:location]
+                              location: @schedule[i][:location],
+                              event_id: @schedule[i][:event_id]
                             }
                           else
                             {
@@ -68,7 +72,8 @@ class SchedulesController < ApplicationController
                               staff_member: 'Pending',
                               start: @schedule[i][:start],
                               end: @schedule[i][:end],
-                              location: @schedule[i][:location]
+                              location: @schedule[i][:location],
+                              event_id: @schedule[i][:event_id]
                             }
                           end
     end

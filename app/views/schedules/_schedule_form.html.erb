@@ -1,19 +1,29 @@
-<%= form_with(model: @schedule) do |f| %>
-<%= f.label :inventory_id, "Title" %>
-<%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %>
-<%= f.label :location %>
-<%= f.text_field :location %>
-<%= f.label :paw_staff_id, "Staff" %>
-<%= f.collection_select :paw_staff_id, PawStaff.all, :id, :staff_name, {prompt: true} %>
-<%= f.label :start, "Start Time" %>
-<%= f.datetime_local_field :start, {required: true} %>
-<%= f.label :end, "End Time" %>
-<%= f.datetime_local_field :end, {required: true} %>
-<br>
-  <% if @event_info[0]["id"] != @schedule[:event_id] %>
-    <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
-  <% else %>
-    <%= f.hidden_field :event_id %>
-  <% end %>
-<%= f.submit %>
-<% end %>
+    <table>
+      <%= form_with(model: @schedule) do |f| %>
+        <tr>
+          <th><%= f.label :inventory_id %></th>
+          <td><%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :start %></th>
+          <td><%= f.datetime_local_field :start, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :end %></th>
+          <td><%= f.datetime_local_field :end %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :paw_staff_id %></th>
+          <td><%= f.collection_select :paw_staff_id, PawStaff.all, :id, :staff_name, include_blank: true, selected: 0 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :location %></th>
+          <td><%= f.text_field :location %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_id %></th>
+          <td><%= f.collection_select :event_id, Event.all, :id, :event_selection, {prompt: true}, {required: true} %></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
+        <% end %>
+    </table>

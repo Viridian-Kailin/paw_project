@@ -13,7 +13,10 @@ class GameLogsController < ApplicationController
   end
 
   def edit
-    @logs = GameLog.log_info(GameLog.find(params[:id]))
+    @log = GameLog.find(params[:id])
+    @title = Inventory.find(@log[:inventory_id])
+    @member = Participant.find(@log[:participant_id])
+    @log_event = Event.find(@log[:event_id])
   end
 
   def update

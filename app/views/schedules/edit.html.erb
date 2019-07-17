@@ -2,22 +2,49 @@
   <div id="schedule_form">
     <table>
       <tr>
-        <% @schedule.as_json.each do |k,v| %>
-        <th>
-          <%= k %>
-        </th>
-        <% end %>
+        <th></th>
+        <th>Original</th>
+        <th>Edit</th>
       </tr>
-      <tr>
-        <% @schedule.as_json.each do |k,v| %>
-        <td>
-          <%= v %>
-        </td>
-        <%end%>
-      </tr>
+      <%= form_with(model: @schedule) do |f| %>
+        <tr>
+          <th><%= f.label :inventory_id %></th>
+          <td><%= @title[:title] %></td>
+          <td><%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :start %></th>
+          <td class="timestamp"><%= @schedule[:start] %></td>
+          <td><%= f.datetime_local_field :start, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :end %></th>
+          <td class="timestamp"><%= @schedule[:end] %></td>
+          <td><%= f.datetime_local_field :end %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :paw_staff_id %></th>
+          <td>
+            <% unless @staff.nil? %>
+              <%= @staff[:name] %>
+            <% else %>
+              NA
+            <% end %>
+            </td>
+          <td><%= f.collection_select :paw_staff_id, PawStaff.all, :id, :staff_name, include_blank: true, selected: 0 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :location %></th>
+          <td><%= @schedule[:location] %></td>
+          <td><%= f.text_field :location %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_id %></th>
+          <td><%= @scheduled_event[:event_code] %></td>
+          <td><%= f.collection_select :event_id, Event.all, :id, :event_selection, {prompt: true}, {required: true} %></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
+      <% end %>
     </table>
-    <br><br>
-
-    <%= render 'schedule_form' %>
   </div>
 </div>

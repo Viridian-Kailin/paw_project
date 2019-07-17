@@ -1,23 +1,29 @@
-<div class="games-container">
-  <div id="games_form">
+<div class="game-container">
+  <div id="game_form">
     <table>
       <tr>
-        <% @game.as_json.each do |k,v| %>
-        <th>
-          <%= k %>
-        </th>
-        <% end %>
+        <th></th>
+        <th>Original</th>
+        <th>Edit</th>
       </tr>
-      <tr>
-        <% @game.as_json.each do |k,v| %>
-        <td>
-          <%= v %>
-        </td>
-        <%end%>
-      </tr>
+      <%= form_with(model: @game) do |f| %>
+        <tr>
+          <th><%= f.label :title %></th>
+          <td><%= @game[:title] %></td>
+          <td><%= f.text_field :title, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :company %></th>
+          <td><%= @game[:company] %></td>
+          <td><%= f.text_field :company, required: true%></td>
+        </tr>
+        <tr>
+          <th><%= f.label :quantity_total %></th>
+          <td><%= @game[:quantity_total] %></td>
+          <td><%= f.number_field :quantity_total %></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
+      <% end %>
     </table>
-    <br><br>
-
-    <%= render 'game_form' %>
   </div>
 </div>

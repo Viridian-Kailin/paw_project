@@ -93,3 +93,8 @@ div#form_button {
   grid-column-start: 2;
   grid-column-end: 7;
 }
+
+#member_edit_form table {
+  empty-cells: show;
+}
+

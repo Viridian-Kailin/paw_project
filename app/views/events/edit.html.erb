@@ -4,23 +4,34 @@
 
     <table>
       <tr>
-        <% @event.as_json.each do |k,v| %>
-        <th>
-          <%= k %>
-        </th>
-        <% end %>
+        <th></th>
+        <th>Original</th>
+        <th>Edit</th>
       </tr>
-      <tr>
-        <% @event.as_json.each do |k,v| %>
-        <td>
-          <%= v %>
-        </td>
-        <%end%>
-      </tr>
+      <%= form_with(model: @event) do |f| %>
+        <tr>
+          <th><%= f.label :event_code %></th>
+          <td><%= @event[:event_code] %>
+          <td><%= f.text_field :event_code, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_year %></th>
+          <td><%= @event[:event_year] %>
+          <td><%= f.number_field :event_year, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_location %></th>
+          <td><%= @event[:event_location] %>
+          <td><%= f.text_field :event_location %></td>
+        </tr>
+        <tr>
+          <th><%= f.label "Currently set" %></th>
+          <td><%= @event[:set] %>
+          <td>Set this event? <%= f.check_box :set%></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
+      <% end %>
     </table>
-    <br><br>
-
-    <%= render 'form', event: @event %>
 
     <%= link_to 'Back', events_path %>
   </div>

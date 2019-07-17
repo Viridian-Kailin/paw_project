@@ -1,14 +1,39 @@
 <div class="log-container">
   <div id="log_form">
-    Title: <%= @logs[:title] %><br>
-    Title ID: <%= @logs[:inventory_id] %><br>
-    Timestamp: <%= @logs[:timestamp] %><br>
-    Member: <%= @logs[:member] %><br>
-    Member ID: <%= @logs[:participant_id] %><br>
-    <%= form_with(url: game_log_path, method: :patch, scope: :game_log) do |f|%>
-    <%= f.label :rating %>
-    <%= f.number_field :rating, min: 1, max: 5, required: true %>
-    <%= f.submit %>
-    <% end %>
+        <table>
+      <tr>
+        <th></th>
+        <th>Original</th>
+        <th>Edit</th>
+      </tr>
+      <%= form_with(model: @log) do |f| %>
+        <tr>
+          <th><%= f.label :inventory_id %></th>
+          <td><%= @title[:title] %></td>
+          <td><%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {required: true} %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :timestamp %></th>
+          <td class="timestamp"><%= @log[:timestamp] %></td>
+          <td><%= f.datetime_local_field :timestamp, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :participant_id %></th>
+          <td><%= @member[:name] %></td>
+          <td><%= @member[:name] %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :rating %></th>
+            <td><%= @log[:rating] %></td>
+            <td><%= f.number_field :rating, required: true, min: 1, max: 5 %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_id %></th>
+          <td><%= @log_event[:event_code] %></td>
+          <td><%= @log_event[:event_code] %></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
+      <% end %>
+    </table>
   </div>
 </div>

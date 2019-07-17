@@ -1,10 +1,17 @@
-<%= form_with(model: @game) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :company %>
-    <%= f.text_field :company %>
-    <%= f.label "Quantity" %>
-    <%= f.number_field :quantity_total %>
-    <br><br>
-    <%= f.submit %>
-<% end %>
+    <table>
+      <%= form_with(model: @game) do |f| %>
+        <tr>
+          <th><%= f.label :title %></th>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :company %></th>
+          <td><%= f.text_field :company %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :quantity_total %></th>
+          <td><%= f.number_field :quantity_total %></td>
+        </tr>
+        <tr><td colspan="2"><%= f.submit %></td></tr>
+      <% end %>
+    </table>

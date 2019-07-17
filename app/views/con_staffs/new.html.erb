@@ -1,7 +1,35 @@
 <h1>New Con Staff</h1>
 <div class="con-container">
   <div id="con_form">
-    <%= render 'form', con_staff: @con_staff %>
+    <table>
+      <%= form_with(model: @con_staff) do |f| %>
+        <tr>
+          <th><%= f.label :name %></th>
+          <td><%= f.text_field :name, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :title %></th>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :badge %></th>
+          <td><%= f.number_field :badge %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :phone %></th>
+          <td><%= f.phone_field :phone %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :email %></th>
+          <td><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_id %></th>
+          <td><%= f.collection_select :event_id, Event.all, :id, :event_selection, {prompt: true}, {required: true} %></td>
+        </tr>
+        <tr><td colspan="2"><%= f.submit %></td></tr>
+      <% end %>
+    </table>
 
     <%= link_to 'Back', con_staffs_path %>
   </div>

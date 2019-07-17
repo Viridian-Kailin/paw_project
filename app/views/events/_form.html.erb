@@ -1,25 +1,21 @@
-<%= form_with(model: event, local: true) do |form| %>
-  <%= form.label :event_code %>
-  <%= form.text_field :event_code %>
-  <%= form.label :event_year %>
-  <%= form.number_field :event_year %>
-  <%= form.label :event_location %>
-  <%= form.text_field :event_location %>
-  <%= form.label :set, "Set event?" %>
-  <%= form.check_box :set %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <table>
+      <%= form_with(model: @event) do |f| %>
+        <tr>
+          <th><%= f.label :event_code %></th>
+          <td><%= f.text_field :event_code, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_year %></th>
+          <td><%= f.number_field :event_year, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_location %></th>
+          <td><%= f.text_field :event_location %></td>
+        </tr>
+        <tr>
+          <th><%= f.label "Currently set" %></th>
+          <td>Set this event? <%= f.check_box :set%></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    </table>

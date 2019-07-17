@@ -1,9 +1,42 @@
 <h1>Editing Con Staff</h1>
 <div class="con-container">
   <div id="con_form">
-    <%= render 'form', con_staff: @con_staff %>
+    <table>
+      <tr>
+        <th></th>
+        <th>Original</th>
+        <th>Edit</th>
+      </tr>
+      <%= form_with(model: @con_staff) do |f| %>
+        <tr>
+          <th><%= f.label :name %></th>
+          <td><%= @con_staff[:name] %>
+          <td><%= f.text_field :name, required: true %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :title %></th>
+          <td><%= @con_staff[:title] %>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :phone %></th>
+          <td><%= @con_staff[:phone] %>
+          <td><%= f.phone_field :phone %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :email %></th>
+          <td><%= @con_staff[:email] %>
+          <td><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :event_id %></th>
+          <td><%= @con_staff[:event_id] %>
+          <td><%= f.collection_select :event_id, Event.all, :id, :event_selection, {prompt: true}, {required: true} %></td>
+        </tr>
+        <tr><td colspan="3"><%= f.submit %></td></tr>
+      <% end %>
+    </table>
 
-    <%= link_to 'Show', @con_staff %> |
     <%= link_to 'Back', con_staffs_path %>
   </div>
 </div>
