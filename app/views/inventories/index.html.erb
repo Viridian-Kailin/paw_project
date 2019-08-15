@@ -1,5 +1,4 @@
-<div class="games-container">
-  <div id="games_form">
+<article class="sing-col-sm">
     <table>
       <tr>
         <th>Title</th>
@@ -28,6 +27,4 @@
     <% if session[:user_name] == "admin" %>
       <%= button_to "Add New Title", new_inventory_path, method: :get %>
     <% end %>
-  </div>
-</div>
-
+</article>

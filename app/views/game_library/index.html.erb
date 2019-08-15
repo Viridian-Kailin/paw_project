@@ -4,7 +4,6 @@
   var gametitle
 
   $(document).ready(function(){
-
     $('#dialog_memberinfo').dialog({
       autoOpen: false,
       modal: true,
@@ -21,24 +20,24 @@
         dataType: 'JSON',
         success: function(data){
           // Clear out Game Info table except for header
-          if ($('.display_game > tbody')[0].childElementCount > 1) {
-            $('.display_game > tbody > tr:last').empty()
+          if ($('#display_game > tbody')[0].childElementCount > 1) {
+            $('#display_game > tbody > tr:last').empty()
           };
           // Add Game Info
-          $('.display_game > tbody:last').append('<tr><td>' + data.inventory.title + '</td><td>' + data.inventory.company + '</td><td>' + data.inventory.quantity_total + '</td></tr>');
+          $('#display_game > tbody:last').append('<tr><td>' + data.inventory.title + '</td><td>' + data.inventory.company + '</td><td>' + data.inventory.quantity_total + '</td></tr>');
           //Clear out game schedule except for header
-          if ($('.display_schedule > tbody')[0].childElementCount > 1) {
-            $('.display_schedule').find("tr:gt(0)").empty()
+          if ($('#display_schedule > tbody')[0].childElementCount > 1) {
+            $('#display_schedule').find("tr:gt(0)").empty()
           };
           // Add Game Schedule
           $.each ( $(data.schedule), function (i) {
-            $('.display_schedule > tbody:last').append('<tr><td class="game_start">' + moment(data.schedule[i].start).format('LLLL') + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i] + '</td></tr>' );
+            $('#display_schedule > tbody:last').append('<tr><td class="game_start">' + moment(data.schedule[i].start).format('LLLL') + '</td><td>' + data.schedule[i].location + '</td><td>' + data.staff[i] + '</td></tr>' );
           });
           // Clear out game log except for header
-          if ($('.display_logs > tbody')[0].childElementCount > 1) {
-            var test = $('.display_logs > tbody > tr').length;
+          if ($('#display_logs > tbody')[0].childElementCount > 1) {
+            var test = $('#display_logs > tbody > tr').length;
             for (i = 1; i < (test);i++) {
-              $('.display_logs > tbody > tr:last').remove()
+              $('#display_logs > tbody > tr:last').remove()
             }
           };
           // Find quantity left based on log data
@@ -47,11 +46,11 @@
           $.each ( $(data.logs), function (i) {
             // Translate date with momentjs or display blank
             if (moment(data.logs[i].checked_out).isValid()) {
-              $('.display_logs').append('<tr><td>' + moment(data.logs[i].checked_out).format('LLLL') + '</td><td>--</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+              $('#display_logs').append('<tr><td>' + moment(data.logs[i].checked_out).format('LLLL') + '</td><td>--</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
             } else if (moment(data.logs[i].checked_in).isValid()) {
-              $('.display_logs').append('<tr><td>--</td><td>' + moment(data.logs[i].checked_in).format('LLLL') + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+              $('#display_logs').append('<tr><td>--</td><td>' + moment(data.logs[i].checked_in).format('LLLL') + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
             } else {
-              $('.display_logs').append('<tr><td>' + moment(data.logs[i].checked_out).format('LLLL') + '</td><td>' + moment(data.logs[i].checked_in).format('LLLL') + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
+              $('#display_logs').append('<tr><td>' + moment(data.logs[i].checked_out).format('LLLL') + '</td><td>' + moment(data.logs[i].checked_in).format('LLLL') + '</td><td><a href="javascript:void(0)" id="find_member">' + data.logs[i].participant_id + '</a></td><td>' + data.logs[i].quantity_left);
             }
           });
           // Show member information
@@ -79,8 +78,9 @@
   });
 
 </script>
-<div class="library-container">
-  <div id="library_form">
+
+<article class="two-col-lg">
+  <section id="library_form">
     <%= form_with(url: game_library_index_path, scope: :library) do |f| %>
       <div id="game"><%= f.label :inventory_id, "Game:" %>
       <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></div><br>
@@ -91,41 +91,71 @@
       <%= f.hidden_field :quantity_left %>
       <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
       <br>
-      <%= f.submit "Check Out" %>
-      <%= f.submit "Check In", name: 'checkin_game', method: 'check_in' %>
+      <div id="library_buttons">
+        <%= f.submit "Check Out" %>
+        <%= f.submit "Check In", name: 'checkin_game', method: 'check_in' %>
+      </div>
     <% end %>
 
     <h3>Game Information:</h3>
-    <div class="table"><table class="display_game">
+    <div class="table">
+      <table class="library_table" id="display_game">
+        <tr>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Total Quantity</th>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <h3>Game Schedule:</h3>
+    <div class="table">
+      <table class="library_table" id="display_schedule">
+        <tr>
+          <th>Start Time</th>
+          <th>Location</th>
+          <th>GM</th>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <h3>Checkout/in History:</h3>
+    <div class="table">
+      <table class="library_table" id="display_logs">
+        <tr>
+          <th>Check-out Time</th>
+          <th>Check-in Time</th>
+          <th>Participant Name</th>
+          <th>Quantity</th>
+        </tr>
+      </table>
+    </div>
+    <br>
+  </section>
+</article>
+
+<article class="two-col-sm" id="out_section">
+  <h3>Currently Checked Out</h3>
+  <section id="out_form">
+    <table>
       <tr>
         <th>Title</th>
-        <th>Company</th>
-        <th>Total Quantity</th>
+        <th>Player</th>
+        <th>Quantity Left</th>
       </tr>
-    </table></div><br>
+      <% @log_history.each do |log| %>
+        <tr>
+          <td><%= log[1][:game] %></td>
+          <td><%= log[1][:name] %></td>
+          <td><%= log[1][:quantity] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</article>
 
-    <h3>Game Schedule:</h3>
-    <div class="table"><table class="display_schedule">
-      <tr>
-        <th>Start Time</th>
-        <th>Location</th>
-        <th>GM</th>
-      </tr>
-    </table></div><br>
 
-    <h3>Checkout/in History:</h3>
-    <div class="table"><table class="display_logs">
-      <tr>
-        <th>Check-out Time</th>
-        <th>Check-in Time</th>
-        <th>Participant Name</th>
-        <th>Quantity</th>
-      </tr>
-    </table></div><br>
-  </div>
-</div>
-
-  <div id="dialog_memberinfo" title="Participant Information">
+  <div class="col-11" id="dialog_memberinfo" title="Participant Information">
     <table class="contact_info">
       <tr>
         <th>Participant Name</th>

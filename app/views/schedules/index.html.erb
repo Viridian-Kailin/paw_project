@@ -1,5 +1,4 @@
-<div class="schedule-container">
-  <div id="schedule_form">
+<article class="sing-col-sm">
     <table>
       <tr>
         <th>Title</th>
@@ -31,5 +30,4 @@
     <% if session[:user_name] == "admin" %>
       <%= button_to "Add to Schedule", new_schedule_path, method: :get %>
     <% end %>
-  </div>
-</div>
+</article>

@@ -1,5 +1,4 @@
-<div class="staff-container">
-  <div id="staff_form">
+<article class="sing-col-sm">
     <h3>PAW Staff Information</h3>
     <table>
       <tr>
@@ -35,5 +34,4 @@
     <% if session[:user_name] == "admin" %>
       <%= button_to "Add staff", new_paw_staff_path, method: :get %>
     <% end %>
-  </div>
-</div>
+</article>

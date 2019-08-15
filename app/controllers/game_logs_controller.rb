@@ -75,13 +75,20 @@ class GameLogsController < ApplicationController
 
   def create
     convert_entries
+    record_count = 0
     @accepted_params.length.times do |i|
       @new_log = GameLog.new(@accepted_params[i])
       if @new_log.save
-        flash[:notice] = "Entry for #{Inventory.find(@accepted_params[i][:inventory_id])[:title]} at #{@logs_timestamp} has been added."
+        record_count += 1
+        #flash[:notice] = "Entry for #{Inventory.find(@accepted_params[i][:inventory_id])[:title]} at #{@logs_timestamp} has been added."
       else
         flash[:error] = @log.errors.full_messages
       end
+    end
+    if record_count == @accepted_params.length
+      flash[:notice] = "Entry for #{Inventory.find(@accepted_params[0][:inventory_id])[:title]} at #{@logs_timestamp} has been added."
+    else
+      flash[:error] = 'Not all records were saved. Please see a site admin.'
     end
     redirect_to '/game_logs'
   end

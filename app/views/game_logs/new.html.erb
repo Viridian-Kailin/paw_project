@@ -5,6 +5,7 @@
     $('#dialog_addmember').dialog({
       autoOpen: false,
       modal: true,
+      width: 700,
       buttons: [
         {
           text: "Add non-registered Participant",
@@ -36,14 +37,18 @@
   });
 </script>
 
-<div class="log-container">
-  <div id="log_form">
+  <article class="sing-col-sm">
+    <section id="log_header">
     <%= form_with(url: game_logs_path) do |f| %>
-      <div id="game_header"><%= f.label :inventory_id, "Game Title: " %>
-      <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></div><br>
-      <div id="detail_header"><%= f.label :timestamp, "Timestamp:" %>
-      <%= f.datetime_select :timestamp, ampm: true, default: Time.now %>
-      <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %></div>
+      <div id="game_header">
+        <%= f.label :inventory_id, "Game Title: " %>
+        <%= f.collection_select :inventory_id, Inventory.all, :id, :game_selection, {prompt: true}, {required: true} %></div><br>
+      <div id="detail_header">
+        <%= f.label :timestamp, "Timestamp:" %>
+        <%= f.datetime_select :timestamp, ampm: true, default: Time.now %>
+        <%= f.hidden_field :event_id, value: (@event_info[0]["id"]) %>
+      </div>
+      </section>
       <br><br>
       <table>
         <tr>
@@ -64,19 +69,18 @@
           </tr>
         <% end %>
       </table>
+      <br>
       <%= f.submit %>
     <% end %>
 
     <div id="dialog_addmember" title="Add non-registered Participant">
-      <div class="log-container">
-        <div id="log_form">
-          <%= render "shared/addmember" %>
-        </div>
-      </div>
+      <article>
+        <%= render "shared/addmember" %>
+      </article>
     </div>
-  </div>
+  </article>
 
-  <div class="todo_list">
+  <article class="col-8">
     Issues:
     <ul>
       <li>No validation on badge before submit; breaks website</li>
@@ -87,5 +91,5 @@
       <li>Confirm valid badge</li>
       <li>Do not submit form unless two or more entries</li>
     </ul>
-  </div>
-</div>
+    <div id="testing_form"></div>
+  </article>

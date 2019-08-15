@@ -2,34 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.log-container {
-  display: grid;
-  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
-  grid-template-rows: 394px 394px;
-  grid-gap: 10px;
-}
-
-#log_form {
-  background-color: #64BA72;
-  border: inset #423b4f;
-  padding: 10px 50px 50px 0px;
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-}
-
-#show_log_form {
-  background-color: #64BA72;
-  border: inset #423b4f;
-  padding: 50px;
-  grid-column-start: 2;
-  grid-column-end: 4;
-}
-
 .entry {
-    width: 100px;
-    font-size: initial;
+  font-size: initial;
 }
 
 .badge {
@@ -49,12 +23,20 @@
   display: flex;
 }
 
-.todo_list {
-  background-color: #64BA72;
-  border: inset #423b4f;
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 1;
-  padding: 20px;
+#dialog_addmember{
+  background-color: #53993A;
+}
+
+#log_header form {
+  padding-top: 2%;
+  padding-left: unset;
+}
+
+#out_form {
+  overflow: scroll;
+  padding-top: 20px;
+}
+
+#out_section {
+  height: 575px;
 }

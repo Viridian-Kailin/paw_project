@@ -1,5 +1,4 @@
-<div class="con-container">
-  <div id="con_form">
+  <article class="sing-col-sm">
     <h3>Convention Staff</h3>
     <table>
       <thead>
@@ -38,5 +37,4 @@
     <% if session[:user_name] == "admin" %>
       <%= button_to 'New Con Staff', new_con_staff_path, method: :get %>
     <% end %>
-  </div>
-</div>
+  </article>

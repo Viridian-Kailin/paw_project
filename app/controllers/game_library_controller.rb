@@ -6,6 +6,7 @@ class GameLibraryController < ApplicationController
 
   def index
     @gameinfo = Inventory.all
+    @log_history = Library.games_out
   end
 
   def new

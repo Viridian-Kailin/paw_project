@@ -2,38 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.grid-item-2 {
-  background-color: #64BA72;
-  border: 5px inset #423b4f;
-  grid-column: 2;
-  padding: 10px 20px 10px 20px;
-}
-
-#admin_buttons {
-  text-align: center;
-  border: none;
-  display: table;
-  padding-left: 50px;
-}
-
-#admin_buttons tr td{
-  border: none;
-}
-
-#info_buttons {
-  text-align: center;
-  padding-bottom: 10px;
-  display: table;
-  padding-left: 50px;
-}
-
-.grid-item-4 {
-  background-color: #64BA72;
-  border: 5px inset #423b4f;
-  grid-column: 4;
-  padding: 10px 20px 10px 20px;
-}
-
 .button_to {
   display: contents;
 }
@@ -41,4 +9,3 @@
 .welcome_info {
   font-size: 14px;
 }
-

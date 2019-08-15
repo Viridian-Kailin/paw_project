@@ -2,16 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table, td {
-  border-style: ridge;
-}
-
-td {
-  padding-left: 10px;
-  padding-top: 5px;
-  vertical-align: top;
-}
-
 .winner_cell {
   background-color: #64BA72;
 }
@@ -25,6 +15,18 @@ td {
   text-align: center;
 }
 
-h3 {
+#winner_table h3 {
   width: 250px;
+}
+
+#winner_table {
+  background-color: unset;
+  border-style: ridge;
+}
+
+#winner_table td {
+  border-style: ridge;
+  padding-left: 10px;
+  padding-top: 5px;
+  vertical-align: top;
 }

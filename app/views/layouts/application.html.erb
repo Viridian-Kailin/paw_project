@@ -2,16 +2,55 @@
 <html>
   <head>
     <title>Myapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+    //Group logs by title
+      for (i = 0; i < ($('.title').length);i++) {
+        var firstCell = $('.title')[i].innerHTML;
+        //debugger
+        if ($('.title').length > 1 ) {
+          if (i != 0) {
+            if (firstCell == ($('.title')[i - 1].innerHTML)) {
+              $('.title')[i].remove();
+              document.getElementsByClassName("title")[i - 1].rowSpan += 1;
+              i -= 1;
+            }
+          } else {
+            if (firstCell == ($('.title')[i + 1].innerHTML)) {
+              $('.title')[i + 1].remove();
+              document.getElementsByClassName("title")[i].rowSpan += 1;
+            }
+          }
+        }
+      }
+      for (i = 0; i < ($('.timestamp').length);i++) {
+        var firstCell = $('.timestamp')[i].innerHTML;
+        //debugger
+        if ($('.timestamp').length > 1 ) {
+          if (i != 0) {
+            if (firstCell == ($('.timestamp')[i - 1].innerHTML)) {
+              $('.timestamp')[i].remove();
+              document.getElementsByClassName("timestamp")[i - 1].rowSpan += 1;
+              i -= 1;
+            }
+          } else {
+            if (firstCell == ($('.timestamp')[i + 1].innerHTML)) {
+              $('.timestamp')[i + 1].remove();
+              document.getElementsByClassName("timestamp")[i].rowSpan += 1;
+             }
+          }
+        }
+      }
+    </script>
   </head>
 
-  <body>
+  <body class="page-container">
     <%= render 'shared/header' %>
-      <div class="info_container">
+      <div class="info-container">
         <% if flash[:alert] %>
           <div class="alert"><%= flash[:alert] %></div>
         <% end %>
@@ -22,48 +61,14 @@
       </div>
     <br><br>
     <%= yield %>
+    <div class="spacer"></div>
+    <footer class="footer">
+      <div class="row">
+        Created by Alexandra Davis Donatelli
+      </div>
+      <div>
+        Design inspired from work by Cory Slotten and Julien Chambers
+      </div>
+    </footer>
   </body>
 </html>
-
-<script>
-//Group logs by title
-  for (i = 0; i < ($('.title').length);i++) {
-    var firstCell = $('.title')[i].innerHTML;
-    //debugger
-
-    if ($('.title').length > 1 ) {
-      if (i != 0) {
-        if (firstCell == ($('.title')[i - 1].innerHTML)) {
-          $('.title')[i].remove();
-          document.getElementsByClassName("title")[i - 1].rowSpan += 1;
-          i -= 1;
-        }
-      } else {
-        if (firstCell == ($('.title')[i + 1].innerHTML)) {
-          $('.title')[i + 1].remove();
-          document.getElementsByClassName("title")[i].rowSpan += 1;
-        }
-      }
-    }
-  }
-
-  for (i = 0; i < ($('.timestamp').length);i++) {
-    var firstCell = $('.timestamp')[i].innerHTML;
-    //debugger
-
-    if ($('.timestamp').length > 1 ) {
-      if (i != 0) {
-        if (firstCell == ($('.timestamp')[i - 1].innerHTML)) {
-          $('.timestamp')[i].remove();
-          document.getElementsByClassName("timestamp")[i - 1].rowSpan += 1;
-          i -= 1;
-        }
-      } else {
-        if (firstCell == ($('.timestamp')[i + 1].innerHTML)) {
-          $('.timestamp')[i + 1].remove();
-          document.getElementsByClassName("timestamp")[i].rowSpan += 1;
-        }
-      }
-    }
-  }
-</script>

@@ -2,38 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table {
+.library_table {
   border-collapse: collapse;
-}
-
-td {
   font-size: medium;
-}
-
-th, td {
-  width: 400px;
-}
-
-.table {
-  padding-left: 50px;
   background-color: #64BA72;
 }
 
-button {
-  font-size: 15px;
+.library_table th, td {
+  padding: 5px 15px 5px 15px;
 }
 
-.button {
-  padding-left: 50px;
-}
-
-h3 {
-  padding-left: 20px;
-  width: 450px;
-}
-
-#badge_entry {
-  padding-left: 50px;
+#out_form {
+  height: 400px;
 }
 
 input[type=number] {
@@ -45,12 +25,8 @@ input[type=number] {
 }
 
 #library_form {
-  background-color: #64BA72;
-  border: inset #423b4f;
-  padding: 10px 50px 10px 30px;
-  grid-column-start: 2;
-  grid-column-end: 7;
-  font-weight: bold;
+  background-color: unset;
+  border: unset;
 }
 
 #dialog_memberinfo {
@@ -60,15 +36,7 @@ input[type=number] {
   font-weight: bold;
 }
 
-#dialog_memberinfo > table {
-  background-color: #64BA72;
-}
-
-.library-container {
-  display: grid;
-  grid-template-columns: 50px 302px 352px 352px 352px 302px 50px;
-}
-
-#game, #badge {
+#game, #badge, #library_buttons {
+  text-align: left;
   display: flex;
 }

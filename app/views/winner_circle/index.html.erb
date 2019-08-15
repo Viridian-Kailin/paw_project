@@ -90,25 +90,25 @@
   });
 </script>
 
-<button id="pick_winners">Pick the Winners!</button>
-<br><br>
-<table>
-  <% Inventory.all.each_slice(4) do |rows| %>
-    <tr>
-      <% rows.each do |cells| %>
-        <td id='<%= "#{cells.title}" %>_<%= "#{cells.id}" %>' class="winner_cell">
-          <div class="redraw_error"></div>
-          <div><h3><%= "#{cells.title}" %></h3></div>
-          <h4>Winner:</h4>
-          <ul id='winner_list'>
-          </ul>
-          <details><summary>Proxy Info</summary>
-          <ul class='no_proxy'>No proxy info</ul>
-          <ul class='proxy_list'></ul>
-          </details><br>
-          <button class="redraw" id='submit_<%= "#{cells.id}" %>' name='inventory_<%= "#{cells.id}" %>'>Redraw</button><br><br>
-        </td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
+  <button id="pick_winners">Pick the Winners!</button>
+  <br><br>
+  <table class="sing-col-lg" id="winner_table">
+    <% Inventory.all.each_slice(4) do |rows| %>
+      <tr>
+        <% rows.each do |cells| %>
+          <td id='<%= "#{cells.title}" %>_<%= "#{cells.id}" %>' class="winner_cell">
+            <div class="redraw_error"></div>
+            <div><h3><%= "#{cells.title}" %></h3></div>
+            <h4>Winner:</h4>
+            <ul id='winner_list'>
+            </ul>
+            <details><summary>Proxy Info</summary>
+            <ul class='no_proxy'>No proxy info</ul>
+            <ul class='proxy_list'></ul>
+            </details><br>
+            <button class="redraw" id='submit_<%= "#{cells.id}" %>' name='inventory_<%= "#{cells.id}" %>'>Redraw</button><br><br>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>

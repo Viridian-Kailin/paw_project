@@ -16,6 +16,155 @@
  *= require jquery-ui/dialog
  */
 
+/* Setup for global responsive CSS */
+* {
+  box-sizing: border-box;
+}
+
+[class*="col-"] {
+  float: left;
+  background-color: #64BA72;
+}
+/* Main page wrapper */
+.page-container {
+  float: left;
+  width: 100%;
+  margin: 0px;
+  background-color: #53993A;
+  border: unset;
+  position: relative;
+  min-height: 100vh;
+  margin-bottom: -2.5rem;
+}
+/* Main header */
+.header {
+  float: left;
+  width: 100%;
+  margin: 0%;
+  background-color: unset;
+  border: unset;
+}
+/* Info wrapper */
+.info-container {
+  float: left;
+  width: 100%;
+  border: unset;
+  background-color: unset;
+  margin: 20px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+/* Content wrapper */
+.content-container {
+  min-height: 100vh;
+}
+
+.two-col-even {
+  float: left;
+  width: 45%;
+  margin: 20px 0px 0px 45px;
+  border: inset #423b4f;
+  padding: 10px 50px 10px 30px;
+}
+
+.sing-col-sm {
+  float: left;
+  width: 60%;
+  border: inset #423b4f;
+  margin: 20px 0px 0px 45px;
+  padding: 10px 50px 10px 30px;
+}
+
+.sing-col-lg {
+  float: left;
+  width: 80%;
+  border: inset #423b4f;
+  margin: 20px 0px 0px 45px;
+}
+
+.two-col-lg {
+  float: left;
+  width: 60%;
+  margin-left: 50px;
+  border: inset #423b4f;
+}
+
+.two-col-sm {
+  float: left;
+  width: 30%;
+  margin-left: 50px;
+  border: inset #423b4f;
+  height: 500px;
+}
+
+.col-8 {
+  width: 20%;
+  margin: 20px 0px 0px 45px;
+}
+
+.spacer {
+  float: left;
+  width: 100%;
+  height: 5rem;
+  background-color: unset;
+}
+
+.footer {
+  float: left;
+  width: 100%;
+  background-color: #854E99;
+  color: #dfe5f3;
+  position: absolute;
+  bottom: 0;
+  height: 2.5rem;
+  font-style: italic;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Breakpoints for allowing different window/device sizes
+
+/* For mobile phones:
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop:
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+*/
+
+/* Global styling */
+article {
+  background-color: #64BA72;
+  border: inset #423b4f;
+  padding: 10px 50px 10px 30px;
+}
+
 section {
   background: #dfe5f3;
   border: solid #423b4f thin;
@@ -33,47 +182,17 @@ section ul li {
 
 body {
   background-color: #53993A;
-  margin: 0px;
   font-family: "Verdana", sans-serif;
+  margin: 0px;
 }
 
 h3, h1{
-  background-color: #854E99;
-  border: outset thin #423b4f;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  border-radius: 5px;
-}
-
-header {
-  border-bottom: double #423b4f thick;
-  background-color: #64BA72;
+  background-color: #854e99db;
+  border: 20px solid transparent;
   padding: 10px;
-  margin-bottom: 25px;
-  font-family: "Verdana", sans-serif;
-  display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: 100px auto 187px;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:'img dummy event_code'
-                      'img title username'
-                      'img nav login';
-}
-
-header > nav > a {
-  border-left: solid thin #423b4f;
-  border-radius: 80%;
-  padding: 6px 10px 6px 10px;
-  text-decoration: none;
-}
-
-header > nav > a:hover {
-  background-color: #854E99;
-  color: black;
-}
-
-a:visited {
-  color: black;
+  color: #dfe5f3;
+  text-align: center;
+  border-image: url("dice_icon.png") 15 round;
 }
 
 table {
@@ -92,7 +211,51 @@ td {
   border: solid #423b4f thin;
 }
 
-/* Header features */
+a:visited {
+  color: black;
+}
+
+form {
+  padding-top: 50px;
+  padding-left: 100px;
+  font-size: 20px;
+}
+
+select { font-size: 18px; }
+
+input { width: 200px; }
+
+input[type=radio] { width: 15px; }
+
+input[type=submit] { font-size: 18px; }
+
+/* Nav header features */
+#main_header {
+  border-bottom: double #423b4f thick;
+  background-color: #64BA72;
+  padding: 10px;
+  font-family: "Verdana", sans-serif;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 100px auto 187px;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:'img dummy event_code'
+                      'img title username'
+                      'img nav login';
+}
+
+#main_header > nav > a {
+  border-left: solid thin #423b4f;
+  border-radius: 80%;
+  padding: 6px 10px 6px 10px;
+  text-decoration: none;
+}
+
+#main_header > nav > a:hover {
+  background-color: #854E99;
+  color: black;
+}
+
 #pages {
   grid-area: nav;
   display: inline;
@@ -131,8 +294,7 @@ td {
   text-align: right;
 }
 
-/* Admin menu options */
-/* Menu Styles */
+/* Admin menu */
 
 .third-level-menu
 {
@@ -224,49 +386,14 @@ td {
   color: black;
 }
 
-/* Main body features */
-
-.grid-container {
-  display: grid;
-  grid-gap: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  grid-template-columns: 50px auto 100px auto 50px;
-  grid-template-rows: auto auto auto auto;
-}
-
-.grid-item-1 {
-  grid-column: 1;
-}
-
-.grid-item-3 {
-  grid-column: 3;
-}
-
-.grid-item-5 {
-  grid-column: 5;
-}
-
-#notice {
-  text-align: center;
-}
-
-.info_container {
-  text-align: center;
-  font-size: large;
-  font-weight: bold;
-}
-
-.future_feature {
-  font-size: 12px;
-  font-style: italic;
-}
+/* Info container */
 
 .alert {
   background-color: #A0231C;
   border: outset thin #423b4f;
   display: -webkit-inline-box;
   padding: 20px;
+  color: #dfe5f3;
 }
 
 .notice {
@@ -275,6 +402,8 @@ td {
   display: -webkit-inline-box;
   padding: 20px;
 }
+
+/* Additional CSS styling */
 
 .form_entry {
   background-color: #64BA72;
@@ -286,26 +415,6 @@ td {
 
 #true.selected { display:block; }
 
-#true {
-  border: none;
-}
+#true {border: none;}
 
 #false.selected { display:block; }
-
-form {
-  padding-top: 50px;
-  padding-left: 100px;
-  font-size: 20px;
-}
-
-select { font-size: 18px; }
-
-input { width: 200px; }
-
-input[type=radio] { width: 15px; }
-
-input[type=submit] { font-size: 18px; }
-
-#submit_member { padding-left: 100px; }
-
-.member_info { grid-column-start: 2; grid-column-end: 4; }

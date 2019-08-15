@@ -9,7 +9,7 @@
 
 </script>
 <section>
-<%= form_with url: participants_path, model: @participant, class: "grid-container", id: "member_submit" do |form| %>
+<%= form_with url: participants_path, model: @participant, id: "member_submit" do |form| %>
   <div class="member_info">Badge: <%= form.number_field "member[badge]", {required: true} %></div><br>
   <div class="member_info">Name: <%= form.text_field "member[name]", {required: true} %></div><br>
   <div class="member_info">Phone: <%= form.telephone_field "member[phone]" %></div><br>
