@@ -11,6 +11,8 @@ class GameLibraryController < ApplicationController
 
   def new
     @checkstatus = Library.new
+    @gameinfo = Inventory.all
+    @log_history = Library.games_out
   end
 
   def create
@@ -38,7 +40,7 @@ class GameLibraryController < ApplicationController
       flash[:notice] = "No copies of #{Inventory.find(library_params[:inventory_id])[:title]} available."
     end
 
-    redirect_to '/game_library'
+    redirect_to '/game_library/new'
   end
 
   def gameinfo

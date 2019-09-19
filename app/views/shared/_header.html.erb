@@ -1,12 +1,12 @@
 <header class="header" id="main_header">
-  <%= image_tag "PAW-Logo.jpg", id: "menu_img" %>
+  <%= link_to image_tag("PAW-Logo.jpg", id: "menu_img", alt: "PAW Logo"), root_path, id: "img_link" %>
   <div id="program">
     Play and Win
   </div>
   <nav id="pages">
     <%= link_to "Add Participant", new_participant_path %>
     <%= link_to "Add Game Log", new_game_log_path %>
-    <%= link_to "Library", game_library_index_path %>
+    <%= link_to "Library", new_game_library_path %>
   </nav>
   <nav id="default">
     <ul class="top-level-menu">
@@ -35,7 +35,7 @@
         <li><%= link_to "Game Logs", game_logs_path %></li>
         <li><%= link_to "Participants", participants_path %></li>
         <% if session[:user_name] == 'admin' %>
-          <li><a href="#">Library Logs</a></li>
+          <li><%= link_to "Library Logs", game_library_index_path %></li>
           <li><%= link_to "Event Information", events_path %></li>
           <li><%= link_to "Winner Circle", winner_circle_index_path %></li>
         <% end %>

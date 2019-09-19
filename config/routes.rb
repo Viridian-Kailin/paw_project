@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   resources :participants
   resources :game_library
-  get 'list_game/:id', to: 'game_library#gameinfo'
-  get 'list_member/:badge', to: 'game_library#memberinfo'
+  get '/game_library/list_game/:id', to: 'game_library#gameinfo'
+  get '/game_library/list_member/:badge', to: 'game_library#memberinfo'
   resources :game_logs
   get 'check_entry/:badge_id', to: 'game_logs#need_reg'
   resources :winner_circle
