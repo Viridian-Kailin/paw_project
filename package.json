@@ -4,7 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "^4.0.2",
     "jquery": "^3.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "stimulus": "^1.1.1"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
